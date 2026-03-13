@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/pref_category_connection">
+        <EditTextPreference
+            android:key="pref_host"
+            android:title="@string/pref_host_title"
+            android:inputType="text"
+            android:singleLine="true" />
+        <EditTextPreference
+            android:key="pref_port"
+            android:title="@string/pref_port_title"
+            android:inputType="number"
+            android:defaultValue="80" />
+        <CheckBoxPreference
+            android:key="pref_use_https"
+            android:title="@string/pref_https_title"
+            android:defaultValue="false" />
+        <EditTextPreference
+            android:key="pref_username"
+            android:title="@string/pref_username_title"
+            android:inputType="text" />
+        <EditTextPreference
+            android:key="pref_password"
+            android:title="@string/pref_password_title"
+            android:inputType="textPassword" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_category_display">
+        <Preference
+            android:key="pref_hide_bouquets"
+            android:title="@string/pref_hide_bouquets_title" />
+        <CheckBoxPreference
+            android:key="pref_night_mode"
+            android:title="@string/pref_night_mode_title"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_category_playback">
+        <CheckBoxPreference
+            android:key="pref_auto_resume"
+            android:title="@string/pref_auto_resume_title"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,0 +1,406 @@
+E2ANDROID - USER GUIDE
+======================
+Version 1.0.0
+Android 8.0+ (API 26) | Enigma2 receivers via OpenWebif
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CONTENTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 1.  Quick Start / First Launch
+ 2.  Adding & Switching Devices
+ 3.  Channel Screen
+ 4.  Playing Live TV
+ 5.  EPG (Electronic Programme Guide)
+ 6.  EPG Search
+ 7.  Recordings
+ 8.  Player Controls (detail)
+ 9.  Timers
+10.  Playlists
+11.  Settings
+12.  Wake-on-LAN
+13.  Troubleshooting
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. QUICK START / FIRST LAUNCH
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+When you open E2Android for the first time the Setup screen appears.
+
+Fields:
+  Device Name    - A label for this receiver (e.g. "Living Room")
+  Host / IP      - IP address or hostname of your receiver
+                   (e.g. 192.168.1.100 or dreambox.local)
+  Port           - OpenWebif HTTP port.  Default is 80.
+                   Some configurations use 8080.
+  Username       - Leave blank if OpenWebif has no auth; otherwise
+                   enter the configured username.
+  Password       - Leave blank if OpenWebif has no auth.
+  MAC Address    - 12 hex digits (e.g. AA:BB:CC:DD:EE:FF).
+                   Only needed for Wake-on-LAN; can be left blank.
+  Use HTTPS      - Tick if your OpenWebif is on HTTPS.
+
+Tap CONNECT.  The app will fetch the bouquet list from your receiver
+and display the channel screen.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2. ADDING & SWITCHING DEVICES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+You can store any number of receiver profiles.
+
+  Adding a new device
+  -------------------
+  Channel screen > toolbar > "Switch Device" icon > "+ Add Device"
+  Fill in the same fields as first launch and tap SAVE.
+
+  Switching the active device
+  ---------------------------
+  Channel screen > toolbar > "Switch Device" icon.
+  Tap any entry in the list to make it the active receiver.
+  The channel list immediately refreshes from the new receiver.
+
+  Editing / Deleting a device
+  ---------------------------
+  Long-press (or swipe) an entry in the device list to reveal
+  Edit and Delete options.
+
+  Back navigation
+  ---------------
+  Tap the ← arrow (top-left) or use the Android back gesture
+  to return to the channel screen without changing the device.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+3. CHANNEL SCREEN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Layout
+------
+  Left panel   - Bouquet list (e.g. "Favourites", "Sky UK", "BBC HD")
+  Right panel  - Channel list for the selected bouquet
+
+Bouquets
+--------
+  - Tap a bouquet name to load its channels on the right.
+  - The ★ Favourites bouquet (if visible) shows all channels you have
+    starred.
+
+Channels
+--------
+  - Each channel row shows: picon logo, channel name, current programme
+    title, a progress bar for the current programme, and the "Next"
+    programme.
+  - Tap a channel to zap the receiver to that channel AND open the
+    full-screen player on your tablet.
+  - Long-press a channel to open a context menu:
+      • Show EPG     - opens the single-channel EPG list
+      • Set Timer    - schedule a one-off recording of the current
+                       programme
+
+Toolbar buttons (top-right)
+---------------------------
+  🔍  Filter/Search  - Type to filter channel names in real time
+  ★   Favourites     - Tap a channel's star icon to add/remove it
+                       from the Favourites bouquet
+  📷  Screenshot     - Triggers a screenshot on the receiver and
+                       displays it in the app
+  ⋮   Overflow menu  - Switch Device, EPG Grid, Recordings, Timers,
+                       Playlists, Settings
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+4. PLAYING LIVE TV
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Tap any channel in the channel list.  The player opens full-screen.
+
+OSD (On-Screen Display)
+-----------------------
+  Tap anywhere on the video to show/hide the OSD.
+  The OSD auto-hides after 5 seconds of inactivity.
+
+  The OSD shows:
+    - Channel name and current programme title
+    - Play / Pause button (centre)
+    - Previous channel  ◀◀  button (left)
+    - Next channel      ▶▶  button (right)
+    - Audio track selector
+    - Subtitle / CC track selector
+    - Aspect ratio cycle button
+    - Sleep timer button
+    - × Stop button (top-left, always visible)
+
+Changing channel from the player
+---------------------------------
+  Use the ◀◀ / ▶▶ buttons in the OSD to step through channels
+  in the current bouquet without returning to the channel screen.
+
+Stopping playback
+-----------------
+  Tap × (top-left).  This closes the player and returns you to the
+  channel screen.
+  Alternatively, press the Android Back gesture.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+5. EPG (ELECTRONIC PROGRAMME GUIDE)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Access:  Channel screen toolbar > overflow menu > "EPG".
+
+Layout
+------
+  Left column  - Pinned channel names
+  Main area    - Horizontal scrolling programme grid
+                 Rows = channels, columns = time slots
+  Top ruler    - Time axis; scroll left/right to move through time
+
+Navigation
+----------
+  Swipe left / right  - Scroll through time
+  Swipe up / down    - Scroll through channels
+  Tap a programme     - Select it (shows title + description overlay)
+  Double-tap          - Play the channel immediately (opens player)
+  Long-press          - Set a timer / recording for that programme
+
+Back
+----
+  Tap ← (top-left) to return to the channel screen.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+6. EPG SEARCH
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Access:  EPG screen > search icon (🔍) in toolbar,
+         OR channel screen toolbar > overflow > "EPG Search".
+
+  1. Type a programme title (or partial title) in the search box.
+  2. Results appear as a list showing channel, date/time, title.
+  3. Tap a result:
+       - Highlights the programme in the EPG grid, or
+       - Opens a detail view where you can start a timer.
+  4. Tap ← to return.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+7. RECORDINGS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Access:  Channel screen toolbar > overflow > "Recordings".
+
+Layout
+------
+  Left panel   - Recording list
+  Right panel  - Detail for the selected recording
+
+Sorting
+-------
+  Tap the sort icon / sort menu in the toolbar to sort by:
+    • Date (newest first)           • Date (oldest first)
+    • Channel name (A-Z)
+    • Title (A-Z)
+
+Playing a recording
+-------------------
+  1. Tap a recording in the list — its details appear on the right.
+  2. Tap PLAY in the detail panel.  The full-screen player opens.
+  3. A seek bar appears in the OSD (instead of prev/next channel).
+  4. Drag the seek bar to jump to any position.
+  5. Use ⏪ 15s / ⏩ 15s buttons for quick jumps.
+
+Resume playback
+---------------
+  If you stopped a recording part way through, the app remembers the
+  position.  The next time you tap PLAY for that recording it offers
+  to resume from where you left off (if auto-resume is enabled in
+  Settings).
+
+Back
+----
+  Tap ← (top-left) to return to the channel screen.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+8. PLAYER CONTROLS (DETAIL)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+The same PlayerActivity is used for live TV and recordings.
+
+  Tap video             Show / hide OSD (auto-hides after 5 s)
+  × button              Stop and exit player (top-left, always visible)
+  ▶ / ⏸                Play / Pause
+  ◀◀ / ▶▶ (live TV)   Previous / Next channel in current bouquet
+  ⏪ 15s / ⏩ 15s
+   (recordings only)   Rewind / Fast-forward 15 seconds
+  Seek bar
+   (recordings only)   Drag to any position in the recording
+
+  Audio Tracks
+  ------------
+  Tap the audio-track icon in the OSD to see a list of available
+  audio streams (e.g. English AC3, English stereo, German).
+  Tap a track to switch.
+
+  Subtitles / Closed Captions
+  ---------------------------
+  Tap the CC icon in the OSD to see available subtitle tracks.
+  Tap a track to enable it, or "Off" to disable.
+
+  Aspect Ratio
+  ------------
+  Tap the aspect-ratio icon to cycle through:
+    FIT (default)  →  FILL  →  ZOOM  →  FIXED 16:9  →  FIXED 4:3
+
+  Sleep Timer
+  -----------
+  Tap the moon icon in the OSD.
+  Choose: 15 min / 30 min / 60 min / Cancel.
+  A countdown badge appears on the icon while the timer is active.
+  When the timer expires the player stops and the app returns to the
+  channel screen.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+9. TIMERS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Access:  Channel screen toolbar > overflow > "Timers".
+
+The Timers screen shows all recording timers currently scheduled on
+the receiver (equivalent to the timer list in the Enigma2 menu).
+
+Each row shows:
+  - Programme title
+  - Channel name
+  - Start and end date/time
+  - Timer state (waiting / recording / completed / failed)
+
+Deleting a timer
+----------------
+  Swipe the timer row left, or tap the Delete (trash) icon.
+  A confirmation is shown before the timer is removed from the
+  receiver.
+
+Back
+----
+  Tap ← (top-left) to return to the channel screen.
+
+NOTE: Creating new timers is done from the EPG grid (long-press a
+programme) or from the channel list (long-press a channel).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+10. PLAYLISTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Access:  Channel screen toolbar > overflow > "Playlists".
+
+Playlists are stored locally on the tablet.  They let you build
+ordered collections of recordings for easy access.
+
+Creating a playlist
+-------------------
+  Tap + (FAB or toolbar icon) > enter a name > tap CREATE.
+
+Adding recordings to a playlist
+--------------------------------
+  1. Open the playlist (tap its name).
+  2. Tap "Add Recording" or the + icon.
+  3. Browse the receiver's recordings (or HDD browser).
+  4. Tap a recording to add it to the playlist.
+
+Playing a playlist
+------------------
+  Open the playlist > tap the first item (or tap PLAY ALL).
+  The player opens; when one recording finishes the next starts
+  automatically.
+
+Reordering entries
+------------------
+  Long-press an entry and drag it to a new position in the list.
+
+Renaming / Deleting a playlist
+-------------------------------
+  Long-press the playlist name in the playlist manager.
+  Choose Rename or Delete from the menu.
+
+HDD / NAS Browser
+------------------
+  Playlists > "Browse Files" button.
+  Displays folders and video files directly on the receiver's storage.
+  Tap a file to play it directly.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+11. SETTINGS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Access:  Channel screen toolbar > overflow > "Settings".
+
+  Device Configuration
+  --------------------
+  Each device profile has its own host, port, credentials and MAC
+  address.  Edit them here or from the Device Picker screen.
+
+  Hide Bouquets
+  -------------
+  Settings > "Hide Bouquets".
+  Tick the bouquets you do NOT want to see in the channel list.
+  Useful for hiding satellite feeds you are not subscribed to.
+
+  Night Mode
+  ----------
+  Toggle to switch between dark theme (default) and light theme.
+
+  Auto-Resume
+  -----------
+  When enabled, the player will ask to resume recordings from the
+  last watched position instead of starting from the beginning.
+
+  Background Timer Notifications
+  --------------------------------
+  The app polls your receiver's timer list every 15 minutes in the
+  background.  When a timer transitions to "recording" state you
+  receive an Android notification: "Recording started: <title>".
+  On Android 13+ you must grant the POST_NOTIFICATIONS permission
+  when prompted.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+12. WAKE-ON-LAN (WoL)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Wake-on-LAN sends a "magic packet" over UDP to wake a receiver that
+has been put into deep standby.
+
+Requirements:
+  - "Wake-on-LAN" enabled in the receiver's network settings
+  - The receiver's MAC address entered in the device profile
+  - The tablet and receiver must be on the same LAN subnet
+    (WoL does not pass through routers by default)
+
+How to use:
+  Channel screen > Switch Device > tap the WoL icon (power symbol)
+  next to the device you want to wake.
+
+After sending, wait 30-60 seconds for the receiver to boot, then
+tap the device name to connect.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+13. TROUBLESHOOTING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"Connection failed" / empty channel list
+  - Verify the IP address and port in Settings.
+  - Make sure the tablet and receiver are on the same Wi-Fi network.
+  - Open http://<receiver-ip>/api/info in a browser to test OpenWebif.
+  - If OpenWebif requires a username/password, enter them in Settings.
+
+"Unauthorised" / 401 errors
+  - The username or password in the device profile is wrong.
+  - Check the OpenWebif plugin settings on the receiver.
+
+Video won't play / black screen
+  - Confirm the receiver is actually tuned to that channel.
+  - Some encrypted channels require the receiver to be running the
+    correct CAM (card/softcam).
+  - Check that port 8001 (the streaming port) is not blocked by a
+    firewall on the receiver.
+
+Picon images not showing
+  - Picons must be installed on the receiver (in /usr/share/enigma2/
+    picon/ or similar).
+  - The app fetches picons via HTTP using the same host/port/
+    credentials as OpenWebif.
+
+No notifications for timers
+  - On Android 13+ grant the "Notifications" permission for E2Android
+    (Settings > Apps > E2Android > Permissions).
+  - Make sure battery optimisation / "Doze" is not killing the app's
+    background process (Settings > Battery > E2Android > Unrestricted).
+
+App shows old data
+  - Pull down (swipe down from top) on the channel or recordings list
+    to force a refresh.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+END OF USER GUIDE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

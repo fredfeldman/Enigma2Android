@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background_dark">
+
+    <!-- Header row with EPG search button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:orientation="horizontal"
+        android:background="@color/surface_dark"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="12dp">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_arrow_back"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back"
+            android:layout_marginEnd="4dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/epg"
+            android:textColor="@color/text_primary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_epg_search"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/epg_search"
+            android:background="@drawable/bg_button"
+            android:textColor="@color/text_primary"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- Selected event info -->
+    <TextView
+        android:id="@+id/tv_selected_event"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/accent"
+        android:textSize="14sp"
+        android:padding="8dp"
+        android:background="@color/surface_dark" />
+
+    <!-- EPG grid area -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <!-- Channel names column (fixed left) -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_channel_names"
+            android:layout_width="@dimen/epg_channel_col_width"
+            android:layout_height="match_parent"
+            android:background="@color/surface_dark"
+            android:nestedScrollingEnabled="false" />
+
+        <!-- Horizontal scroll: time ruler + grid -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- Time ruler -->
+            <com.enigma2.android.ui.epg.EpgTimeRulerView
+                android:id="@+id/epg_time_ruler"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:background="@color/surface_elevated" />
+
+            <!-- Scrollable EPG grid -->
+            <HorizontalScrollView
+                android:id="@+id/epg_h_scroll"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:scrollbars="horizontal">
+
+                <com.enigma2.android.ui.epg.EpgGridView
+                    android:id="@+id/epg_grid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </HorizontalScrollView>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Info bar (bottom) -->
+    <TextView
+        android:id="@+id/tv_epg_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_secondary"
+        android:textSize="13sp"
+        android:padding="8dp"
+        android:background="@color/surface_dark"
+        android:maxLines="2"
+        android:ellipsize="end" />
+</LinearLayout>

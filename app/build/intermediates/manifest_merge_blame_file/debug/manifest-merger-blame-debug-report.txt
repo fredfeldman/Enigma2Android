@@ -1,0 +1,413 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.enigma2.android"
+4    android:versionCode="2"
+5    android:versionName="1.0.1" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:4:5-67
+11-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:4:22-64
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:5:5-79
+12-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:5:22-76
+13    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+13-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:6:5-76
+13-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:6:22-73
+14    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+14-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:7:5-77
+14-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:7:22-74
+15
+16    <!-- Android tablet — touchscreen is required -->
+17    <uses-feature
+17-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:10:5-12:35
+18        android:name="android.hardware.touchscreen"
+18-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:11:9-52
+19        android:required="true" />
+19-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:12:9-32
+20
+21    <uses-permission android:name="android.permission.WAKE_LOCK" />
+21-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:23:5-68
+21-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:23:22-65
+22    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+22-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:25:5-81
+22-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:25:22-78
+23    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+23-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:26:5-77
+23-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:26:22-74
+24
+25    <permission
+25-->[androidx.core:core:1.12.0] C:\Users\Player One\.gradle\caches\transforms-3\d1e4a685b1001794fbcfe4ee9c157a7e\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
+26        android:name="com.enigma2.android.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+26-->[androidx.core:core:1.12.0] C:\Users\Player One\.gradle\caches\transforms-3\d1e4a685b1001794fbcfe4ee9c157a7e\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
+27        android:protectionLevel="signature" />
+27-->[androidx.core:core:1.12.0] C:\Users\Player One\.gradle\caches\transforms-3\d1e4a685b1001794fbcfe4ee9c157a7e\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
+28
+29    <uses-permission android:name="com.enigma2.android.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+29-->[androidx.core:core:1.12.0] C:\Users\Player One\.gradle\caches\transforms-3\d1e4a685b1001794fbcfe4ee9c157a7e\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
+29-->[androidx.core:core:1.12.0] C:\Users\Player One\.gradle\caches\transforms-3\d1e4a685b1001794fbcfe4ee9c157a7e\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
+30
+31    <application
+31-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:14:5-55:19
+32        android:allowBackup="true"
+32-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:15:9-35
+33        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+33-->[androidx.core:core:1.12.0] C:\Users\Player One\.gradle\caches\transforms-3\d1e4a685b1001794fbcfe4ee9c157a7e\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
+34        android:debuggable="true"
+35        android:extractNativeLibs="false"
+36        android:icon="@mipmap/ic_launcher"
+36-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:16:9-43
+37        android:label="@string/app_name"
+37-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:17:9-41
+38        android:roundIcon="@mipmap/ic_launcher_round"
+38-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:18:9-54
+39        android:supportsRtl="true"
+39-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:19:9-35
+40        android:theme="@style/Theme.Enigma2Android"
+40-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:20:9-52
+41        android:usesCleartextTraffic="true" >
+41-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:21:9-44
+42
+43        <!-- Main launcher activity -->
+44        <activity
+44-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:24:9-33:20
+45            android:name="com.enigma2.android.ui.main.MainActivity"
+45-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:25:13-49
+46            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+46-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:27:13-83
+47            android:exported="true"
+47-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:26:13-36
+48            android:launchMode="singleTop" >
+48-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:28:13-43
+49            <intent-filter>
+49-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:29:13-32:29
+50                <action android:name="android.intent.action.MAIN" />
+50-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:30:17-69
+50-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:30:25-66
+51
+52                <category android:name="android.intent.category.LAUNCHER" />
+52-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:31:17-77
+52-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:31:27-74
+53            </intent-filter>
+54        </activity>
+55
+56        <!-- Full-screen video player activity -->
+57        <activity
+57-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:36:9-41:46
+58            android:name="com.enigma2.android.ui.player.PlayerActivity"
+58-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:37:13-53
+59            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+59-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:39:13-83
+60            android:exported="false"
+60-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:38:13-37
+61            android:launchMode="singleTop"
+61-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:41:13-43
+62            android:theme="@style/Theme.Enigma2Android.Player" />
+62-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:40:13-63
+63
+64        <!-- Settings activity -->
+65        <activity
+65-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:44:9-47:68
+66            android:name="com.enigma2.android.ui.settings.SettingsActivity"
+66-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:45:13-57
+67            android:exported="false"
+67-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:46:13-37
+68            android:theme="@style/Theme.Enigma2Android.Settings" />
+68-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:47:13-65
+69
+70        <!-- Hidden bouquets picker (launched from Settings) -->
+71        <activity
+71-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:50:9-53:68
+72            android:name="com.enigma2.android.ui.settings.HideBouquetsActivity"
+72-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:51:13-61
+73            android:exported="false"
+73-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:52:13-37
+74            android:theme="@style/Theme.Enigma2Android.Settings" />
+74-->D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:53:13-65
+75
+76        <meta-data
+76-->[com.github.bumptech.glide:okhttp3-integration:4.16.0] C:\Users\Player One\.gradle\caches\transforms-3\ee98b7e7936b7d0457629d3e7e6eaf48\transformed\okhttp3-integration-4.16.0\AndroidManifest.xml:10:9-12:43
+77            android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule"
+77-->[com.github.bumptech.glide:okhttp3-integration:4.16.0] C:\Users\Player One\.gradle\caches\transforms-3\ee98b7e7936b7d0457629d3e7e6eaf48\transformed\okhttp3-integration-4.16.0\AndroidManifest.xml:11:13-84
+78            android:value="GlideModule" />
+78-->[com.github.bumptech.glide:okhttp3-integration:4.16.0] C:\Users\Player One\.gradle\caches\transforms-3\ee98b7e7936b7d0457629d3e7e6eaf48\transformed\okhttp3-integration-4.16.0\AndroidManifest.xml:12:13-40
+79
+80        <provider
+80-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Player One\.gradle\caches\transforms-3\9dba3473c2e7ab91e493b9371a42d8d3\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+81            android:name="androidx.startup.InitializationProvider"
+81-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Player One\.gradle\caches\transforms-3\9dba3473c2e7ab91e493b9371a42d8d3\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+82            android:authorities="com.enigma2.android.androidx-startup"
+82-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Player One\.gradle\caches\transforms-3\9dba3473c2e7ab91e493b9371a42d8d3\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+83            android:exported="false" >
+83-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Player One\.gradle\caches\transforms-3\9dba3473c2e7ab91e493b9371a42d8d3\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+84            <meta-data
+84-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Player One\.gradle\caches\transforms-3\9dba3473c2e7ab91e493b9371a42d8d3\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+85                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+85-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Player One\.gradle\caches\transforms-3\9dba3473c2e7ab91e493b9371a42d8d3\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+86                android:value="androidx.startup" />
+86-->[androidx.emoji2:emoji2:1.2.0] C:\Users\Player One\.gradle\caches\transforms-3\9dba3473c2e7ab91e493b9371a42d8d3\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+87            <meta-data
+87-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:34:13-36:52
+88                android:name="androidx.work.WorkManagerInitializer"
+88-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:35:17-68
+89                android:value="androidx.startup" />
+89-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:36:17-49
+90            <meta-data
+90-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\Player One\.gradle\caches\transforms-3\4c2924f70e8c04987f83fcfd1bb151d3\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
+91                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+91-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\Player One\.gradle\caches\transforms-3\4c2924f70e8c04987f83fcfd1bb151d3\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
+92                android:value="androidx.startup" />
+92-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\Player One\.gradle\caches\transforms-3\4c2924f70e8c04987f83fcfd1bb151d3\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
+93            <meta-data
+93-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Player One\.gradle\caches\transforms-3\ee77c6148e535550acd02ec4a55fcb7f\transformed\profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+94                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+94-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Player One\.gradle\caches\transforms-3\ee77c6148e535550acd02ec4a55fcb7f\transformed\profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+95                android:value="androidx.startup" />
+95-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Player One\.gradle\caches\transforms-3\ee77c6148e535550acd02ec4a55fcb7f\transformed\profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+96        </provider>
+97
+98        <service
+98-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:39:9-45:35
+99            android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"
+99-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:40:13-88
+100            android:directBootAware="false"
+100-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:41:13-44
+101            android:enabled="@bool/enable_system_alarm_service_default"
+101-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:42:13-72
+102            android:exported="false" />
+102-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:43:13-37
+103        <service
+103-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:46:9-52:35
+104            android:name="androidx.work.impl.background.systemjob.SystemJobService"
+104-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:47:13-84
+105            android:directBootAware="false"
+105-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:48:13-44
+106            android:enabled="@bool/enable_system_job_service_default"
+106-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:49:13-70
+107            android:exported="true"
+107-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:50:13-36
+108            android:permission="android.permission.BIND_JOB_SERVICE" />
+108-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:51:13-69
+109        <service
+109-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:53:9-59:35
+110            android:name="androidx.work.impl.foreground.SystemForegroundService"
+110-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:54:13-81
+111            android:directBootAware="false"
+111-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:55:13-44
+112            android:enabled="@bool/enable_system_foreground_service_default"
+112-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:56:13-77
+113            android:exported="false" />
+113-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:57:13-37
+114
+115        <receiver
+115-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:61:9-66:35
+116            android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver"
+116-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:62:13-88
+117            android:directBootAware="false"
+117-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:63:13-44
+118            android:enabled="true"
+118-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:64:13-35
+119            android:exported="false" />
+119-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:65:13-37
+120        <receiver
+120-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:67:9-77:20
+121            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy"
+121-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:68:13-106
+122            android:directBootAware="false"
+122-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:69:13-44
+123            android:enabled="false"
+123-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:70:13-36
+124            android:exported="false" >
+124-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:71:13-37
+125            <intent-filter>
+125-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:73:13-76:29
+126                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+126-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:74:17-87
+126-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:74:25-84
+127                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+127-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:75:17-90
+127-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:75:25-87
+128            </intent-filter>
+129        </receiver>
+130        <receiver
+130-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:78:9-88:20
+131            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy"
+131-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:79:13-104
+132            android:directBootAware="false"
+132-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:80:13-44
+133            android:enabled="false"
+133-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:81:13-36
+134            android:exported="false" >
+134-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:82:13-37
+135            <intent-filter>
+135-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:84:13-87:29
+136                <action android:name="android.intent.action.BATTERY_OKAY" />
+136-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:85:17-77
+136-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:85:25-74
+137                <action android:name="android.intent.action.BATTERY_LOW" />
+137-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:86:17-76
+137-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:86:25-73
+138            </intent-filter>
+139        </receiver>
+140        <receiver
+140-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:89:9-99:20
+141            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy"
+141-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:90:13-104
+142            android:directBootAware="false"
+142-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:91:13-44
+143            android:enabled="false"
+143-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:92:13-36
+144            android:exported="false" >
+144-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:93:13-37
+145            <intent-filter>
+145-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:95:13-98:29
+146                <action android:name="android.intent.action.DEVICE_STORAGE_LOW" />
+146-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:96:17-83
+146-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:96:25-80
+147                <action android:name="android.intent.action.DEVICE_STORAGE_OK" />
+147-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:97:17-82
+147-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:97:25-79
+148            </intent-filter>
+149        </receiver>
+150        <receiver
+150-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:100:9-109:20
+151            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy"
+151-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:101:13-103
+152            android:directBootAware="false"
+152-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:102:13-44
+153            android:enabled="false"
+153-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:103:13-36
+154            android:exported="false" >
+154-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:104:13-37
+155            <intent-filter>
+155-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:106:13-108:29
+156                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+156-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:107:17-79
+156-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:107:25-76
+157            </intent-filter>
+158        </receiver>
+159        <receiver
+159-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:110:9-121:20
+160            android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver"
+160-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:111:13-88
+161            android:directBootAware="false"
+161-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:112:13-44
+162            android:enabled="false"
+162-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:113:13-36
+163            android:exported="false" >
+163-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:114:13-37
+164            <intent-filter>
+164-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:116:13-120:29
+165                <action android:name="android.intent.action.BOOT_COMPLETED" />
+165-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:117:17-79
+165-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:117:25-76
+166                <action android:name="android.intent.action.TIME_SET" />
+166-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:118:17-73
+166-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:118:25-70
+167                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+167-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:119:17-81
+167-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:119:25-78
+168            </intent-filter>
+169        </receiver>
+170        <receiver
+170-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:122:9-131:20
+171            android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver"
+171-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:123:13-99
+172            android:directBootAware="false"
+172-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:124:13-44
+173            android:enabled="@bool/enable_system_alarm_service_default"
+173-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:125:13-72
+174            android:exported="false" >
+174-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:126:13-37
+175            <intent-filter>
+175-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:128:13-130:29
+176                <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies" />
+176-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:129:17-98
+176-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:129:25-95
+177            </intent-filter>
+178        </receiver>
+179        <receiver
+179-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:132:9-142:20
+180            android:name="androidx.work.impl.diagnostics.DiagnosticsReceiver"
+180-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:133:13-78
+181            android:directBootAware="false"
+181-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:134:13-44
+182            android:enabled="true"
+182-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:135:13-35
+183            android:exported="true"
+183-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:136:13-36
+184            android:permission="android.permission.DUMP" >
+184-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:137:13-57
+185            <intent-filter>
+185-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:139:13-141:29
+186                <action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS" />
+186-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:140:17-88
+186-->[androidx.work:work-runtime:2.9.0] C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\AndroidManifest.xml:140:25-85
+187            </intent-filter>
+188        </receiver>
+189
+190        <uses-library
+190-->[androidx.window:window:1.0.0] C:\Users\Player One\.gradle\caches\transforms-3\108abe6471b017e5481657b16c1015d6\transformed\window-1.0.0\AndroidManifest.xml:25:9-27:40
+191            android:name="androidx.window.extensions"
+191-->[androidx.window:window:1.0.0] C:\Users\Player One\.gradle\caches\transforms-3\108abe6471b017e5481657b16c1015d6\transformed\window-1.0.0\AndroidManifest.xml:26:13-54
+192            android:required="false" />
+192-->[androidx.window:window:1.0.0] C:\Users\Player One\.gradle\caches\transforms-3\108abe6471b017e5481657b16c1015d6\transformed\window-1.0.0\AndroidManifest.xml:27:13-37
+193        <uses-library
+193-->[androidx.window:window:1.0.0] C:\Users\Player One\.gradle\caches\transforms-3\108abe6471b017e5481657b16c1015d6\transformed\window-1.0.0\AndroidManifest.xml:28:9-30:40
+194            android:name="androidx.window.sidecar"
+194-->[androidx.window:window:1.0.0] C:\Users\Player One\.gradle\caches\transforms-3\108abe6471b017e5481657b16c1015d6\transformed\window-1.0.0\AndroidManifest.xml:29:13-51
+195            android:required="false" />
+195-->[androidx.window:window:1.0.0] C:\Users\Player One\.gradle\caches\transforms-3\108abe6471b017e5481657b16c1015d6\transformed\window-1.0.0\AndroidManifest.xml:30:13-37
+196
+197        <service
+197-->[androidx.room:room-runtime:2.5.0] C:\Users\Player One\.gradle\caches\transforms-3\60bc3f31453054a5d2293b6b72bcaf4f\transformed\room-runtime-2.5.0\AndroidManifest.xml:24:9-28:63
+198            android:name="androidx.room.MultiInstanceInvalidationService"
+198-->[androidx.room:room-runtime:2.5.0] C:\Users\Player One\.gradle\caches\transforms-3\60bc3f31453054a5d2293b6b72bcaf4f\transformed\room-runtime-2.5.0\AndroidManifest.xml:25:13-74
+199            android:directBootAware="true"
+199-->[androidx.room:room-runtime:2.5.0] C:\Users\Player One\.gradle\caches\transforms-3\60bc3f31453054a5d2293b6b72bcaf4f\transformed\room-runtime-2.5.0\AndroidManifest.xml:26:13-43
+200            android:exported="false" />
+200-->[androidx.room:room-runtime:2.5.0] C:\Users\Player One\.gradle\caches\transforms-3\60bc3f31453054a5d2293b6b72bcaf4f\transformed\room-runtime-2.5.0\AndroidManifest.xml:27:13-37
+201
+202        <receiver
+202-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Player One\.gradle\caches\transforms-3\ee77c6148e535550acd02ec4a55fcb7f\transformed\profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+203            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+203-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Player One\.gradle\caches\transforms-3\ee77c6148e535550acd02ec4a55fcb7f\transformed\profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+204            android:directBootAware="false"
+204-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Player One\.gradle\caches\transforms-3\ee77c6148e535550acd02ec4a55fcb7f\transformed\profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+205            android:enabled="true"
+205-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Player One\.gradle\caches\transforms-3\ee77c6148e535550acd02ec4a55fcb7f\transformed\profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+206            android:exported="true"
+206-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Player One\.gradle\caches\transforms-3\ee77c6148e535550acd02ec4a55fcb7f\transformed\profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+207            android:permission="android.permission.DUMP" >
+207-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Player One\.gradle\caches\transforms-3\ee77c6148e535550acd02ec4a55fcb7f\transformed\profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+208            <intent-filter>
+208-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Player One\.gradle\caches\transforms-3\ee77c6148e535550acd02ec4a55fcb7f\transformed\profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+209                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+209-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Player One\.gradle\caches\transforms-3\ee77c6148e535550acd02ec4a55fcb7f\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+209-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Player One\.gradle\caches\transforms-3\ee77c6148e535550acd02ec4a55fcb7f\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+210            </intent-filter>
+211            <intent-filter>
+211-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Player One\.gradle\caches\transforms-3\ee77c6148e535550acd02ec4a55fcb7f\transformed\profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+212                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+212-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Player One\.gradle\caches\transforms-3\ee77c6148e535550acd02ec4a55fcb7f\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+212-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Player One\.gradle\caches\transforms-3\ee77c6148e535550acd02ec4a55fcb7f\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+213            </intent-filter>
+214            <intent-filter>
+214-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Player One\.gradle\caches\transforms-3\ee77c6148e535550acd02ec4a55fcb7f\transformed\profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+215                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+215-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Player One\.gradle\caches\transforms-3\ee77c6148e535550acd02ec4a55fcb7f\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+215-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Player One\.gradle\caches\transforms-3\ee77c6148e535550acd02ec4a55fcb7f\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+216            </intent-filter>
+217            <intent-filter>
+217-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Player One\.gradle\caches\transforms-3\ee77c6148e535550acd02ec4a55fcb7f\transformed\profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+218                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+218-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Player One\.gradle\caches\transforms-3\ee77c6148e535550acd02ec4a55fcb7f\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+218-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Player One\.gradle\caches\transforms-3\ee77c6148e535550acd02ec4a55fcb7f\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+219            </intent-filter>
+220        </receiver>
+221    </application>
+222
+223</manifest>

@@ -1,0 +1,106 @@
+[
+    {
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-53:\\layout\\fragment_setup.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\fragment_setup.xml"
+    },
+    {
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-53:\\layout\\item_playlist_entry.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\item_playlist_entry.xml"
+    },
+    {
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-53:\\layout\\item_epg_search_result.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\item_epg_search_result.xml"
+    },
+    {
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-53:\\layout\\fragment_playlist_manager.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\fragment_playlist_manager.xml"
+    },
+    {
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-53:\\layout\\fragment_timers.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\fragment_timers.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeDebugResources-53:/layout/item_channel.xml",
+        "source": "com.enigma2.android.app-main-56:/layout/item_channel.xml"
+    },
+    {
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-53:\\layout\\item_recording.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\item_recording.xml"
+    },
+    {
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-53:\\layout\\item_bouquet_check.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\item_bouquet_check.xml"
+    },
+    {
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-53:\\layout\\item_timer.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\item_timer.xml"
+    },
+    {
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-53:\\layout\\activity_settings.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\activity_settings.xml"
+    },
+    {
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-53:\\layout\\fragment_device_picker.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\fragment_device_picker.xml"
+    },
+    {
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-53:\\layout\\fragment_epg_search.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\fragment_epg_search.xml"
+    },
+    {
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-53:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-53:\\layout\\fragment_channels.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\fragment_channels.xml"
+    },
+    {
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-53:\\layout\\activity_hide_bouquets.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\activity_hide_bouquets.xml"
+    },
+    {
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-53:\\layout\\item_bouquet.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\item_bouquet.xml"
+    },
+    {
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-53:\\layout\\fragment_playlist_detail.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\fragment_playlist_detail.xml"
+    },
+    {
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-53:\\layout\\activity_player.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\activity_player.xml"
+    },
+    {
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-53:\\layout\\fragment_hide_bouquets.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\fragment_hide_bouquets.xml"
+    },
+    {
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-53:\\layout\\item_epg_channel_name.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\item_epg_channel_name.xml"
+    },
+    {
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-53:\\layout\\fragment_video_browser.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\fragment_video_browser.xml"
+    },
+    {
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-53:\\layout\\item_channel.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\item_channel.xml"
+    },
+    {
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-53:\\layout\\fragment_epg.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\fragment_epg.xml"
+    },
+    {
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-53:\\layout\\item_playlist.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\item_playlist.xml"
+    },
+    {
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-53:\\layout\\fragment_recordings.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\fragment_recordings.xml"
+    },
+    {
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-53:\\layout\\item_device.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\item_device.xml"
+    }
+]

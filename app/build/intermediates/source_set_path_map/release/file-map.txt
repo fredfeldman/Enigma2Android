@@ -1,0 +1,57 @@
+com.enigma2.android.app-lifecycle-viewmodel-savedstate-2.7.0-0 C:\Users\Player One\.gradle\caches\transforms-3\06c7ac21f2ec2667826c3884ae78d031\transformed\lifecycle-viewmodel-savedstate-2.7.0\res
+com.enigma2.android.app-window-1.0.0-1 C:\Users\Player One\.gradle\caches\transforms-3\108abe6471b017e5481657b16c1015d6\transformed\window-1.0.0\res
+com.enigma2.android.app-savedstate-ktx-1.2.1-2 C:\Users\Player One\.gradle\caches\transforms-3\13c7aa4412f57883c435d4ffea80fc4f\transformed\savedstate-ktx-1.2.1\res
+com.enigma2.android.app-slidingpanelayout-1.2.0-3 C:\Users\Player One\.gradle\caches\transforms-3\166371013c1b26801a4aa8bcafa92ace\transformed\slidingpanelayout-1.2.0\res
+com.enigma2.android.app-media3-ui-1.2.1-4 C:\Users\Player One\.gradle\caches\transforms-3\1817893b96e87eb562c675278daa1d08\transformed\media3-ui-1.2.1\res
+com.enigma2.android.app-media3-exoplayer-1.2.1-5 C:\Users\Player One\.gradle\caches\transforms-3\1a1897bf057ccdd328c9af06a31b56b1\transformed\media3-exoplayer-1.2.1\res
+com.enigma2.android.app-preference-ktx-1.2.1-6 C:\Users\Player One\.gradle\caches\transforms-3\1b0687298581275bdd9c4b99fc3699a3\transformed\preference-ktx-1.2.1\res
+com.enigma2.android.app-work-runtime-ktx-2.9.0-7 C:\Users\Player One\.gradle\caches\transforms-3\1b61f1601b36dcc96b158f4b7ac0d312\transformed\work-runtime-ktx-2.9.0\res
+com.enigma2.android.app-annotation-experimental-1.3.1-8 C:\Users\Player One\.gradle\caches\transforms-3\244ab9ef5ba822af240c849bd10c466a\transformed\annotation-experimental-1.3.1\res
+com.enigma2.android.app-lifecycle-livedata-ktx-2.7.0-9 C:\Users\Player One\.gradle\caches\transforms-3\29c6ab28febf7d4aa40d35945fb8a2e1\transformed\lifecycle-livedata-ktx-2.7.0\res
+com.enigma2.android.app-coordinatorlayout-1.1.0-10 C:\Users\Player One\.gradle\caches\transforms-3\2b0959dc2a15a43f6e92c044116da025\transformed\coordinatorlayout-1.1.0\res
+com.enigma2.android.app-viewpager2-1.1.0-beta02-11 C:\Users\Player One\.gradle\caches\transforms-3\3ee08f240d5109e0accf39de620ed1e2\transformed\viewpager2-1.1.0-beta02\res
+com.enigma2.android.app-fragment-ktx-1.6.2-12 C:\Users\Player One\.gradle\caches\transforms-3\41d2a83e5db260467ea71ce9a36880c6\transformed\fragment-ktx-1.6.2\res
+com.enigma2.android.app-cardview-1.0.0-13 C:\Users\Player One\.gradle\caches\transforms-3\425c79b41c5100e4c9e6d62d316150ce\transformed\cardview-1.0.0\res
+com.enigma2.android.app-lifecycle-process-2.7.0-14 C:\Users\Player One\.gradle\caches\transforms-3\4c2924f70e8c04987f83fcfd1bb151d3\transformed\lifecycle-process-2.7.0\res
+com.enigma2.android.app-recyclerview-1.3.2-15 C:\Users\Player One\.gradle\caches\transforms-3\51b848fd29e0816cb1a076f750cfdaf1\transformed\recyclerview-1.3.2\res
+com.enigma2.android.app-glide-4.16.0-16 C:\Users\Player One\.gradle\caches\transforms-3\51d2c9cf184927e813621cf40eadf51c\transformed\glide-4.16.0\res
+com.enigma2.android.app-sqlite-framework-2.3.0-17 C:\Users\Player One\.gradle\caches\transforms-3\550231521aef6c30b69601b8b368c987\transformed\sqlite-framework-2.3.0\res
+com.enigma2.android.app-drawerlayout-1.1.1-18 C:\Users\Player One\.gradle\caches\transforms-3\5546cce9dcb60f35250f341d0240034f\transformed\drawerlayout-1.1.1\res
+com.enigma2.android.app-room-ktx-2.5.0-19 C:\Users\Player One\.gradle\caches\transforms-3\565ad3d794266512c471647e011e7ab0\transformed\room-ktx-2.5.0\res
+com.enigma2.android.app-material-1.11.0-20 C:\Users\Player One\.gradle\caches\transforms-3\56af212e940d1f2bde023f0cf7bfa9c5\transformed\material-1.11.0\res
+com.enigma2.android.app-lifecycle-livedata-2.7.0-21 C:\Users\Player One\.gradle\caches\transforms-3\5cc4fd7bc44674266a738e5ebb966f5c\transformed\lifecycle-livedata-2.7.0\res
+com.enigma2.android.app-appcompat-1.6.1-22 C:\Users\Player One\.gradle\caches\transforms-3\60b492a510ec931c8abbf232e0a5612c\transformed\appcompat-1.6.1\res
+com.enigma2.android.app-room-runtime-2.5.0-23 C:\Users\Player One\.gradle\caches\transforms-3\60bc3f31453054a5d2293b6b72bcaf4f\transformed\room-runtime-2.5.0\res
+com.enigma2.android.app-transition-1.4.1-24 C:\Users\Player One\.gradle\caches\transforms-3\70852ee3f78f9a05315d9eac15d28cec\transformed\transition-1.4.1\res
+com.enigma2.android.app-sqlite-2.3.0-25 C:\Users\Player One\.gradle\caches\transforms-3\71e96b795a830d375e43747750f5d67c\transformed\sqlite-2.3.0\res
+com.enigma2.android.app-lifecycle-livedata-core-ktx-2.7.0-26 C:\Users\Player One\.gradle\caches\transforms-3\803160c04cb3779c01c93e52e12738b1\transformed\lifecycle-livedata-core-ktx-2.7.0\res
+com.enigma2.android.app-media-1.6.0-27 C:\Users\Player One\.gradle\caches\transforms-3\9764075a76dc3afe46003689649f017b\transformed\media-1.6.0\res
+com.enigma2.android.app-emoji2-1.2.0-28 C:\Users\Player One\.gradle\caches\transforms-3\9dba3473c2e7ab91e493b9371a42d8d3\transformed\emoji2-1.2.0\res
+com.enigma2.android.app-lifecycle-viewmodel-ktx-2.7.0-29 C:\Users\Player One\.gradle\caches\transforms-3\a0deec19768cbe850a85da7400e9eea2\transformed\lifecycle-viewmodel-ktx-2.7.0\res
+com.enigma2.android.app-constraintlayout-2.1.4-30 C:\Users\Player One\.gradle\caches\transforms-3\a1c5e08825da8b3508fd7a457a086ebc\transformed\constraintlayout-2.1.4\res
+com.enigma2.android.app-preference-1.2.1-31 C:\Users\Player One\.gradle\caches\transforms-3\a3c1f168472cd6a80c41d7cf43132dc2\transformed\preference-1.2.1\res
+com.enigma2.android.app-lifecycle-livedata-core-2.7.0-32 C:\Users\Player One\.gradle\caches\transforms-3\aa17826a1efedf74a38a1302d265141d\transformed\lifecycle-livedata-core-2.7.0\res
+com.enigma2.android.app-lifecycle-service-2.7.0-33 C:\Users\Player One\.gradle\caches\transforms-3\b234ef19a32c809f35922ff45e25d5b6\transformed\lifecycle-service-2.7.0\res
+com.enigma2.android.app-activity-1.8.2-34 C:\Users\Player One\.gradle\caches\transforms-3\ba12532002ff5700c838324281101227\transformed\activity-1.8.2\res
+com.enigma2.android.app-startup-runtime-1.1.1-35 C:\Users\Player One\.gradle\caches\transforms-3\bd50c3342304ece3fc0f4987dbf8e037\transformed\startup-runtime-1.1.1\res
+com.enigma2.android.app-activity-ktx-1.8.2-36 C:\Users\Player One\.gradle\caches\transforms-3\c99b79128b1be4fe6ff3bc5fc6cc8d9d\transformed\activity-ktx-1.8.2\res
+com.enigma2.android.app-work-runtime-2.9.0-37 C:\Users\Player One\.gradle\caches\transforms-3\cdaf741c9b2706d3adf34456479f89ff\transformed\work-runtime-2.9.0\res
+com.enigma2.android.app-core-1.12.0-38 C:\Users\Player One\.gradle\caches\transforms-3\d1e4a685b1001794fbcfe4ee9c157a7e\transformed\core-1.12.0\res
+com.enigma2.android.app-lifecycle-runtime-ktx-2.7.0-39 C:\Users\Player One\.gradle\caches\transforms-3\d7343b270bab0cb8a9fc584b9c2dbb07\transformed\lifecycle-runtime-ktx-2.7.0\res
+com.enigma2.android.app-lifecycle-runtime-2.7.0-40 C:\Users\Player One\.gradle\caches\transforms-3\d8c23ae62514d126668047c47706591f\transformed\lifecycle-runtime-2.7.0\res
+com.enigma2.android.app-fragment-1.6.2-41 C:\Users\Player One\.gradle\caches\transforms-3\da6c906a16391e0be307475dc8319e93\transformed\fragment-1.6.2\res
+com.enigma2.android.app-savedstate-1.2.1-42 C:\Users\Player One\.gradle\caches\transforms-3\dd5bf7646a22a18020a2053e33d32a88\transformed\savedstate-1.2.1\res
+com.enigma2.android.app-emoji2-views-helper-1.2.0-43 C:\Users\Player One\.gradle\caches\transforms-3\e3779211110e7e7363a092096e8e5517\transformed\emoji2-views-helper-1.2.0\res
+com.enigma2.android.app-customview-poolingcontainer-1.0.0-44 C:\Users\Player One\.gradle\caches\transforms-3\e941b01fde22fdff89b30af19d350aae\transformed\customview-poolingcontainer-1.0.0\res
+com.enigma2.android.app-lifecycle-viewmodel-2.7.0-45 C:\Users\Player One\.gradle\caches\transforms-3\eaf4098f7f2e5a321bd276b2ce870aa2\transformed\lifecycle-viewmodel-2.7.0\res
+com.enigma2.android.app-core-runtime-2.2.0-46 C:\Users\Player One\.gradle\caches\transforms-3\ee63aad40962667e9ebfadbe25b1116c\transformed\core-runtime-2.2.0\res
+com.enigma2.android.app-profileinstaller-1.3.0-47 C:\Users\Player One\.gradle\caches\transforms-3\ee77c6148e535550acd02ec4a55fcb7f\transformed\profileinstaller-1.3.0\res
+com.enigma2.android.app-appcompat-resources-1.6.1-48 C:\Users\Player One\.gradle\caches\transforms-3\f880cc1c3e36c0c4b347845a9fccfd59\transformed\appcompat-resources-1.6.1\res
+com.enigma2.android.app-core-ktx-1.12.0-49 C:\Users\Player One\.gradle\caches\transforms-3\ff6587493ebdc791c50ad8995c78d2de\transformed\core-ktx-1.12.0\res
+com.enigma2.android.app-pngs-50 D:\source\repos\Enigma2Android\app\build\generated\res\pngs\release
+com.enigma2.android.app-resValues-51 D:\source\repos\Enigma2Android\app\build\generated\res\resValues\release
+com.enigma2.android.app-packageReleaseResources-52 D:\source\repos\Enigma2Android\app\build\intermediates\incremental\release\packageReleaseResources\merged.dir
+com.enigma2.android.app-packageReleaseResources-53 D:\source\repos\Enigma2Android\app\build\intermediates\incremental\release\packageReleaseResources\stripped.dir
+com.enigma2.android.app-merged_res-54 D:\source\repos\Enigma2Android\app\build\intermediates\merged_res\release
+com.enigma2.android.app-main-55 D:\source\repos\Enigma2Android\app\src\main\res
+com.enigma2.android.app-release-56 D:\source\repos\Enigma2Android\app\src\release\res

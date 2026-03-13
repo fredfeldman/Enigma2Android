@@ -1,0 +1,102 @@
+[
+    {
+        "merged": "com.enigma2.android.app-mergeReleaseResources-53:/layout/fragment_epg_search.xml",
+        "source": "com.enigma2.android.app-main-55:/layout/fragment_epg_search.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeReleaseResources-53:/layout/activity_main.xml",
+        "source": "com.enigma2.android.app-main-55:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeReleaseResources-53:/layout/fragment_timers.xml",
+        "source": "com.enigma2.android.app-main-55:/layout/fragment_timers.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeReleaseResources-53:/layout/item_timer.xml",
+        "source": "com.enigma2.android.app-main-55:/layout/item_timer.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeReleaseResources-53:/layout/item_playlist.xml",
+        "source": "com.enigma2.android.app-main-55:/layout/item_playlist.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeReleaseResources-53:/layout/fragment_epg.xml",
+        "source": "com.enigma2.android.app-main-55:/layout/fragment_epg.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeReleaseResources-53:/layout/activity_settings.xml",
+        "source": "com.enigma2.android.app-main-55:/layout/activity_settings.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeReleaseResources-53:/layout/fragment_playlist_detail.xml",
+        "source": "com.enigma2.android.app-main-55:/layout/fragment_playlist_detail.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeReleaseResources-53:/layout/item_epg_search_result.xml",
+        "source": "com.enigma2.android.app-main-55:/layout/item_epg_search_result.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeReleaseResources-53:/layout/item_playlist_entry.xml",
+        "source": "com.enigma2.android.app-main-55:/layout/item_playlist_entry.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeReleaseResources-53:/layout/fragment_device_picker.xml",
+        "source": "com.enigma2.android.app-main-55:/layout/fragment_device_picker.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeReleaseResources-53:/layout/item_device.xml",
+        "source": "com.enigma2.android.app-main-55:/layout/item_device.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeReleaseResources-53:/layout/item_recording.xml",
+        "source": "com.enigma2.android.app-main-55:/layout/item_recording.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeReleaseResources-53:/layout/fragment_channels.xml",
+        "source": "com.enigma2.android.app-main-55:/layout/fragment_channels.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeReleaseResources-53:/layout/item_bouquet_check.xml",
+        "source": "com.enigma2.android.app-main-55:/layout/item_bouquet_check.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeReleaseResources-53:/layout/activity_hide_bouquets.xml",
+        "source": "com.enigma2.android.app-main-55:/layout/activity_hide_bouquets.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeReleaseResources-53:/layout/item_epg_channel_name.xml",
+        "source": "com.enigma2.android.app-main-55:/layout/item_epg_channel_name.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeReleaseResources-53:/layout/activity_player.xml",
+        "source": "com.enigma2.android.app-main-55:/layout/activity_player.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeReleaseResources-53:/layout/fragment_video_browser.xml",
+        "source": "com.enigma2.android.app-main-55:/layout/fragment_video_browser.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeReleaseResources-53:/layout/item_channel.xml",
+        "source": "com.enigma2.android.app-main-55:/layout/item_channel.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeReleaseResources-53:/layout/fragment_hide_bouquets.xml",
+        "source": "com.enigma2.android.app-main-55:/layout/fragment_hide_bouquets.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeReleaseResources-53:/layout/item_bouquet.xml",
+        "source": "com.enigma2.android.app-main-55:/layout/item_bouquet.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeReleaseResources-53:/layout/fragment_recordings.xml",
+        "source": "com.enigma2.android.app-main-55:/layout/fragment_recordings.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeReleaseResources-53:/layout/fragment_playlist_manager.xml",
+        "source": "com.enigma2.android.app-main-55:/layout/fragment_playlist_manager.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeReleaseResources-53:/layout/fragment_setup.xml",
+        "source": "com.enigma2.android.app-main-55:/layout/fragment_setup.xml"
+    }
+]

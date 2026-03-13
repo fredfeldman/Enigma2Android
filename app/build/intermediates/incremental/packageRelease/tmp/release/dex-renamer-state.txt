@@ -1,0 +1,7 @@
+#Fri Mar 13 11:38:29 CDT 2026
+base.1=D\:\\source\\repos\\Enigma2Android\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes2.dex
+path.1=classes2.dex
+base.0=D\:\\source\\repos\\Enigma2Android\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes.dex
+renamed.1=classes2.dex
+renamed.0=classes.dex
+path.0=classes.dex

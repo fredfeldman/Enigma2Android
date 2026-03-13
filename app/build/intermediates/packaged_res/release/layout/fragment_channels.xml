@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@color/background_dark">
+
+    <!-- Bouquet list (left panel) -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_bouquets"
+        android:layout_width="@dimen/bouquet_list_width"
+        android:layout_height="match_parent"
+        android:background="@color/surface_dark"
+        android:divider="@null" />
+
+    <!-- Divider -->
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/surface_elevated" />
+
+    <!-- Channel panel (right) -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <!-- Toolbar buttons row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            android:orientation="horizontal"
+            android:background="@color/surface_dark"
+            android:paddingHorizontal="8dp"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/btn_switch_device"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/switch_device"
+                android:background="@drawable/bg_button"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp"
+                android:layout_marginEnd="4dp" />
+
+            <Button
+                android:id="@+id/btn_epg"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/epg"
+                android:background="@drawable/bg_button"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp"
+                android:layout_marginEnd="4dp" />
+
+            <Button
+                android:id="@+id/btn_recordings"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/recordings"
+                android:background="@drawable/bg_button"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp"
+                android:layout_marginEnd="4dp" />
+
+            <Button
+                android:id="@+id/btn_timers"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/timers"
+                android:background="@drawable/bg_button"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp"
+                android:layout_marginEnd="4dp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/btn_wol"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/wol"
+                android:background="@drawable/bg_button"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp"
+                android:layout_marginEnd="4dp" />
+
+            <Button
+                android:id="@+id/btn_screenshot"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/screenshot"
+                android:background="@drawable/bg_button"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp"
+                android:layout_marginEnd="4dp" />
+
+            <Button
+                android:id="@+id/btn_settings"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/settings"
+                android:background="@drawable/bg_button"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- Channel filter -->
+        <EditText
+            android:id="@+id/et_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/filter_channels"
+            android:background="@color/surface_elevated"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_hint"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
+            android:singleLine="true" />
+
+        <!-- Loading indicator -->
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+        <!-- Error text -->
+        <TextView
+            android:id="@+id/tv_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/error"
+            android:padding="12dp"
+            android:visibility="gone" />
+
+        <!-- Channel list -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_channels"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Backgrounds -->
+    <color name="background_dark">#0D0D0D</color>
+    <color name="surface_dark">#1A1A1A</color>
+    <color name="surface_elevated">#2A2A2A</color>
+
+    <!-- Text -->
+    <color name="text_primary">#FFFFFFFF</color>
+    <color name="text_secondary">#FFAAAAAA</color>
+    <color name="text_hint">#FF666666</color>
+
+    <!-- Accent -->
+    <color name="accent">#FFFFA500</color>
+    <color name="accent_dark">#FFCC8400</color>
+    <color name="accent_translucent">#66FFA500</color>
+
+    <!-- Status -->
+    <color name="error">#FFFF5555</color>
+    <color name="success">#FF55FF55</color>
+    <color name="warning">#FFFFAA00</color>
+
+    <!-- EPG event colors -->
+    <color name="epg_event_past">#FF2A2A2A</color>
+    <color name="epg_event_now">#FF1A3A1A</color>
+    <color name="epg_event_future">#FF1A1A3A</color>
+
+    <!-- Ripple / press feedback -->
+    <color name="ripple_color">#33FFA500</color>
+</resources>

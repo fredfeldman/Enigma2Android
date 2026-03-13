@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">E2Android</string>
+
+    <!-- Setup -->
+    <string name="setup_title">Add Device</string>
+    <string name="device_name">Device Name</string>
+    <string name="host_address">Host / IP Address</string>
+    <string name="port">Port</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="mac_address">MAC Address (WoL)</string>
+    <string name="use_https">Use HTTPS</string>
+    <string name="connect">Connect</string>
+    <string name="cancel">Cancel</string>
+    <string name="error_host_required">Host address is required</string>
+
+    <!-- Main toolbar -->
+    <string name="switch_device">Switch Device</string>
+    <string name="epg">EPG</string>
+    <string name="recordings">Recordings</string>
+    <string name="settings">Settings</string>
+    <string name="timers">Timers</string>
+    <string name="wol">WoL</string>
+    <string name="screenshot">Screenshot</string>
+    <string name="wol_sent">Wake-on-LAN packet sent</string>
+    <string name="no_mac_address">No MAC address configured</string>
+    <string name="screenshot_failed">Failed to take screenshot</string>
+
+    <!-- Channels -->
+    <string name="filter_channels">Filter channels…</string>
+    <string name="play">Play</string>
+    <string name="add_favorite">Add to Favorites</string>
+    <string name="remove_favorite">Remove from Favorites</string>
+    <string name="epg_info">EPG Info</string>
+
+    <!-- Recordings -->
+    <string name="sort_by">Sort by</string>
+    <string name="sort_date_desc">Date (newest first)</string>
+    <string name="sort_date_asc">Date (oldest first)</string>
+    <string name="sort_name">Name</string>
+    <string name="sort_channel">Channel</string>
+    <string name="duration_minutes">%d min</string>
+    <string name="play_recording">Play</string>
+
+    <!-- EPG -->
+    <string name="epg_search">Search EPG</string>
+    <string name="event_not_airing">Event is not currently airing</string>
+    <string name="record_confirm">Schedule recording for: %s?</string>
+    <string name="record">Record</string>
+    <string name="timer_added">Recording timer added</string>
+    <string name="timer_failed">Failed to add timer</string>
+
+    <!-- Timers -->
+    <string name="delete_timer">Delete Timer</string>
+    <string name="delete_timer_confirm">Delete timer for: %s?</string>
+    <string name="delete_failed">Failed to delete</string>
+    <string name="delete">Delete</string>
+
+    <!-- Devices -->
+    <string name="edit">Edit</string>
+    <string name="delete_device_confirm">Delete device: %s?</string>
+    <string name="add_device">Add Device</string>
+
+    <!-- Player -->
+    <string name="resume_playback">Resume Playback</string>
+    <string name="resume_from">Resume from %s?</string>
+    <string name="resume">Resume</string>
+    <string name="start_from_beginning">Start from beginning</string>
+    <string name="select_audio">Select Audio Track</string>
+    <string name="select_subtitle">Select Subtitle Track</string>
+    <string name="no_audio_tracks">No audio tracks available</string>
+    <string name="no_subtitle_tracks">No subtitle tracks available</string>
+    <string name="sleep_timer">Sleep Timer</string>
+    <string name="cancel_sleep_timer">Cancel sleep timer</string>
+    <string name="sleep_in_minutes">Sleep in %d minutes</string>
+
+    <!-- Playlists -->
+    <string name="new_playlist">New Playlist</string>
+    <string name="rename">Rename</string>
+    <string name="add_to_playlist">Add to Playlist</string>
+    <string name="added_to_playlist">Added to playlist</string>
+    <string name="no_playlists">No playlists yet</string>
+    <string name="browse_recordings">Browse Recordings</string>
+
+    <!-- Settings -->
+    <string name="pref_host_title">Receiver Host</string>
+    <string name="pref_port_title">Port</string>
+    <string name="pref_https_title">Use HTTPS</string>
+    <string name="pref_username_title">Username</string>
+    <string name="pref_password_title">Password</string>
+    <string name="pref_hide_bouquets_title">Hidden Bouquets</string>
+    <string name="pref_night_mode_title">Dark Mode</string>
+    <string name="pref_auto_resume_title">Auto-resume last channel</string>
+    <string name="pref_category_connection">Connection</string>
+    <string name="pref_category_display">Display</string>
+    <string name="pref_category_playback">Playback</string>
+
+    <!-- Notifications -->
+    <string name="recording_started">Recording started</string>
+
+    <!-- Devices -->
+    <string name="select_device">Select Device</string>
+    <string name="active">Active</string>
+
+    <!-- Hide Bouquets -->
+    <string name="hide_bouquets_title">Hide Bouquets</string>
+    <string name="hide_bouquets_subtitle">Checked bouquets will be hidden from the channel list.</string>
+
+    <!-- Playlists -->
+    <string name="playlists">Playlists</string>
+
+    <!-- Video Browser -->
+    <string name="browse_hdd">Browse HDD / NAS</string>
+
+    <!-- Playlist entry controls -->
+    <string name="move_up">Move up</string>
+    <string name="move_down">Move down</string>
+    <string name="remove">Remove</string>
+</resources>

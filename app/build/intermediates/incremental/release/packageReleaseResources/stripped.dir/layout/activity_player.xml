@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <!-- Video surface -->
+    <androidx.media3.ui.PlayerView
+        android:id="@+id/player_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:use_controller="false" />
+
+    <!-- Stop / Exit button (top-left, shown with OSD) -->
+    <ImageButton
+        android:id="@+id/btn_stop"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="top|start"
+        android:layout_margin="12dp"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:background="@drawable/bg_button"
+        android:tint="@color/text_primary"
+        android:contentDescription="Stop and exit"
+        android:visibility="gone" />
+
+    <!-- Loading spinner -->
+    <ProgressBar
+        android:id="@+id/player_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+    <!-- Bitrate overlay (top-right) -->
+    <TextView
+        android:id="@+id/tv_bitrate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_margin="12dp"
+        android:textColor="@color/text_secondary"
+        android:textSize="11sp"
+        android:visibility="gone" />
+
+    <!-- OSD overlay (bottom) -->
+    <LinearLayout
+        android:id="@+id/osd_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/gradient_bottom"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:visibility="gone">
+
+        <!-- Channel name + EPG row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_osd_channel_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!-- Channel prev/next (live TV only) -->
+            <ImageButton
+                android:id="@+id/btn_prev_channel"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:drawable/ic_media_previous"
+                android:background="@drawable/bg_button"
+                android:tint="@color/text_primary"
+                android:contentDescription="Previous channel"
+                android:visibility="gone" />
+
+            <ImageButton
+                android:id="@+id/btn_next_channel"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:drawable/ic_media_next"
+                android:background="@drawable/bg_button"
+                android:tint="@color/text_primary"
+                android:contentDescription="Next channel"
+                android:layout_marginStart="8dp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_osd_now_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/accent"
+            android:textSize="14sp"
+            android:layout_marginTop="2dp" />
+
+        <TextView
+            android:id="@+id/tv_osd_next_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:layout_marginTop="2dp" />
+
+        <!-- Seek row (recordings only) -->
+        <LinearLayout
+            android:id="@+id/seek_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_position"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"
+                android:text="00:00" />
+
+            <SeekBar
+                android:id="@+id/seek_bar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="8dp"
+                android:progressTint="@color/accent"
+                android:thumbTint="@color/accent" />
+
+            <TextView
+                android:id="@+id/tv_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"
+                android:text="00:00" />
+        </LinearLayout>
+
+        <!-- Action buttons row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp">
+
+            <!-- Rewind 15s (recordings) -->
+            <ImageButton
+                android:id="@+id/btn_rewind"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:drawable/ic_media_rew"
+                android:background="@drawable/bg_button"
+                android:tint="@color/text_primary"
+                android:contentDescription="Rewind 15s"
+                android:visibility="gone" />
+
+            <!-- Play/Pause -->
+            <ImageButton
+                android:id="@+id/btn_play_pause"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_play"
+                android:background="@drawable/bg_button"
+                android:contentDescription="Play/Pause"
+                android:layout_marginStart="8dp" />
+
+            <!-- Fast-forward 15s (recordings) -->
+            <ImageButton
+                android:id="@+id/btn_fast_forward"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:drawable/ic_media_ff"
+                android:background="@drawable/bg_button"
+                android:tint="@color/text_primary"
+                android:contentDescription="Fast-forward 15s"
+                android:layout_marginStart="8dp"
+                android:visibility="gone" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <!-- Audio track -->
+            <ImageButton
+                android:id="@+id/btn_audio"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:drawable/ic_btn_speak_now"
+                android:background="@drawable/bg_button"
+                android:tint="@color/text_primary"
+                android:contentDescription="Audio tracks"
+                android:layout_marginStart="8dp" />
+
+            <!-- Subtitles -->
+            <Button
+                android:id="@+id/btn_subs"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:text="CC"
+                android:textColor="@color/text_primary"
+                android:textSize="11sp"
+                android:background="@drawable/bg_button"
+                android:contentDescription="Subtitles"
+                android:padding="0dp"
+                android:layout_marginStart="8dp" />
+
+            <!-- Aspect ratio -->
+            <ImageButton
+                android:id="@+id/btn_aspect"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:drawable/ic_menu_crop"
+                android:background="@drawable/bg_button"
+                android:tint="@color/text_primary"
+                android:contentDescription="Aspect ratio"
+                android:layout_marginStart="8dp" />
+
+            <!-- Sleep timer -->
+            <ImageButton
+                android:id="@+id/btn_sleep"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:drawable/ic_lock_idle_alarm"
+                android:background="@drawable/bg_button"
+                android:tint="@color/text_primary"
+                android:contentDescription="Sleep timer"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
