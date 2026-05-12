@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.enigma2.android.R
 import com.enigma2.android.data.model.Bouquet
 import com.enigma2.android.data.model.NowNextEvent
 import com.enigma2.android.data.model.Service
@@ -76,10 +77,15 @@ class ChannelViewModel(application: Application) : AndroidViewModel(application)
                     bouquets = listOf(favBouquet) + bouquets
                 }
 
-                _bouquets.value = bouquets
-                bouquets.firstOrNull()?.let { selectBouquet(it) }
+                if (bouquets.isEmpty()) {
+                    _error.value = getApplication<Application>().getString(R.string.no_bouquets_found)
+                } else {
+                    _bouquets.value = bouquets
+                    bouquets.firstOrNull()?.let { selectBouquet(it) }
+                }
             } catch (e: Exception) {
-                _error.value = e.message
+                _error.value = getApplication<Application>().getString(R.string.no_bouquets_found) +
+                        "\n\n(" + (e.message ?: e.javaClass.simpleName) + ")"
             } finally {
                 _isLoading.value = false
             }
@@ -118,14 +124,25 @@ class ChannelViewModel(application: Application) : AndroidViewModel(application)
     }
 
     private suspend fun loadNowNext(bRef: String) {
+        // The synthetic favourites ref is not a valid OpenWebif bouquet reference
+        if (bRef == FAVORITES_REF) return
         try {
+            // api/epgnow already contains nested now_event+next_event objects;
+            // api/epgnext fills in channels where now_event was absent.
             val now = repo.getEpgNow(bRef)
             val next = repo.getEpgNext(bRef)
-            // Merge: now list is primary, add next where missing
-            val map = (now + next).groupBy { it.sref }.mapValues { it.value.first() }
+            // Use service ref as key — keep now list primary, back-fill from next list
+            val map = mutableMapOf<String, NowNextEvent>()
+            next.forEach { map[it.serviceRef] = it }
+            now.forEach { map[it.serviceRef] = it }   // now wins
             _nowNextMap.value = map.values.toList()
-        } catch (e: Exception) { /* non-critical */ }
+        } catch (e: Exception) {
+            android.util.Log.w("E2Android", "loadNowNext failed for $bRef", e)
+        }
     }
+
+    /** Normalises a service reference for map-key comparison. */
+    private fun normRef(s: String) = s.trim().trimEnd(':').lowercase()
 
     private suspend fun loadRecordingTimers(bRef: String) {
         try {

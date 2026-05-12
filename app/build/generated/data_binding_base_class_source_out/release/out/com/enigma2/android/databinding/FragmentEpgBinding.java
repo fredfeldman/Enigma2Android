@@ -44,6 +44,9 @@ public final class FragmentEpgBinding implements ViewBinding {
   public final RecyclerView rvChannelNames;
 
   @NonNull
+  public final TextView tvEpgEmpty;
+
+  @NonNull
   public final TextView tvEpgInfo;
 
   @NonNull
@@ -52,8 +55,8 @@ public final class FragmentEpgBinding implements ViewBinding {
   private FragmentEpgBinding(@NonNull LinearLayout rootView, @NonNull ImageButton btnBack,
       @NonNull Button btnEpgSearch, @NonNull EpgGridView epgGrid,
       @NonNull HorizontalScrollView epgHScroll, @NonNull EpgTimeRulerView epgTimeRuler,
-      @NonNull RecyclerView rvChannelNames, @NonNull TextView tvEpgInfo,
-      @NonNull TextView tvSelectedEvent) {
+      @NonNull RecyclerView rvChannelNames, @NonNull TextView tvEpgEmpty,
+      @NonNull TextView tvEpgInfo, @NonNull TextView tvSelectedEvent) {
     this.rootView = rootView;
     this.btnBack = btnBack;
     this.btnEpgSearch = btnEpgSearch;
@@ -61,6 +64,7 @@ public final class FragmentEpgBinding implements ViewBinding {
     this.epgHScroll = epgHScroll;
     this.epgTimeRuler = epgTimeRuler;
     this.rvChannelNames = rvChannelNames;
+    this.tvEpgEmpty = tvEpgEmpty;
     this.tvEpgInfo = tvEpgInfo;
     this.tvSelectedEvent = tvSelectedEvent;
   }
@@ -128,6 +132,12 @@ public final class FragmentEpgBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tv_epg_empty;
+      TextView tvEpgEmpty = ViewBindings.findChildViewById(rootView, id);
+      if (tvEpgEmpty == null) {
+        break missingId;
+      }
+
       id = R.id.tv_epg_info;
       TextView tvEpgInfo = ViewBindings.findChildViewById(rootView, id);
       if (tvEpgInfo == null) {
@@ -141,7 +151,7 @@ public final class FragmentEpgBinding implements ViewBinding {
       }
 
       return new FragmentEpgBinding((LinearLayout) rootView, btnBack, btnEpgSearch, epgGrid,
-          epgHScroll, epgTimeRuler, rvChannelNames, tvEpgInfo, tvSelectedEvent);
+          epgHScroll, epgTimeRuler, rvChannelNames, tvEpgEmpty, tvEpgInfo, tvSelectedEvent);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

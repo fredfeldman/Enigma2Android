@@ -6,7 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,17 +27,26 @@ public final class FragmentEpgSearchBinding implements ViewBinding {
   public final ImageButton btnBack;
 
   @NonNull
+  public final ProgressBar progressSearch;
+
+  @NonNull
   public final RecyclerView rvSearchResults;
 
   @NonNull
   public final SearchView searchView;
 
+  @NonNull
+  public final TextView tvSearchEmpty;
+
   private FragmentEpgSearchBinding(@NonNull LinearLayout rootView, @NonNull ImageButton btnBack,
-      @NonNull RecyclerView rvSearchResults, @NonNull SearchView searchView) {
+      @NonNull ProgressBar progressSearch, @NonNull RecyclerView rvSearchResults,
+      @NonNull SearchView searchView, @NonNull TextView tvSearchEmpty) {
     this.rootView = rootView;
     this.btnBack = btnBack;
+    this.progressSearch = progressSearch;
     this.rvSearchResults = rvSearchResults;
     this.searchView = searchView;
+    this.tvSearchEmpty = tvSearchEmpty;
   }
 
   @Override
@@ -71,6 +82,12 @@ public final class FragmentEpgSearchBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.progress_search;
+      ProgressBar progressSearch = ViewBindings.findChildViewById(rootView, id);
+      if (progressSearch == null) {
+        break missingId;
+      }
+
       id = R.id.rv_search_results;
       RecyclerView rvSearchResults = ViewBindings.findChildViewById(rootView, id);
       if (rvSearchResults == null) {
@@ -83,8 +100,14 @@ public final class FragmentEpgSearchBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentEpgSearchBinding((LinearLayout) rootView, btnBack, rvSearchResults,
-          searchView);
+      id = R.id.tv_search_empty;
+      TextView tvSearchEmpty = ViewBindings.findChildViewById(rootView, id);
+      if (tvSearchEmpty == null) {
+        break missingId;
+      }
+
+      return new FragmentEpgSearchBinding((LinearLayout) rootView, btnBack, progressSearch,
+          rvSearchResults, searchView, tvSearchEmpty);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

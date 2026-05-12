@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
@@ -17,11 +19,14 @@ import com.enigma2.android.data.model.EpgEvent
 import com.enigma2.android.data.repository.Enigma2Repository
 import com.enigma2.android.data.prefs.ReceiverPreferences
 import com.enigma2.android.ui.player.PlayerActivity
+import com.enigma2.android.ui.viewmodel.ChannelViewModel
 import android.content.Intent
 import android.view.inputmethod.InputMethodManager
 import android.content.Context
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
@@ -31,8 +36,16 @@ import java.util.Locale
 class EpgSearchFragment : Fragment() {
 
     private val repo = Enigma2Repository()
+    private val channelViewModel: ChannelViewModel by activityViewModels()
     private lateinit var prefs: ReceiverPreferences
     private lateinit var searchAdapter: SearchResultAdapter
+
+    private lateinit var rv: RecyclerView
+    private lateinit var progress: ProgressBar
+    private lateinit var tvEmpty: TextView
+
+    private var searchJob: Job? = null
+    private var lastQuery: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -60,12 +73,23 @@ class EpgSearchFragment : Fragment() {
             }
         }
 
-        val rv = view.findViewById<RecyclerView>(R.id.rv_search_results)
+        rv = view.findViewById(R.id.rv_search_results)
         rv.layoutManager = LinearLayoutManager(requireContext())
         rv.adapter = searchAdapter
 
+        progress = view.findViewById(R.id.progress_search)
+        tvEmpty = view.findViewById(R.id.tv_search_empty)
+        tvEmpty.text = getString(R.string.search_hint)
+        tvEmpty.visibility = View.VISIBLE
+
         view.findViewById<View>(R.id.btn_back)?.setOnClickListener {
             parentFragmentManager.popBackStack()
+        }
+
+        // Refresh channel-name lookup when channel list changes
+        channelViewModel.filteredChannels.observe(viewLifecycleOwner) { channels ->
+            val map = channels?.associate { it.ref to it.name } ?: emptyMap()
+            searchAdapter.updateChannelNames(map)
         }
 
         val searchView = view.findViewById<SearchView>(R.id.search_view)
@@ -79,20 +103,58 @@ class EpgSearchFragment : Fragment() {
                 return true
             }
 
-            override fun onQueryTextChange(text: String) = false
+            override fun onQueryTextChange(text: String): Boolean {
+                searchJob?.cancel()
+                if (text.length < 3) {
+                    searchAdapter.submitList(emptyList())
+                    progress.visibility = View.GONE
+                    tvEmpty.text = getString(R.string.search_hint)
+                    tvEmpty.visibility = View.VISIBLE
+                    rv.visibility = View.GONE
+                    return true
+                }
+                searchJob = viewLifecycleOwner.lifecycleScope.launch {
+                    delay(400)
+                    performSearch(text)
+                }
+                return true
+            }
         })
     }
 
     private fun performSearch(query: String) {
+        lastQuery = query
+        progress.visibility = View.VISIBLE
+        tvEmpty.visibility = View.GONE
+        rv.visibility = View.GONE
         viewLifecycleOwner.lifecycleScope.launch {
             val results = withContext(Dispatchers.IO) { repo.searchEpg(query) }
+            // Discard if a newer search has started
+            if (query != lastQuery) return@launch
             searchAdapter.submitList(results)
+            progress.visibility = View.GONE
+            val isEmpty = results.isEmpty()
+            if (isEmpty) {
+                tvEmpty.text = getString(R.string.no_search_results)
+                tvEmpty.visibility = View.VISIBLE
+                rv.visibility = View.GONE
+            } else {
+                tvEmpty.visibility = View.GONE
+                rv.visibility = View.VISIBLE
+            }
         }
     }
 
     private inner class SearchResultAdapter(
         private val onEventClick: (EpgEvent) -> Unit
     ) : ListAdapter<EpgEvent, SearchResultAdapter.VH>(DIFF) {
+
+        private var channelNames: Map<String, String> = emptyMap()
+
+        fun updateChannelNames(map: Map<String, String>) {
+            channelNames = map
+            notifyDataSetChanged()
+        }
 
         inner class VH(view: View) : RecyclerView.ViewHolder(view) {
             val tvTitle: TextView = view.findViewById(R.id.tv_event_title)
@@ -113,7 +175,7 @@ class EpgSearchFragment : Fragment() {
         override fun onBindViewHolder(holder: VH, position: Int) {
             val event = getItem(position)
             holder.tvTitle.text = event.title
-            holder.tvChannel.text = event.sref
+            holder.tvChannel.text = channelNames[event.sref] ?: event.sref
             val fmt = SimpleDateFormat("EEE dd MMM HH:mm", Locale.getDefault())
             holder.tvTime.text = fmt.format(Date(event.beginTimestamp * 1000))
         }

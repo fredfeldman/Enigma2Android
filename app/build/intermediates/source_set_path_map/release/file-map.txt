@@ -47,11 +47,12 @@ com.enigma2.android.app-lifecycle-viewmodel-2.7.0-45 C:\Users\Player One\.gradle
 com.enigma2.android.app-core-runtime-2.2.0-46 C:\Users\Player One\.gradle\caches\transforms-3\ee63aad40962667e9ebfadbe25b1116c\transformed\core-runtime-2.2.0\res
 com.enigma2.android.app-profileinstaller-1.3.0-47 C:\Users\Player One\.gradle\caches\transforms-3\ee77c6148e535550acd02ec4a55fcb7f\transformed\profileinstaller-1.3.0\res
 com.enigma2.android.app-appcompat-resources-1.6.1-48 C:\Users\Player One\.gradle\caches\transforms-3\f880cc1c3e36c0c4b347845a9fccfd59\transformed\appcompat-resources-1.6.1\res
-com.enigma2.android.app-core-ktx-1.12.0-49 C:\Users\Player One\.gradle\caches\transforms-3\ff6587493ebdc791c50ad8995c78d2de\transformed\core-ktx-1.12.0\res
-com.enigma2.android.app-pngs-50 D:\source\repos\Enigma2Android\app\build\generated\res\pngs\release
-com.enigma2.android.app-resValues-51 D:\source\repos\Enigma2Android\app\build\generated\res\resValues\release
-com.enigma2.android.app-packageReleaseResources-52 D:\source\repos\Enigma2Android\app\build\intermediates\incremental\release\packageReleaseResources\merged.dir
-com.enigma2.android.app-packageReleaseResources-53 D:\source\repos\Enigma2Android\app\build\intermediates\incremental\release\packageReleaseResources\stripped.dir
-com.enigma2.android.app-merged_res-54 D:\source\repos\Enigma2Android\app\build\intermediates\merged_res\release
-com.enigma2.android.app-main-55 D:\source\repos\Enigma2Android\app\src\main\res
-com.enigma2.android.app-release-56 D:\source\repos\Enigma2Android\app\src\release\res
+com.enigma2.android.app-swiperefreshlayout-1.1.0-49 C:\Users\Player One\.gradle\caches\transforms-3\fd7fce67f9729d7127c0def3adba42b3\transformed\swiperefreshlayout-1.1.0\res
+com.enigma2.android.app-core-ktx-1.12.0-50 C:\Users\Player One\.gradle\caches\transforms-3\ff6587493ebdc791c50ad8995c78d2de\transformed\core-ktx-1.12.0\res
+com.enigma2.android.app-pngs-51 D:\source\repos\Enigma2Android\app\build\generated\res\pngs\release
+com.enigma2.android.app-resValues-52 D:\source\repos\Enigma2Android\app\build\generated\res\resValues\release
+com.enigma2.android.app-packageReleaseResources-53 D:\source\repos\Enigma2Android\app\build\intermediates\incremental\release\packageReleaseResources\merged.dir
+com.enigma2.android.app-packageReleaseResources-54 D:\source\repos\Enigma2Android\app\build\intermediates\incremental\release\packageReleaseResources\stripped.dir
+com.enigma2.android.app-merged_res-55 D:\source\repos\Enigma2Android\app\build\intermediates\merged_res\release
+com.enigma2.android.app-main-56 D:\source\repos\Enigma2Android\app\src\main\res
+com.enigma2.android.app-release-57 D:\source\repos\Enigma2Android\app\src\release\res

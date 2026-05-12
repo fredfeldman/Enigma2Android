@@ -28,11 +28,16 @@ class RecordingViewModel : ViewModel() {
     private val _focusedRecording = MutableLiveData<Recording?>()
     val focusedRecording: LiveData<Recording?> = _focusedRecording
 
+    private val _isLoading = MutableLiveData(false)
+    val isLoading: LiveData<Boolean> = _isLoading
+
     fun loadRecordings() {
         viewModelScope.launch {
+            _isLoading.value = true
             val recordings = repo.getRecordings()
             _allRecordings.value = recordings
             applySortOrder()
+            _isLoading.value = false
         }
     }
 
@@ -54,5 +59,21 @@ class RecordingViewModel : ViewModel() {
 
     fun onRecordingFocused(recording: Recording) {
         _focusedRecording.value = recording
+    }
+
+    fun deleteRecording(recording: Recording, onResult: (Boolean) -> Unit) {
+        viewModelScope.launch {
+            val ok = repo.deleteRecording(recording.filename)
+            if (ok) {
+                val updated = (_allRecordings.value ?: emptyList())
+                    .filter { it.filename != recording.filename }
+                _allRecordings.value = updated
+                if (_focusedRecording.value?.filename == recording.filename) {
+                    _focusedRecording.value = null
+                }
+                applySortOrder()
+            }
+            onResult(ok)
+        }
     }
 }

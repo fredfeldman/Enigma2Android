@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.enigma2.android.app-mergeDebugResources-52:/values-fa/values-fa.xml",
+            "outputFile": "com.enigma2.android.app-mergeDebugResources-53:/values-fa/values-fa.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Player One\\.gradle\\caches\\transforms-3\\d1e4a685b1001794fbcfe4ee9c157a7e\\transformed\\core-1.12.0\\res\\values-fa\\values-fa.xml",

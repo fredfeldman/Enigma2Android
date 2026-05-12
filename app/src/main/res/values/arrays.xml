@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="channel_tap_action_entries">
+        <item>@string/channel_tap_action_stream</item>
+        <item>@string/channel_tap_action_zap</item>
+        <item>@string/channel_tap_action_both</item>
+    </string-array>
+    <string-array name="channel_tap_action_values">
+        <item>stream</item>
+        <item>zap</item>
+        <item>both</item>
+    </string-array>
+</resources>

@@ -30,6 +30,10 @@
         <Preference
             android:key="pref_hide_bouquets"
             android:title="@string/pref_hide_bouquets_title" />
+        <Preference
+            android:key="manage_bouquets"
+            android:title="@string/pref_title_edit_bouquets"
+            android:summary="@string/pref_summary_edit_bouquets" />
         <CheckBoxPreference
             android:key="pref_night_mode"
             android:title="@string/pref_night_mode_title"
@@ -41,6 +45,34 @@
             android:key="pref_auto_resume"
             android:title="@string/pref_auto_resume_title"
             android:defaultValue="false" />
+        <ListPreference
+            android:key="channel_tap_action"
+            android:title="@string/pref_channel_tap_action_title"
+            android:summary="@string/pref_channel_tap_action_summary"
+            android:entries="@array/channel_tap_action_entries"
+            android:entryValues="@array/channel_tap_action_values"
+            android:defaultValue="stream" />
+        <CheckBoxPreference
+            android:key="zap_on_player_nav"
+            android:title="@string/pref_zap_on_player_nav_title"
+            android:summary="@string/pref_zap_on_player_nav_summary"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_category_receiver">
+        <Preference
+            android:key="pref_box_info"
+            android:title="@string/box_info"
+            android:summary="@string/box_info_summary" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="pref_category_plugins"
+        android:title="@string/pref_category_plugins">
+        <Preference
+            android:key="pref_epg_import"
+            android:title="@string/epg_import"
+            android:summary="@string/epg_import_summary" />
     </PreferenceCategory>
 
 </PreferenceScreen>

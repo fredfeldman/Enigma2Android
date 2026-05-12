@@ -157,12 +157,65 @@ class ReceiverPreferences(context: Context) {
             prefs.edit().putString(KEY_HIDDEN_BOUQUETS, gson.toJson(value)).apply()
         }
 
+    // ── Bouquet local overrides ───────────────────────────────────────
+    /** Per-bouquet user override: desired channel order + removed channel refs. */
+    data class BouquetOverride(
+        val order: List<String> = emptyList(),
+        val removed: List<String> = emptyList()
+    ) {
+        fun isEmpty() = order.isEmpty() && removed.isEmpty()
+    }
+
+    fun bouquetOverrides(): Map<String, BouquetOverride> {
+        val json = prefs.getString(KEY_BOUQUET_OVERRIDES, null) ?: return emptyMap()
+        return try {
+            val type = object : TypeToken<Map<String, BouquetOverride>>() {}.type
+            gson.fromJson<Map<String, BouquetOverride>>(json, type) ?: emptyMap()
+        } catch (e: Exception) {
+            emptyMap()
+        }
+    }
+
+    fun getBouquetOverride(bouquetRef: String): BouquetOverride? =
+        bouquetOverrides()[bouquetRef]
+
+    fun setBouquetOverride(bouquetRef: String, override: BouquetOverride) {
+        val map = bouquetOverrides().toMutableMap()
+        if (override.isEmpty()) map.remove(bouquetRef) else map[bouquetRef] = override
+        prefs.edit().putString(KEY_BOUQUET_OVERRIDES, gson.toJson(map)).apply()
+    }
+
+    fun clearBouquetOverride(bouquetRef: String) {
+        val map = bouquetOverrides().toMutableMap()
+        if (map.remove(bouquetRef) != null) {
+            prefs.edit().putString(KEY_BOUQUET_OVERRIDES, gson.toJson(map)).apply()
+        }
+    }
+
     // ── Night mode ────────────────────────────────────────────────────
     var nightMode: Boolean
         get() = prefs.getBoolean(KEY_NIGHT_MODE, true)
         set(value) { prefs.edit().putBoolean(KEY_NIGHT_MODE, value).apply() }
 
+    // ── Zap on channel change ─────────────────────────────────────────
+    /** What to do when the user taps a channel in the list.
+     *  Values: "stream" (open player only), "zap" (tune receiver only),
+     *  "both" (tune receiver and open player). Default "stream". */
+    var channelTapAction: String
+        get() = prefs.getString(KEY_CHANNEL_TAP_ACTION, VALUE_TAP_STREAM) ?: VALUE_TAP_STREAM
+        set(value) { prefs.edit().putString(KEY_CHANNEL_TAP_ACTION, value).apply() }
+
+    /** Whether prev/next channel navigation in the player also zaps the receiver.
+     *  Default true (preserves existing behaviour). */
+    var zapOnPlayerNavigate: Boolean
+        get() = prefs.getBoolean(KEY_ZAP_ON_PLAYER_NAV, true)
+        set(value) { prefs.edit().putBoolean(KEY_ZAP_ON_PLAYER_NAV, value).apply() }
+
     companion object {
+        const val VALUE_TAP_STREAM = "stream"
+        const val VALUE_TAP_ZAP = "zap"
+        const val VALUE_TAP_BOTH = "both"
+
         private val gson = Gson()
         private const val KEY_DEVICE_PROFILES = "device_profiles"
         private const val KEY_ACTIVE_DEVICE_ID = "active_device_id"
@@ -172,10 +225,13 @@ class ReceiverPreferences(context: Context) {
         private const val KEY_USERNAME = "username"
         private const val KEY_PASSWORD = "password"
         private const val KEY_HIDDEN_BOUQUETS = "hidden_bouquets"
+        private const val KEY_BOUQUET_OVERRIDES = "bouquet_overrides_json"
         private const val KEY_FAVORITES = "favorites"
         private const val KEY_LAST_CHANNEL = "last_channel_ref"
         private const val KEY_LAST_CHANNEL_NAME = "last_channel_name"
         private const val KEY_AUTO_RESUME = "auto_resume"
         private const val KEY_NIGHT_MODE = "night_mode"
+        private const val KEY_CHANNEL_TAP_ACTION = "channel_tap_action"
+        private const val KEY_ZAP_ON_PLAYER_NAV = "zap_on_player_nav"
     }
 }

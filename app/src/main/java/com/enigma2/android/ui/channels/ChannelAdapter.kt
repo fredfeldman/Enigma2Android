@@ -38,7 +38,7 @@ class ChannelAdapter(
     }
 
     fun updateNowNext(events: List<NowNextEvent>) {
-        nowNextMap = events.associateBy { it.sref }
+        nowNextMap = events.associateBy { it.serviceRef }
         notifyItemRangeChanged(0, itemCount)
     }
 
@@ -103,20 +103,29 @@ class ChannelAdapter(
 
         // NowNext
         val nn = nowNextMap[service.ref]
-        if (nn != null) {
-            holder.tvNow.text = nn.nowTitle
+        val nowEvt = nn?.nowEvent
+        val nextEvt = nn?.nextEvent
+        if (nowEvt != null) {
+            holder.tvNow.text = nowEvt.title
             holder.tvNow.visibility = View.VISIBLE
-            val nowSec = System.currentTimeMillis() / 1000
-            val elapsed = (nowSec - nn.nowBegin).toInt().coerceAtLeast(0)
-            val progress = if (nn.nowDuration > 0) (elapsed * 100 / nn.nowDuration) else 0
-            holder.progressNow.progress = progress.coerceIn(0, 100)
+            val nowMs = System.currentTimeMillis()
+            val beginMs = nowEvt.beginTimestamp * 1000L
+            val durationMs = nowEvt.durationSeconds * 1000L
+            val elapsed = nowMs - beginMs
+            val progress = if (durationMs > 0) (elapsed * 100 / durationMs).toInt().coerceIn(0, 100) else 0
+            holder.progressNow.progress = progress
             holder.progressNow.visibility = View.VISIBLE
-            if (nn.nextTitle.isNotBlank()) {
-                holder.tvNext.text = "Next: ${nn.nextTitle}"
+            if (nextEvt != null) {
+                holder.tvNext.text = holder.itemView.context.getString(R.string.next_label, nextEvt.title)
                 holder.tvNext.visibility = View.VISIBLE
             } else {
                 holder.tvNext.visibility = View.GONE
             }
+        } else if (nextEvt != null) {
+            holder.tvNow.text = holder.itemView.context.getString(R.string.next_label, nextEvt.title)
+            holder.tvNow.visibility = View.VISIBLE
+            holder.progressNow.visibility = View.GONE
+            holder.tvNext.visibility = View.GONE
         } else {
             holder.tvNow.visibility = View.GONE
             holder.progressNow.visibility = View.GONE

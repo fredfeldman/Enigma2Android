@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.enigma2.android.app-mergeReleaseResources-52:/values-gl/values-gl.xml",
+            "outputFile": "com.enigma2.android.app-mergeReleaseResources-53:/values-gl/values-gl.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Player One\\.gradle\\caches\\transforms-3\\1a1897bf057ccdd328c9af06a31b56b1\\transformed\\media3-exoplayer-1.2.1\\res\\values-gl\\values-gl.xml",

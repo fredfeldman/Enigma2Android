@@ -44,6 +44,8 @@ class EpgFragment : Fragment() {
     private lateinit var hScrollView: HorizontalScrollView
     private lateinit var tvInfoBar: TextView
     private lateinit var tvSelectedEvent: TextView
+    private lateinit var tvEpgEmpty: TextView
+    private lateinit var gridContainer: LinearLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -59,6 +61,8 @@ class EpgFragment : Fragment() {
         hScrollView = view.findViewById(R.id.epg_h_scroll)
         tvInfoBar = view.findViewById(R.id.tv_epg_info)
         tvSelectedEvent = view.findViewById(R.id.tv_selected_event)
+        tvEpgEmpty = view.findViewById(R.id.tv_epg_empty)
+        gridContainer = view.findViewById(R.id.epg_grid_container)
 
         view.findViewById<View>(R.id.btn_back)?.setOnClickListener {
             parentFragmentManager.popBackStack()
@@ -105,6 +109,10 @@ class EpgFragment : Fragment() {
         epgViewModel.epgByService.observe(viewLifecycleOwner) { eventsMap ->
             val serviceRefs = channelViewModel.filteredChannels.value?.map { it.ref } ?: return@observe
             val allEvents = serviceRefs.flatMap { eventsMap[it] ?: emptyList() }
+            val isEmpty = allEvents.isEmpty()
+            tvEpgEmpty.visibility = if (isEmpty) View.VISIBLE else View.GONE
+            gridContainer.visibility = if (isEmpty) View.GONE else View.VISIBLE
+            if (isEmpty) return@observe
             val startMs = computeStartTime()
             epgGrid.startTimeMs = startMs
             timeRuler.startTimeMs = startMs

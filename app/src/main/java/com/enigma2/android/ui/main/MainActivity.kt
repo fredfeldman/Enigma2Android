@@ -8,7 +8,9 @@ import androidx.work.WorkManager
 import com.enigma2.android.R
 import com.enigma2.android.data.api.ApiClient
 import com.enigma2.android.data.prefs.ReceiverPreferences
+import androidx.lifecycle.ViewModelProvider
 import com.enigma2.android.ui.channels.ChannelsFragment
+import com.enigma2.android.ui.viewmodel.ChannelViewModel
 import com.enigma2.android.ui.devices.DevicePickerFragment
 import com.enigma2.android.ui.setup.SetupFragment
 import com.enigma2.android.worker.TimerPollingWorker
@@ -56,6 +58,8 @@ class MainActivity : FragmentActivity() {
     fun switchToDevice(deviceId: String) {
         prefs.activeDeviceId = deviceId
         ApiClient.initialize(prefs)
+        // Reset cached channel/bouquet state so the new device loads fresh
+        ViewModelProvider(this)[ChannelViewModel::class.java].resetForNewDevice()
         // Clear the back stack and show channels fresh
         supportFragmentManager.popBackStack(null,
             androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE)

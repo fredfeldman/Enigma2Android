@@ -26,89 +26,101 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <!-- Toolbar buttons row -->
-        <LinearLayout
+        <!-- Toolbar buttons row (scrollable so all buttons are reachable in portrait) -->
+        <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="@dimen/toolbar_height"
-            android:orientation="horizontal"
             android:background="@color/surface_dark"
-            android:paddingHorizontal="8dp"
-            android:gravity="center_vertical">
+            android:scrollbars="none"
+            android:fillViewport="false">
 
-            <Button
-                android:id="@+id/btn_switch_device"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="@string/switch_device"
-                android:background="@drawable/bg_button"
-                android:textColor="@color/text_primary"
-                android:textSize="12sp"
-                android:layout_marginEnd="4dp" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingHorizontal="8dp"
+                android:gravity="center_vertical">
 
-            <Button
-                android:id="@+id/btn_epg"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="@string/epg"
-                android:background="@drawable/bg_button"
-                android:textColor="@color/text_primary"
-                android:textSize="12sp"
-                android:layout_marginEnd="4dp" />
+                <Button
+                    android:id="@+id/btn_switch_device"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/switch_device"
+                    android:background="@drawable/bg_button"
+                    android:textColor="@color/text_primary"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="4dp" />
 
-            <Button
-                android:id="@+id/btn_recordings"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="@string/recordings"
-                android:background="@drawable/bg_button"
-                android:textColor="@color/text_primary"
-                android:textSize="12sp"
-                android:layout_marginEnd="4dp" />
+                <Button
+                    android:id="@+id/btn_epg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/epg"
+                    android:background="@drawable/bg_button"
+                    android:textColor="@color/text_primary"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="4dp" />
 
-            <Button
-                android:id="@+id/btn_timers"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="@string/timers"
-                android:background="@drawable/bg_button"
-                android:textColor="@color/text_primary"
-                android:textSize="12sp"
-                android:layout_marginEnd="4dp" />
+                <Button
+                    android:id="@+id/btn_recordings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/recordings"
+                    android:background="@drawable/bg_button"
+                    android:textColor="@color/text_primary"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="4dp" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" />
+                <Button
+                    android:id="@+id/btn_timers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/timers"
+                    android:background="@drawable/bg_button"
+                    android:textColor="@color/text_primary"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="4dp" />
 
-            <Button
-                android:id="@+id/btn_wol"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="@string/wol"
-                android:background="@drawable/bg_button"
-                android:textColor="@color/text_primary"
-                android:textSize="12sp"
-                android:layout_marginEnd="4dp" />
+                <Button
+                    android:id="@+id/btn_autotimers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/autotimers"
+                    android:background="@drawable/bg_button"
+                    android:textColor="@color/text_primary"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="4dp" />
 
-            <Button
-                android:id="@+id/btn_screenshot"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="@string/screenshot"
-                android:background="@drawable/bg_button"
-                android:textColor="@color/text_primary"
-                android:textSize="12sp"
-                android:layout_marginEnd="4dp" />
+                <Button
+                    android:id="@+id/btn_wol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/wol"
+                    android:background="@drawable/bg_button"
+                    android:textColor="@color/text_primary"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="4dp" />
 
-            <Button
-                android:id="@+id/btn_settings"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="@string/settings"
-                android:background="@drawable/bg_button"
-                android:textColor="@color/text_primary"
-                android:textSize="12sp" />
-        </LinearLayout>
+                <Button
+                    android:id="@+id/btn_screenshot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/screenshot"
+                    android:background="@drawable/bg_button"
+                    android:textColor="@color/text_primary"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btn_settings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/settings"
+                    android:background="@drawable/bg_button"
+                    android:textColor="@color/text_primary"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </HorizontalScrollView>
 
         <!-- Channel filter -->
         <EditText
@@ -142,11 +154,41 @@
             android:padding="12dp"
             android:visibility="gone" />
 
+        <Button
+            android:id="@+id/btn_retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/retry"
+            android:background="@drawable/bg_button"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="8dp"
+            android:visibility="gone" />
+
         <!-- Channel list -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_channels"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_channels"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="1">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_channels"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <!-- Empty state -->
+        <TextView
+            android:id="@+id/tv_empty"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="24dp"
+            android:textColor="@color/text_hint"
+            android:textSize="14sp"
+            android:text="@string/no_channels"
+            android:visibility="gone" />
     </LinearLayout>
 </LinearLayout>

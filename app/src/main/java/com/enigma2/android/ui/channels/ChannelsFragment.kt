@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -25,11 +26,14 @@ import com.enigma2.android.ui.main.MainActivity
 import com.enigma2.android.ui.player.PlayerActivity
 import com.enigma2.android.ui.recordings.RecordingsFragment
 import com.enigma2.android.ui.settings.SettingsActivity
+import com.enigma2.android.ui.autotimers.AutoTimersFragment
 import com.enigma2.android.ui.timers.TimersFragment
 import com.enigma2.android.ui.viewmodel.ChannelViewModel
 import com.enigma2.android.utils.WakeOnLan
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -43,9 +47,13 @@ class ChannelsFragment : Fragment() {
     private lateinit var etFilter: EditText
     private lateinit var progressBar: ProgressBar
     private lateinit var tvError: TextView
+    private lateinit var btnRetry: Button
+    private lateinit var tvEmpty: TextView
 
     private lateinit var bouquetAdapter: BouquetAdapter
     private lateinit var channelAdapter: ChannelAdapter
+
+    private var filterJob: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -60,6 +68,15 @@ class ChannelsFragment : Fragment() {
         etFilter = view.findViewById(R.id.et_filter)
         progressBar = view.findViewById(R.id.progress_bar)
         tvError = view.findViewById(R.id.tv_error)
+        btnRetry = view.findViewById(R.id.btn_retry)
+        tvEmpty = view.findViewById(R.id.tv_empty)
+        btnRetry.setOnClickListener { viewModel.loadBouquets() }
+
+        val swipe = view.findViewById<androidx.swiperefreshlayout.widget.SwipeRefreshLayout>(R.id.swipe_channels)
+        swipe.setOnRefreshListener {
+            viewModel.loadBouquets()
+            swipe.isRefreshing = false
+        }
 
         bouquetAdapter = BouquetAdapter { bouquet ->
             viewModel.selectBouquet(bouquet)
@@ -78,7 +95,11 @@ class ChannelsFragment : Fragment() {
         rvChannels.adapter = channelAdapter
 
         etFilter.addTextChangedListener { text ->
-            viewModel.setFilter(text?.toString() ?: "")
+            filterJob?.cancel()
+            filterJob = viewLifecycleOwner.lifecycleScope.launch {
+                delay(300)
+                viewModel.setFilter(text?.toString() ?: "")
+            }
         }
 
         setupToolbarButtons(view)
@@ -112,6 +133,12 @@ class ChannelsFragment : Fragment() {
                 .addToBackStack(null)
                 .commit()
         }
+        view.findViewById<View>(R.id.btn_autotimers)?.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.main_container, AutoTimersFragment())
+                .addToBackStack(null)
+                .commit()
+        }
         view.findViewById<View>(R.id.btn_wol)?.setOnClickListener {
             sendWakeOnLan()
         }
@@ -127,6 +154,7 @@ class ChannelsFragment : Fragment() {
 
         viewModel.filteredChannels.observe(viewLifecycleOwner) { channels ->
             channelAdapter.submitList(channels)
+            updateEmptyState(channels)
         }
 
         viewModel.selectedBouquet.observe(viewLifecycleOwner) { bouquet ->
@@ -153,14 +181,61 @@ class ChannelsFragment : Fragment() {
             if (error != null) {
                 tvError.text = error
                 tvError.visibility = View.VISIBLE
+                btnRetry.visibility = View.VISIBLE
             } else {
                 tvError.visibility = View.GONE
+                btnRetry.visibility = View.GONE
             }
+        }
+    }
+
+    private fun updateEmptyState(channels: List<Service>?) {
+        val isEmpty = channels.isNullOrEmpty()
+        val hasFilter = etFilter.text?.isNotBlank() == true
+        val hasBouquetSelected = viewModel.selectedBouquet.value != null
+        if (isEmpty && (hasFilter || hasBouquetSelected)) {
+            tvEmpty.text = if (hasFilter) {
+                getString(R.string.no_channels_match_filter)
+            } else {
+                getString(R.string.no_channels)
+            }
+            tvEmpty.visibility = View.VISIBLE
+            rvChannels.visibility = View.GONE
+        } else {
+            tvEmpty.visibility = View.GONE
+            rvChannels.visibility = View.VISIBLE
         }
     }
 
     private fun openPlayer(service: Service) {
         val channels = viewModel.filteredChannels.value ?: return
+
+        val action = prefs.channelTapAction
+        val shouldZap = action == ReceiverPreferences.VALUE_TAP_ZAP ||
+                action == ReceiverPreferences.VALUE_TAP_BOTH
+        val shouldStream = action == ReceiverPreferences.VALUE_TAP_STREAM ||
+                action == ReceiverPreferences.VALUE_TAP_BOTH
+
+        if (shouldZap) {
+            val sref = service.ref
+            val sname = service.name
+            viewLifecycleOwner.lifecycleScope.launch {
+                val ok = withContext(Dispatchers.IO) {
+                    try { com.enigma2.android.data.repository.Enigma2Repository().zapToService(sref) }
+                    catch (e: Exception) { false }
+                }
+                val msg = if (ok) getString(R.string.zapped_to, sname)
+                          else getString(R.string.zap_failed)
+                Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        if (!shouldStream) {
+            prefs.lastChannelRef = service.ref
+            prefs.lastChannelName = service.name
+            return
+        }
+
         val index = channels.indexOfFirst { it.ref == service.ref }
         val scheme = if (prefs.useHttps) "https" else "http"
         val streamUrl = "$scheme://${prefs.host}:8001/${service.ref}"
@@ -204,10 +279,12 @@ class ChannelsFragment : Fragment() {
     }
 
     private fun showEpgInfo(service: Service) {
-        val nn = viewModel.nowNextMap.value?.find { it.sref == service.ref } ?: return
+        val nn = viewModel.nowNextMap.value?.find { it.serviceRef == service.ref } ?: return
+        val nowTitle = nn.nowEvent?.title ?: ""
+        val nextTitle = nn.nextEvent?.title ?: ""
         AlertDialog.Builder(requireContext())
             .setTitle(service.name)
-            .setMessage("Now: ${nn.nowTitle}\n\nNext: ${nn.nextTitle}")
+            .setMessage(getString(R.string.now_next_message, nowTitle, nextTitle))
             .setPositiveButton(android.R.string.ok, null)
             .show()
     }
@@ -218,6 +295,7 @@ class ChannelsFragment : Fragment() {
             Toast.makeText(requireContext(), R.string.no_mac_address, Toast.LENGTH_SHORT).show()
             return
         }
+        Toast.makeText(requireContext(), R.string.wol_sending, Toast.LENGTH_SHORT).show()
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             WakeOnLan.send(mac)
             withContext(Dispatchers.Main) {
@@ -228,13 +306,17 @@ class ChannelsFragment : Fragment() {
 
     private fun takeScreenshot() {
         val repo = com.enigma2.android.data.repository.Enigma2Repository()
+        progressBar.visibility = View.VISIBLE
+        Toast.makeText(requireContext(), R.string.screenshot_taking, Toast.LENGTH_SHORT).show()
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             val bytes = repo.getScreenshot()
             withContext(Dispatchers.Main) {
+                progressBar.visibility = View.GONE
                 if (bytes != null) {
                     val bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
                     val iv = ImageView(requireContext())
                     iv.setImageBitmap(bmp)
+                    iv.contentDescription = getString(R.string.screenshot)
                     AlertDialog.Builder(requireContext())
                         .setTitle(R.string.screenshot)
                         .setView(iv)

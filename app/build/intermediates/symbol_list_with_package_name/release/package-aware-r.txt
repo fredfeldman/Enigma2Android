@@ -1204,6 +1204,7 @@ attr summary
 attr summaryOff
 attr summaryOn
 attr surface_type
+attr swipeRefreshLayoutProgressSpinnerBackgroundColor
 attr switchMinWidth
 attr switchPadding
 attr switchPreferenceCompatStyle
@@ -3484,6 +3485,7 @@ id btn_play_pause
 id btn_playlists
 id btn_prev_channel
 id btn_recordings
+id btn_retry
 id btn_rewind
 id btn_screenshot
 id btn_settings
@@ -3839,6 +3841,8 @@ id progress_bar
 id progress_circular
 id progress_horizontal
 id progress_now
+id progress_recordings
+id progress_search
 id progress_timers
 id radio
 id ratio
@@ -3935,6 +3939,9 @@ id submenuarrow
 id submit_area
 id supportScrollUp
 id surface_view
+id swipe_channels
+id swipe_recordings
+id swipe_timers
 id switchWidget
 id tabMode
 id tag_accessibility_actions
@@ -3998,8 +4005,10 @@ id tv_detail_title
 id tv_device_address
 id tv_device_name
 id tv_duration
+id tv_empty
 id tv_entry_channel
 id tv_entry_title
+id tv_epg_empty
 id tv_epg_info
 id tv_error
 id tv_event_channel
@@ -4019,10 +4028,13 @@ id tv_recording_channel
 id tv_recording_datetime
 id tv_recording_duration
 id tv_recording_title
+id tv_recordings_empty
+id tv_search_empty
 id tv_selected_event
 id tv_timer_name
 id tv_timer_service
 id tv_timer_time
+id tv_timers_empty
 id tv_timers_error
 id unchecked
 id uniform
@@ -4376,6 +4388,8 @@ string copy
 string delete
 string delete_device_confirm
 string delete_failed
+string delete_recording
+string delete_recording_confirm
 string delete_timer
 string delete_timer_confirm
 string device_name
@@ -4556,11 +4570,20 @@ string mtrl_switch_track_path
 string mtrl_timepicker_cancel
 string mtrl_timepicker_confirm
 string new_playlist
+string next_label
 string no_audio_tracks
+string no_bouquets_found
+string no_channels
+string no_channels_match_filter
+string no_epg_data
 string no_mac_address
 string no_playlists
+string no_recordings
+string no_search_results
 string no_subtitle_tracks
+string no_timers
 string not_set
+string now_next_message
 string password
 string password_toggle_content_description
 string path_password_eye
@@ -4585,6 +4608,8 @@ string pref_username_title
 string preference_copied
 string record
 string record_confirm
+string recording_delete_failed
+string recording_deleted
 string recording_started
 string recordings
 string remove
@@ -4593,8 +4618,11 @@ string rename
 string resume
 string resume_from
 string resume_playback
+string retry
 string screenshot
 string screenshot_failed
+string screenshot_taking
+string search_hint
 string search_menu_title
 string searchbar_scrolling_view_behavior
 string searchview_clear_text_content_description
@@ -4606,6 +4634,9 @@ string settings
 string setup_title
 string side_sheet_accessibility_pane_title
 string side_sheet_behavior
+string sleep_15_min
+string sleep_30_min
+string sleep_60_min
 string sleep_in_minutes
 string sleep_timer
 string sort_by
@@ -4617,14 +4648,17 @@ string start_from_beginning
 string status_bar_notification_info_overflow
 string summary_collapsed_preference_list
 string switch_device
+string switching_to
 string timer_added
 string timer_failed
 string timers
+string track_number
 string use_https
 string username
 string v7_preference_off
 string v7_preference_on
 string wol
+string wol_sending
 string wol_sent
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
@@ -5970,6 +6004,7 @@ styleable State android_id constraints
 styleable StateListDrawable android_dither android_visible android_variablePadding android_constantSize android_enterFadeDuration android_exitFadeDuration
 styleable StateListDrawableItem android_drawable
 styleable StateSet defaultState
+styleable SwipeRefreshLayout swipeRefreshLayoutProgressSpinnerBackgroundColor
 styleable SwitchCompat android_textOn android_textOff android_thumb showText splitTrack switchMinWidth switchPadding switchTextAppearance thumbTextPadding thumbTint thumbTintMode track trackTint trackTintMode
 styleable SwitchMaterial useMaterialThemeColors
 styleable SwitchPreference android_summaryOn android_summaryOff android_disableDependentsState android_switchTextOn android_switchTextOff disableDependentsState summaryOff summaryOn switchTextOff switchTextOn

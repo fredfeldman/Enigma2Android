@@ -7,10 +7,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.enigma2.android.R;
@@ -38,7 +40,13 @@ public final class FragmentRecordingsBinding implements ViewBinding {
   public final LinearLayout panelDetail;
 
   @NonNull
+  public final ProgressBar progressRecordings;
+
+  @NonNull
   public final RecyclerView rvRecordings;
+
+  @NonNull
+  public final SwipeRefreshLayout swipeRecordings;
 
   @NonNull
   public final TextView tvDetailChannel;
@@ -52,22 +60,30 @@ public final class FragmentRecordingsBinding implements ViewBinding {
   @NonNull
   public final TextView tvDetailTitle;
 
+  @NonNull
+  public final TextView tvRecordingsEmpty;
+
   private FragmentRecordingsBinding(@NonNull LinearLayout rootView, @NonNull ImageButton btnBack,
       @NonNull Button btnPlayDetail, @NonNull Button btnPlaylists, @NonNull Button btnSort,
-      @NonNull LinearLayout panelDetail, @NonNull RecyclerView rvRecordings,
+      @NonNull LinearLayout panelDetail, @NonNull ProgressBar progressRecordings,
+      @NonNull RecyclerView rvRecordings, @NonNull SwipeRefreshLayout swipeRecordings,
       @NonNull TextView tvDetailChannel, @NonNull TextView tvDetailDatetime,
-      @NonNull TextView tvDetailDescription, @NonNull TextView tvDetailTitle) {
+      @NonNull TextView tvDetailDescription, @NonNull TextView tvDetailTitle,
+      @NonNull TextView tvRecordingsEmpty) {
     this.rootView = rootView;
     this.btnBack = btnBack;
     this.btnPlayDetail = btnPlayDetail;
     this.btnPlaylists = btnPlaylists;
     this.btnSort = btnSort;
     this.panelDetail = panelDetail;
+    this.progressRecordings = progressRecordings;
     this.rvRecordings = rvRecordings;
+    this.swipeRecordings = swipeRecordings;
     this.tvDetailChannel = tvDetailChannel;
     this.tvDetailDatetime = tvDetailDatetime;
     this.tvDetailDescription = tvDetailDescription;
     this.tvDetailTitle = tvDetailTitle;
+    this.tvRecordingsEmpty = tvRecordingsEmpty;
   }
 
   @Override
@@ -127,9 +143,21 @@ public final class FragmentRecordingsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.progress_recordings;
+      ProgressBar progressRecordings = ViewBindings.findChildViewById(rootView, id);
+      if (progressRecordings == null) {
+        break missingId;
+      }
+
       id = R.id.rv_recordings;
       RecyclerView rvRecordings = ViewBindings.findChildViewById(rootView, id);
       if (rvRecordings == null) {
+        break missingId;
+      }
+
+      id = R.id.swipe_recordings;
+      SwipeRefreshLayout swipeRecordings = ViewBindings.findChildViewById(rootView, id);
+      if (swipeRecordings == null) {
         break missingId;
       }
 
@@ -157,9 +185,15 @@ public final class FragmentRecordingsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tv_recordings_empty;
+      TextView tvRecordingsEmpty = ViewBindings.findChildViewById(rootView, id);
+      if (tvRecordingsEmpty == null) {
+        break missingId;
+      }
+
       return new FragmentRecordingsBinding((LinearLayout) rootView, btnBack, btnPlayDetail,
-          btnPlaylists, btnSort, panelDetail, rvRecordings, tvDetailChannel, tvDetailDatetime,
-          tvDetailDescription, tvDetailTitle);
+          btnPlaylists, btnSort, panelDetail, progressRecordings, rvRecordings, swipeRecordings,
+          tvDetailChannel, tvDetailDatetime, tvDetailDescription, tvDetailTitle, tvRecordingsEmpty);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -162,11 +162,18 @@ class PlayerActivity : AppCompatActivity() {
     private fun setupPlayer() {
         val okHttpClient = getHttpClient(prefs)
 
+        val audioAttributes = androidx.media3.common.AudioAttributes.Builder()
+            .setUsage(androidx.media3.common.C.USAGE_MEDIA)
+            .setContentType(androidx.media3.common.C.AUDIO_CONTENT_TYPE_MOVIE)
+            .build()
+
         player = ExoPlayer.Builder(this)
             .setMediaSourceFactory(
                 DefaultMediaSourceFactory(this)
                     .setDataSourceFactory(OkHttpDataSource.Factory(okHttpClient))
             )
+            .setAudioAttributes(audioAttributes, /* handleAudioFocus= */ true)
+            .setHandleAudioBecomingNoisy(true)
             .build()
         playerView.player = player
 
@@ -193,6 +200,8 @@ class PlayerActivity : AppCompatActivity() {
             .setUri(url)
             .setMimeType(MimeTypes.VIDEO_MP2T)
             .build()
+        player.stop()
+        player.clearMediaItems()
         player.setMediaItem(mediaItem)
         player.prepare()
         player.play()
@@ -351,8 +360,12 @@ class PlayerActivity : AppCompatActivity() {
         val scheme = if (prefs.useHttps) "https" else "http"
         streamUrl = "$scheme://${prefs.host}:8001/$newRef"
 
-        lifecycleScope.launch(Dispatchers.IO) {
-            repo.zapToService(newRef)
+        Toast.makeText(this, getString(R.string.switching_to, channelName), Toast.LENGTH_SHORT).show()
+
+        if (prefs.zapOnPlayerNavigate) {
+            lifecycleScope.launch(Dispatchers.IO) {
+                repo.zapToService(newRef)
+            }
         }
         loadStream(streamUrl)
         loadNowNext()
@@ -370,7 +383,7 @@ class PlayerActivity : AppCompatActivity() {
                 val now = events.firstOrNull { nowMs >= it.beginTimestamp && nowMs < it.beginTimestamp + it.durationSeconds }
                 val next = events.firstOrNull { it.beginTimestamp > nowMs }
                 tvNowTitle.text = now?.title ?: ""
-                tvNextTitle.text = next?.let { "Next: ${it.title}" } ?: ""
+                tvNextTitle.text = next?.let { getString(R.string.next_label, it.title) } ?: ""
             } catch (e: Exception) { /* non-critical */ }
         }
     }
@@ -398,7 +411,7 @@ class PlayerActivity : AppCompatActivity() {
             return
         }
         val labels = groups.mapIndexed { i, g ->
-            g.getTrackFormat(0).language ?: "Track ${i + 1}"
+            g.getTrackFormat(0).language ?: getString(R.string.track_number, i + 1)
         }.toTypedArray()
 
         AlertDialog.Builder(this)
@@ -429,7 +442,12 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     private fun showSleepTimerDialog() {
-        val options = arrayOf("15 min", "30 min", "60 min", getString(R.string.cancel_sleep_timer))
+        val options = arrayOf(
+            getString(R.string.sleep_15_min),
+            getString(R.string.sleep_30_min),
+            getString(R.string.sleep_60_min),
+            getString(R.string.cancel_sleep_timer)
+        )
         AlertDialog.Builder(this)
             .setTitle(R.string.sleep_timer)
             .setItems(options) { _, which ->

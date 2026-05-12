@@ -51,13 +51,11 @@ data class EpgEvent(
 )
 
 data class NowNextEvent(
-    @SerializedName("sref") val sref: String = "",
-    @SerializedName("now_title") val nowTitle: String = "",
-    @SerializedName("now_begin") val nowBegin: Long = 0,
-    @SerializedName("now_duration") val nowDuration: Int = 0,
-    @SerializedName("next_title") val nextTitle: String = "",
-    @SerializedName("next_begin") val nextBegin: Long = 0,
-    @SerializedName("next_duration") val nextDuration: Int = 0
+    @SerializedName(value = "sref", alternate = ["servicereference"])
+    val serviceRef: String = "",
+    @SerializedName("sname") val serviceName: String = "",
+    @SerializedName("now_event") val nowEvent: EpgEvent? = null,
+    @SerializedName("next_event") val nextEvent: EpgEvent? = null
 )
 
 data class ZapResponse(
@@ -108,4 +106,20 @@ data class Timer(
     @SerializedName("end") val endTimestamp: Long = 0,
     @SerializedName("state") val state: Int = 0,
     @SerializedName("servicename") val serviceName: String = ""
+)
+
+/** AutoTimer entry from the OpenWebif AutoTimer plugin (`/autotimer` XML). */
+data class AutoTimer(
+    val id: Int = -1,
+    val name: String = "",
+    val match: String = "",
+    val enabled: Boolean = true,
+    val services: List<String> = emptyList(),
+    val serviceNames: List<String> = emptyList(),
+    /** Optional "from" time in HH:MM, empty if none. */
+    val from: String = "",
+    /** Optional "to" time in HH:MM, empty if none. */
+    val to: String = "",
+    val justplay: Boolean = false,
+    val location: String = ""
 )

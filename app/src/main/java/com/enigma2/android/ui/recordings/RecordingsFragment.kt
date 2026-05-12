@@ -56,12 +56,18 @@ class RecordingsFragment : Fragment() {
 
         adapter = RecordingAdapter(
             onRecordingClick = { recording -> showDetail(recording) },
-            onRecordingLongClick = { recording -> showAddToPlaylistDialog(recording) }
+            onRecordingLongClick = { recording -> showRecordingMenu(recording) }
         )
 
         val rv = view.findViewById<RecyclerView>(R.id.rv_recordings)
         rv.layoutManager = LinearLayoutManager(requireContext())
         rv.adapter = adapter
+
+        val swipe = view.findViewById<androidx.swiperefreshlayout.widget.SwipeRefreshLayout>(R.id.swipe_recordings)
+        swipe.setOnRefreshListener {
+            viewModel.loadRecordings()
+            swipe.isRefreshing = false
+        }
 
         view.findViewById<View>(R.id.btn_back)?.setOnClickListener {
             parentFragmentManager.popBackStack()
@@ -80,8 +86,18 @@ class RecordingsFragment : Fragment() {
             viewModel.focusedRecording.value?.let { playRecording(it) }
         }
 
+        val progress = view.findViewById<View>(R.id.progress_recordings)
+        val tvEmpty = view.findViewById<TextView>(R.id.tv_recordings_empty)
+
+        viewModel.isLoading.observe(viewLifecycleOwner) { loading ->
+            progress.visibility = if (loading) View.VISIBLE else View.GONE
+        }
+
         viewModel.sortedRecordings.observe(viewLifecycleOwner) { recs ->
             adapter.submitList(recs)
+            val isEmpty = recs.isNullOrEmpty() && viewModel.isLoading.value != true
+            tvEmpty.visibility = if (isEmpty) View.VISIBLE else View.GONE
+            rv.visibility = if (isEmpty) View.GONE else View.VISIBLE
         }
 
         viewModel.focusedRecording.observe(viewLifecycleOwner) { rec ->
@@ -114,6 +130,38 @@ class RecordingsFragment : Fragment() {
                 putExtra(PlayerActivity.EXTRA_DURATION_SEC, recording.lengthMinutes.toInt() * 60)
             }
         )
+    }
+
+    private fun showRecordingMenu(recording: Recording) {
+        val options = arrayOf(
+            getString(R.string.play),
+            getString(R.string.add_to_playlist),
+            getString(R.string.delete_recording)
+        )
+        AlertDialog.Builder(requireContext())
+            .setTitle(recording.title)
+            .setItems(options) { _, which ->
+                when (which) {
+                    0 -> playRecording(recording)
+                    1 -> showAddToPlaylistDialog(recording)
+                    2 -> confirmDeleteRecording(recording)
+                }
+            }
+            .show()
+    }
+
+    private fun confirmDeleteRecording(recording: Recording) {
+        AlertDialog.Builder(requireContext())
+            .setTitle(R.string.delete_recording)
+            .setMessage(getString(R.string.delete_recording_confirm, recording.title))
+            .setPositiveButton(R.string.delete) { _, _ ->
+                viewModel.deleteRecording(recording) { ok ->
+                    val msgRes = if (ok) R.string.recording_deleted else R.string.recording_delete_failed
+                    Toast.makeText(requireContext(), msgRes, Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .show()
     }
 
     private fun showAddToPlaylistDialog(recording: Recording) {

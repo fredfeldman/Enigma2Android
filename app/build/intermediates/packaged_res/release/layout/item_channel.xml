@@ -92,5 +92,7 @@
         android:textSize="20sp"
         android:gravity="center"
         android:clickable="true"
-        android:focusable="false" />
+        android:focusable="true"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/add_favorite" />
 </LinearLayout>

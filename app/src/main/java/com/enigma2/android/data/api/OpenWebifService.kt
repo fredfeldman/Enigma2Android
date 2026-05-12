@@ -18,6 +18,12 @@ interface OpenWebifService {
     @GET("api/getallservices")
     suspend fun getAllServices(): ServicesResponse
 
+    @GET("api/about")
+    suspend fun getBoxInfo(): Response<okhttp3.ResponseBody>
+
+    @GET("api/deviceinfo")
+    suspend fun getDeviceInfo(): Response<okhttp3.ResponseBody>
+
     @GET("api/getservices")
     suspend fun getServices(@Query("sRef") sRef: String): ServicesResponse
 
@@ -42,6 +48,9 @@ interface OpenWebifService {
     @GET("api/movielist")
     suspend fun getMovieList(@Query("dirname") dirname: String? = null): MovieListResponse
 
+    @GET("api/movie/delete")
+    suspend fun deleteMovie(@Query("sRef") sRef: String): TimerResponse
+
     @GET("api/addtimer")
     suspend fun addTimer(
         @Query("sRef") sRef: String,
@@ -55,7 +64,7 @@ interface OpenWebifService {
     @GET("api/timerlist")
     suspend fun getTimerList(): TimerListResponse
 
-    @GET("api/deltimer")
+    @GET("api/timerdelete")
     suspend fun deleteTimer(
         @Query("sRef") sRef: String,
         @Query("begin") begin: Long,
@@ -65,9 +74,88 @@ interface OpenWebifService {
     @GET("api/epgsearch")
     suspend fun searchEpg(@Query("search") query: String): EpgResponse
 
+    @GET("autotimer")
+    suspend fun getAutoTimersXml(): Response<okhttp3.ResponseBody>
+
+    @GET("autotimer/remove")
+    suspend fun removeAutoTimer(@Query("id") id: Int): Response<okhttp3.ResponseBody>
+
+    @GET("autotimer/edit")
+    suspend fun editAutoTimer(
+        @retrofit2.http.QueryMap params: Map<String, String>
+    ): Response<okhttp3.ResponseBody>
+
+    // ---- EPGImport plugin (optional) ----
+    @GET
+    suspend fun probeEpgImportPath(@retrofit2.http.Url url: String): Response<okhttp3.ResponseBody>
+
+    @GET
+    suspend fun getEpgImportSourcesAt(@retrofit2.http.Url url: String): Response<okhttp3.ResponseBody>
+
+    @GET
+    suspend fun getEpgImportEnabledSourcesAt(@retrofit2.http.Url url: String): Response<okhttp3.ResponseBody>
+
+    @GET
+    suspend fun saveEpgImportEnabledSourcesAt(
+        @retrofit2.http.Url url: String,
+        @Query("sources") sourcesCsv: String
+    ): Response<okhttp3.ResponseBody>
+
+    @GET
+    suspend fun getEpgImportStatusAt(@retrofit2.http.Url url: String): Response<okhttp3.ResponseBody>
+
+    @GET
+    suspend fun runEpgImportAt(@retrofit2.http.Url url: String): Response<okhttp3.ResponseBody>
+
     @GET("grab")
     suspend fun getScreenshot(
         @Query("format") format: String = "jpg",
         @Query("r") resolution: Int = 720
+    ): Response<okhttp3.ResponseBody>
+
+    // ---- BouquetEditor plugin (optional) ----
+    /** Lists bouquets via the BouquetEditor plugin. Also serves as the capability probe. */
+    @GET("bouqueteditor/api/getservices")
+    suspend fun getBouquetEditorBouquets(
+        @Query("sRef") sRef: String = ""
+    ): ServicesResponse
+
+    @GET("bouqueteditor/web/addbouquet")
+    suspend fun addBouquet(
+        @Query("name") name: String,
+        @Query("mode") mode: Int = 0
+    ): Response<okhttp3.ResponseBody>
+
+    @GET("bouqueteditor/web/renameservice")
+    suspend fun renameBouquet(
+        @Query("sRef") sRef: String,
+        @Query("newName") newName: String,
+        @Query("mode") mode: Int = 0
+    ): Response<okhttp3.ResponseBody>
+
+    @GET("bouqueteditor/web/removebouquet")
+    suspend fun removeBouquet(
+        @Query("sBouquetRef") sBouquetRef: String,
+        @Query("mode") mode: Int = 0
+    ): Response<okhttp3.ResponseBody>
+
+    @GET("bouqueteditor/web/addservicetobouquet")
+    suspend fun addServiceToBouquet(
+        @Query("sBouquetRef") sBouquetRef: String,
+        @Query("sRef") sRef: String,
+        @Query("Name") name: String
+    ): Response<okhttp3.ResponseBody>
+
+    @GET("bouqueteditor/web/removeservice")
+    suspend fun removeServiceFromBouquet(
+        @Query("sBouquetRef") sBouquetRef: String,
+        @Query("sRef") sRef: String
+    ): Response<okhttp3.ResponseBody>
+
+    @GET("bouqueteditor/web/moveservice")
+    suspend fun moveServiceInBouquet(
+        @Query("sBouquetRef") sBouquetRef: String,
+        @Query("sRef") sRef: String,
+        @Query("position") position: Int
     ): Response<okhttp3.ResponseBody>
 }

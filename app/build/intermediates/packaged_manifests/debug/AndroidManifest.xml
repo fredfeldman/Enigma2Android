@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.enigma2.android"
-    android:versionCode="2"
-    android:versionName="1.0.1" >
+    android:versionCode="5"
+    android:versionName="1.0.4" >
 
     <uses-sdk
         android:minSdkVersion="26"
@@ -70,6 +70,24 @@
         <!-- Hidden bouquets picker (launched from Settings) -->
         <activity
             android:name="com.enigma2.android.ui.settings.HideBouquetsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Enigma2Android.Settings" />
+
+        <!-- EPG Import (launched from Settings if plugin is present) -->
+        <activity
+            android:name="com.enigma2.android.ui.settings.EpgImportActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Enigma2Android.Settings" />
+
+        <!-- Receiver Box Info (launched from Settings) -->
+        <activity
+            android:name="com.enigma2.android.ui.settings.BoxInfoActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Enigma2Android.Settings" />
+
+        <!-- Bouquet Editor (launched from Settings) -->
+        <activity
+            android:name="com.enigma2.android.ui.bouqueteditor.BouquetEditorActivity"
             android:exported="false"
             android:theme="@style/Theme.Enigma2Android.Settings" />
 

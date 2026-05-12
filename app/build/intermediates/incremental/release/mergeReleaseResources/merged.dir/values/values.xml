@@ -2278,6 +2278,8 @@
     <string name="delete">Delete</string>
     <string name="delete_device_confirm">Delete device: %s?</string>
     <string name="delete_failed">Failed to delete</string>
+    <string name="delete_recording">Delete Recording</string>
+    <string name="delete_recording_confirm">Permanently delete recording: %s?</string>
     <string name="delete_timer">Delete Timer</string>
     <string name="delete_timer_confirm">Delete timer for: %s?</string>
     <string name="device_name">Device Name</string>
@@ -2466,11 +2468,20 @@
     <string description="Button text to indicate that the widget will ignore the user&apos;s selection [CHAR_LIMIT=16]" name="mtrl_timepicker_cancel">Cancel</string>
     <string description="Button text to indicate that the widget will save the user&apos;s selection [CHAR_LIMIT=16]" name="mtrl_timepicker_confirm">OK</string>
     <string name="new_playlist">New Playlist</string>
+    <string name="next_label">Next: %s</string>
     <string name="no_audio_tracks">No audio tracks available</string>
+    <string name="no_bouquets_found">No channel lists found. Check your receiver\'s OpenWebif is running and the host/port is correct.</string>
+    <string name="no_channels">No channels in this bouquet</string>
+    <string name="no_channels_match_filter">No channels match your filter</string>
+    <string name="no_epg_data">No EPG data available for this bouquet</string>
     <string name="no_mac_address">No MAC address configured</string>
     <string name="no_playlists">No playlists yet</string>
+    <string name="no_recordings">No recordings yet</string>
+    <string name="no_search_results">No programmes match your search</string>
     <string name="no_subtitle_tracks">No subtitle tracks available</string>
+    <string name="no_timers">No timers scheduled</string>
     <string name="not_set">Not set</string>
+    <string name="now_next_message">Now: %1$s\n\nNext: %2$s</string>
     <string name="password">Password</string>
     <string name="password_toggle_content_description">Show password</string>
     <string name="path_password_eye" translatable="false">M12,4.5C7,4.5 2.73,7.61 1,12c1.73,4.39 6,7.5 11,7.5s9.27,-3.11 11,-7.5c-1.73,-4.39 -6,-7.5 -11,-7.5zM12,17c-2.76,0 -5,-2.24 -5,-5s2.24,-5 5,-5 5,2.24 5,5 -2.24,5 -5,5zM12,9c-1.66,0 -3,1.34 -3,3s1.34,3 3,3 3,-1.34 3,-3 -1.34,-3 -3,-3z</string>
@@ -2497,6 +2508,8 @@
     </string>
     <string name="record">Record</string>
     <string name="record_confirm">Schedule recording for: %s?</string>
+    <string name="recording_delete_failed">Failed to delete recording</string>
+    <string name="recording_deleted">Recording deleted</string>
     <string name="recording_started">Recording started</string>
     <string name="recordings">Recordings</string>
     <string name="remove">Remove</string>
@@ -2505,8 +2518,11 @@
     <string name="resume">Resume</string>
     <string name="resume_from">Resume from %s?</string>
     <string name="resume_playback">Resume Playback</string>
+    <string name="retry">Retry</string>
     <string name="screenshot">Screenshot</string>
     <string name="screenshot_failed">Failed to take screenshot</string>
+    <string name="screenshot_taking">Taking screenshot…</string>
+    <string name="search_hint">Type at least 3 characters and submit</string>
     <string name="search_menu_title">Search</string>
     <string name="searchbar_scrolling_view_behavior" translatable="false">
     com.google.android.material.search.SearchBar$ScrollingViewBehavior
@@ -2520,6 +2536,9 @@
     <string name="setup_title">Add Device</string>
     <string description="Title of the side sheet&apos;s accessibility pane that is spoken by TalkBack when the side sheet appears on screen. [CHAR_LIMIT=NONE]" name="side_sheet_accessibility_pane_title">Side Sheet</string>
     <string name="side_sheet_behavior" translatable="false">com.google.android.material.sidesheet.SideSheetBehavior</string>
+    <string name="sleep_15_min">15 min</string>
+    <string name="sleep_30_min">30 min</string>
+    <string name="sleep_60_min">60 min</string>
     <string name="sleep_in_minutes">Sleep in %d minutes</string>
     <string name="sleep_timer">Sleep Timer</string>
     <string name="sort_by">Sort by</string>
@@ -2531,14 +2550,17 @@
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="summary_collapsed_preference_list"><ns2:g id="current_items">%1$s</ns2:g>, <ns2:g id="added_items">%2$s</ns2:g></string>
     <string name="switch_device">Switch Device</string>
+    <string name="switching_to">Switching to %s…</string>
     <string name="timer_added">Recording timer added</string>
     <string name="timer_failed">Failed to add timer</string>
     <string name="timers">Timers</string>
+    <string name="track_number">Track %d</string>
     <string name="use_https">Use HTTPS</string>
     <string name="username">Username</string>
     <string name="v7_preference_off">OFF</string>
     <string name="v7_preference_on">ON</string>
     <string name="wol">WoL</string>
+    <string name="wol_sending">Sending Wake-on-LAN…</string>
     <string name="wol_sent">Wake-on-LAN packet sent</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
@@ -13978,6 +14000,10 @@
     </declare-styleable>
     <declare-styleable name="StateSet">
         <attr format="reference" name="defaultState"/>
+    </declare-styleable>
+    <declare-styleable name="SwipeRefreshLayout">
+        
+        <attr format="color" name="swipeRefreshLayoutProgressSpinnerBackgroundColor"/>
     </declare-styleable>
     <declare-styleable name="SwitchCompat">
         

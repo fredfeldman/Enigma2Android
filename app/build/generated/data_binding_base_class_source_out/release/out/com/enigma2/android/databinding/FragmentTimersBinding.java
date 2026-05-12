@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.enigma2.android.R;
@@ -29,18 +30,27 @@ public final class FragmentTimersBinding implements ViewBinding {
   public final RecyclerView rvTimers;
 
   @NonNull
+  public final SwipeRefreshLayout swipeTimers;
+
+  @NonNull
   public final Toolbar toolbarTimers;
+
+  @NonNull
+  public final TextView tvTimersEmpty;
 
   @NonNull
   public final TextView tvTimersError;
 
   private FragmentTimersBinding(@NonNull LinearLayout rootView, @NonNull ProgressBar progressTimers,
-      @NonNull RecyclerView rvTimers, @NonNull Toolbar toolbarTimers,
+      @NonNull RecyclerView rvTimers, @NonNull SwipeRefreshLayout swipeTimers,
+      @NonNull Toolbar toolbarTimers, @NonNull TextView tvTimersEmpty,
       @NonNull TextView tvTimersError) {
     this.rootView = rootView;
     this.progressTimers = progressTimers;
     this.rvTimers = rvTimers;
+    this.swipeTimers = swipeTimers;
     this.toolbarTimers = toolbarTimers;
+    this.tvTimersEmpty = tvTimersEmpty;
     this.tvTimersError = tvTimersError;
   }
 
@@ -83,9 +93,21 @@ public final class FragmentTimersBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.swipe_timers;
+      SwipeRefreshLayout swipeTimers = ViewBindings.findChildViewById(rootView, id);
+      if (swipeTimers == null) {
+        break missingId;
+      }
+
       id = R.id.toolbar_timers;
       Toolbar toolbarTimers = ViewBindings.findChildViewById(rootView, id);
       if (toolbarTimers == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_timers_empty;
+      TextView tvTimersEmpty = ViewBindings.findChildViewById(rootView, id);
+      if (tvTimersEmpty == null) {
         break missingId;
       }
 
@@ -96,7 +118,7 @@ public final class FragmentTimersBinding implements ViewBinding {
       }
 
       return new FragmentTimersBinding((LinearLayout) rootView, progressTimers, rvTimers,
-          toolbarTimers, tvTimersError);
+          swipeTimers, toolbarTimers, tvTimersEmpty, tvTimersError);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

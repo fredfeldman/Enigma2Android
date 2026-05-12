@@ -9,6 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import android.view.View as AndroidView
+import android.widget.ProgressBar
+import android.widget.TextView
 import com.enigma2.android.R
 import com.enigma2.android.data.model.Timer
 import com.enigma2.android.data.repository.Enigma2Repository
@@ -23,6 +26,9 @@ class TimersFragment : Fragment() {
 
     private val repo = Enigma2Repository()
     private lateinit var adapter: TimerAdapter
+    private lateinit var rv: RecyclerView
+    private lateinit var progress: ProgressBar
+    private lateinit var tvEmpty: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -33,9 +39,18 @@ class TimersFragment : Fragment() {
 
         adapter = TimerAdapter { timer -> confirmDelete(timer) }
 
-        val rv = view.findViewById<RecyclerView>(R.id.rv_timers)
+        rv = view.findViewById(R.id.rv_timers)
         rv.layoutManager = LinearLayoutManager(requireContext())
         rv.adapter = adapter
+
+        progress = view.findViewById(R.id.progress_timers)
+        tvEmpty = view.findViewById(R.id.tv_timers_empty)
+
+        val swipe = view.findViewById<androidx.swiperefreshlayout.widget.SwipeRefreshLayout>(R.id.swipe_timers)
+        swipe.setOnRefreshListener {
+            loadTimers()
+            swipe.isRefreshing = false
+        }
 
         view.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar_timers)
             .setNavigationOnClickListener { parentFragmentManager.popBackStack() }
@@ -44,9 +59,15 @@ class TimersFragment : Fragment() {
     }
 
     private fun loadTimers() {
+        progress.visibility = AndroidView.VISIBLE
+        tvEmpty.visibility = AndroidView.GONE
         viewLifecycleOwner.lifecycleScope.launch {
             val timers = withContext(Dispatchers.IO) { repo.getTimers() }
             adapter.submitList(timers)
+            progress.visibility = AndroidView.GONE
+            val isEmpty = timers.isEmpty()
+            tvEmpty.visibility = if (isEmpty) AndroidView.VISIBLE else AndroidView.GONE
+            rv.visibility = if (isEmpty) AndroidView.GONE else AndroidView.VISIBLE
         }
     }
 

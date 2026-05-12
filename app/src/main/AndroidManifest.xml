@@ -52,5 +52,23 @@
             android:exported="false"
             android:theme="@style/Theme.Enigma2Android.Settings" />
 
+        <!-- EPG Import (launched from Settings if plugin is present) -->
+        <activity
+            android:name=".ui.settings.EpgImportActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Enigma2Android.Settings" />
+
+        <!-- Receiver Box Info (launched from Settings) -->
+        <activity
+            android:name=".ui.settings.BoxInfoActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Enigma2Android.Settings" />
+
+        <!-- Bouquet Editor (launched from Settings) -->
+        <activity
+            android:name=".ui.bouqueteditor.BouquetEditorActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Enigma2Android.Settings" />
+
     </application>
 </manifest>

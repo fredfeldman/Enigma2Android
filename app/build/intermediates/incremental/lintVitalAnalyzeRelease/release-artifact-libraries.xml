@@ -169,6 +169,19 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
+      name="androidx.swiperefreshlayout:swiperefreshlayout:1.1.0@aar"
+      jars="C:\Users\Player One\.gradle\caches\transforms-3\fd7fce67f9729d7127c0def3adba42b3\transformed\swiperefreshlayout-1.1.0\jars\classes.jar"
+      resolved="androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+      folder="C:\Users\Player One\.gradle\caches\transforms-3\fd7fce67f9729d7127c0def3adba42b3\transformed\swiperefreshlayout-1.1.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
       name="androidx.appcompat:appcompat-resources:1.6.1@aar"
       jars="C:\Users\Player One\.gradle\caches\transforms-3\f880cc1c3e36c0c4b347845a9fccfd59\transformed\appcompat-resources-1.6.1\jars\classes.jar"
       resolved="androidx.appcompat:appcompat-resources:1.6.1"
@@ -625,6 +638,19 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
+      name="androidx.interpolator:interpolator:1.0.0@aar"
+      jars="C:\Users\Player One\.gradle\caches\transforms-3\06c0de05be1d7b07fa7c8604eba58308\transformed\interpolator-1.0.0\jars\classes.jar"
+      resolved="androidx.interpolator:interpolator:1.0.0"
+      folder="C:\Users\Player One\.gradle\caches\transforms-3\06c0de05be1d7b07fa7c8604eba58308\transformed\interpolator-1.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
       name="com.github.bumptech.glide:gifdecoder:4.16.0@aar"
       jars="C:\Users\Player One\.gradle\caches\transforms-3\b62adf9cd512c2c40048f777221c9a5a\transformed\gifdecoder-4.16.0\jars\classes.jar"
       resolved="com.github.bumptech.glide:gifdecoder:4.16.0"
@@ -684,19 +710,6 @@
       name="androidx.arch.core:core-common:2.2.0@jar"
       jars="C:\Users\Player One\.gradle\caches\modules-2\files-2.1\androidx.arch.core\core-common\2.2.0\5e1b8b81dfd5f52c56a8d53b18ca759c19a301f3\core-common-2.2.0.jar"
       resolved="androidx.arch.core:core-common:2.2.0"/>
-  <library
-      name="androidx.interpolator:interpolator:1.0.0@aar"
-      jars="C:\Users\Player One\.gradle\caches\transforms-3\06c0de05be1d7b07fa7c8604eba58308\transformed\interpolator-1.0.0\jars\classes.jar"
-      resolved="androidx.interpolator:interpolator:1.0.0"
-      folder="C:\Users\Player One\.gradle\caches\transforms-3\06c0de05be1d7b07fa7c8604eba58308\transformed\interpolator-1.0.0"
-      manifest="AndroidManifest.xml"
-      resFolder="res"
-      assetsFolder="assets"
-      lintJar="lint.jar"
-      publicResources="public.txt"
-      symbolFile="R.txt"
-      externalAnnotations="annotations.zip"
-      proguardRules="proguard.txt"/>
   <library
       name="androidx.documentfile:documentfile:1.0.0@aar"
       jars="C:\Users\Player One\.gradle\caches\transforms-3\9df73e7003301e6fd55fe85a9a84be59\transformed\documentfile-1.0.0\jars\classes.jar"
