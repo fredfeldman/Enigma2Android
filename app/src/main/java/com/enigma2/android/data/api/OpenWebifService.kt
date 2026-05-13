@@ -288,4 +288,41 @@ interface OpenWebifService {
     /** Returns list of all tags configured on the receiver. */
     @GET("api/gettags")
     suspend fun getTags(): Response<com.enigma2.android.data.model.TagsResponse>
+
+    // ---- v1.1.0: Parental write ----
+    /** action: "add" or "remove"; sRef is the service reference. */
+    @GET("api/parentcontrol")
+    suspend fun parentalProtect(
+        @Query("sRef") sRef: String,
+        @Query("action") action: String,
+        @Query("type") type: String? = null
+    ): Response<okhttp3.ResponseBody>
+
+    @GET("api/changesetuppin")
+    suspend fun changeSetupPin(
+        @Query("newpin") newPin: String,
+        @Query("oldpin") oldPin: String
+    ): Response<okhttp3.ResponseBody>
+
+    // ---- v1.1.0: Storage / system / plugins / network ----
+    @GET("api/mountinfo")
+    suspend fun getMountInfo(): Response<okhttp3.ResponseBody>
+
+    @GET("api/smartinfo")
+    suspend fun getSmartInfo(): Response<okhttp3.ResponseBody>
+
+    @GET("api/getlog")
+    suspend fun getReceiverLog(): Response<okhttp3.ResponseBody>
+
+    @GET("api/plugins")
+    suspend fun listPlugins(): Response<okhttp3.ResponseBody>
+
+    @GET("api/installplugin")
+    suspend fun installPlugin(@Query("package") pkg: String): Response<okhttp3.ResponseBody>
+
+    @GET("api/removeplugin")
+    suspend fun removePlugin(@Query("package") pkg: String): Response<okhttp3.ResponseBody>
+
+    @GET("api/networkinfo")
+    suspend fun getNetworkInfo(): Response<okhttp3.ResponseBody>
 }

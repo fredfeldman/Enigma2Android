@@ -57,6 +57,14 @@ class ReceiverSettingsRootFragment : PreferenceFragmentCompat() {
         })
         screen.addPreference(add(R.string.recv_webui_title, R.string.recv_webui_summary) { WebUiConfigFragment() })
 
+        screen.addPreference(PreferenceCategory(ctx).apply {
+            setTitle(R.string.receiver_settings_cat_system); isIconSpaceReserved = false
+        })
+        screen.addPreference(add(R.string.recv_storage_title, R.string.recv_storage_summary) { StorageFragment() })
+        screen.addPreference(add(R.string.recv_log_title, R.string.recv_log_summary) { LogViewerFragment() })
+        screen.addPreference(add(R.string.recv_plugins_title, R.string.recv_plugins_summary) { PluginManagerFragment() })
+        screen.addPreference(add(R.string.recv_network_title, R.string.recv_network_summary) { NetworkInfoFragment() })
+
         preferenceScreen = screen
 
         // Capability probe is informational only: append a hint to the summary when the

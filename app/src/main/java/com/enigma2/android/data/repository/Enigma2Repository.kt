@@ -748,6 +748,42 @@ class Enigma2Repository {
             if (resp.isSuccessful) resp.body()?.tags.orEmpty() else emptyList()
         } catch (_: Exception) { emptyList() }
     }
+
+    // ---- v1.1.0: Receiver admin ----
+    suspend fun protectService(sRef: String): Boolean = withContext(Dispatchers.IO) {
+        try { ApiClient.service.parentalProtect(sRef, "add").isSuccessful } catch (_: Exception) { false }
+    }
+
+    suspend fun unprotectService(sRef: String): Boolean = withContext(Dispatchers.IO) {
+        try { ApiClient.service.parentalProtect(sRef, "remove").isSuccessful } catch (_: Exception) { false }
+    }
+
+    suspend fun changeSetupPin(oldPin: String, newPin: String): Boolean = withContext(Dispatchers.IO) {
+        try { ApiClient.service.changeSetupPin(newPin, oldPin).isSuccessful } catch (_: Exception) { false }
+    }
+
+    /** Raw text body of an admin endpoint; null on failure. */
+    private suspend fun rawGet(call: suspend () -> retrofit2.Response<okhttp3.ResponseBody>): String? =
+        withContext(Dispatchers.IO) {
+            try {
+                val r = call()
+                if (r.isSuccessful) r.body()?.string() else null
+            } catch (_: Exception) { null }
+        }
+
+    suspend fun getMountInfoRaw(): String? = rawGet { ApiClient.service.getMountInfo() }
+    suspend fun getSmartInfoRaw(): String? = rawGet { ApiClient.service.getSmartInfo() }
+    suspend fun getReceiverLogRaw(): String? = rawGet { ApiClient.service.getReceiverLog() }
+    suspend fun getNetworkInfoRaw(): String? = rawGet { ApiClient.service.getNetworkInfo() }
+    suspend fun listPluginsRaw(): String? = rawGet { ApiClient.service.listPlugins() }
+
+    suspend fun installPlugin(pkg: String): Boolean = withContext(Dispatchers.IO) {
+        try { ApiClient.service.installPlugin(pkg).isSuccessful } catch (_: Exception) { false }
+    }
+
+    suspend fun removePlugin(pkg: String): Boolean = withContext(Dispatchers.IO) {
+        try { ApiClient.service.removePlugin(pkg).isSuccessful } catch (_: Exception) { false }
+    }
 }
 
 /** A single EPGImport source advertised by the plugin. */

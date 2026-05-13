@@ -410,4 +410,57 @@
     <string name="reminder_notification_text">on %1$s</string>
     <string name="reminder_channel_name">Programme reminders</string>
     <string name="reminder_already_passed">Programme has already started</string>
+
+    <!-- v1.1.0: Receiver admin -->
+    <string name="receiver_settings_cat_system">System</string>
+
+    <string name="recv_storage_title">Storage &amp; mounts</string>
+    <string name="recv_storage_summary">Mounted devices and SMART status</string>
+    <string name="recv_storage_mounts">Mount points</string>
+    <string name="recv_storage_smart">SMART info</string>
+    <string name="recv_storage_empty">No mounts reported</string>
+
+    <string name="recv_log_title">System log</string>
+    <string name="recv_log_summary">Recent receiver log entries</string>
+    <string name="recv_log_filter_hint">Filter (substring)</string>
+    <string name="recv_log_share">Share log</string>
+    <string name="recv_log_share_subject">Receiver log</string>
+    <string name="recv_log_empty">Log is empty or unavailable.</string>
+
+    <string name="recv_plugins_title">Plugin manager</string>
+    <string name="recv_plugins_summary">Installed plugins; install / remove</string>
+    <string name="recv_plugins_install">Install plugin</string>
+    <string name="recv_plugins_install_hint">Package name (e.g. enigma2-plugin-extensions-openwebif)</string>
+    <string name="recv_plugins_remove">Remove</string>
+    <string name="recv_plugins_remove_confirm">Remove plugin %1$s? This cannot be undone from the app.</string>
+    <string name="recv_plugins_op_running">Working\u2026</string>
+    <string name="recv_plugins_op_done">Done</string>
+    <string name="recv_plugins_op_failed">Operation failed</string>
+    <string name="recv_plugins_count">%1$d plugin(s) installed</string>
+    <string name="recv_plugins_warn">Removing core plugins can break the receiver. Only remove what you installed.</string>
+
+    <string name="recv_network_title">Network info</string>
+    <string name="recv_network_summary">Interfaces, IP, gateway, DNS</string>
+    <string name="recv_network_copy">Copy to clipboard</string>
+    <string name="recv_network_copied">Copied</string>
+
+    <string name="recv_parental_action_protect">Protect a service</string>
+    <string name="recv_parental_action_unprotect">Unprotect</string>
+    <string name="recv_parental_pin_set_title">Set / change setup PIN</string>
+    <string name="recv_parental_pin_old">Current PIN (leave empty if none)</string>
+    <string name="recv_parental_pin_new">New PIN</string>
+    <string name="recv_parental_pin_confirm">Confirm PIN</string>
+    <string name="recv_parental_pin_mismatch">PINs do not match</string>
+    <string name="recv_parental_pin_changed">PIN updated</string>
+    <string name="recv_parental_pin_failed">PIN update failed</string>
+    <string name="recv_parental_protected_added">Service protected</string>
+    <string name="recv_parental_unprotected">Service unprotected</string>
+    <string name="recv_parental_pick_title">Pick a service to protect</string>
+    <string name="recv_parental_loading_services">Loading services\u2026</string>
+    <string name="recv_parental_app_lock_title">App-side parental lock</string>
+    <string name="recv_parental_app_lock_summary">Require a PIN to open the parental screen in this app</string>
+    <string name="recv_parental_app_lock_set">Set app PIN</string>
+    <string name="recv_parental_app_lock_clear">Clear app PIN</string>
+    <string name="recv_parental_app_lock_prompt">Enter app PIN</string>
+    <string name="recv_parental_app_lock_wrong">Wrong PIN</string>
 </resources>
