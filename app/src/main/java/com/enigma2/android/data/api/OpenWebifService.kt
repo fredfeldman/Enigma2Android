@@ -264,4 +264,28 @@ interface OpenWebifService {
         @Query("type") type: Int = 1,
         @Query("timeout") timeout: Int = 10
     ): Response<okhttp3.ResponseBody>
+
+    // ---- v1.0.8: Recording management ----
+    @GET("api/movierename")
+    suspend fun renameMovie(
+        @Query("sRef") sRef: String,
+        @Query("newname") newName: String
+    ): Response<okhttp3.ResponseBody>
+
+    @GET("api/moviemove")
+    suspend fun moveMovie(
+        @Query("sRef") sRef: String,
+        @Query("dirname") newDir: String
+    ): Response<okhttp3.ResponseBody>
+
+    @GET("api/movietags")
+    suspend fun movieTags(
+        @Query("sRef") sRef: String,
+        @Query("add") add: String? = null,
+        @Query("del") del: String? = null
+    ): Response<okhttp3.ResponseBody>
+
+    /** Returns list of all tags configured on the receiver. */
+    @GET("api/gettags")
+    suspend fun getTags(): Response<com.enigma2.android.data.model.TagsResponse>
 }

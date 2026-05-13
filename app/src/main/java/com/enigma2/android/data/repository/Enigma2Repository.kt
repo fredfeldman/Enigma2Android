@@ -726,6 +726,28 @@ class Enigma2Repository {
     suspend fun sendMessageToReceiver(text: String, type: Int = 1, timeout: Int = 10): Boolean = withContext(Dispatchers.IO) {
         try { ApiClient.service.sendMessage(text, type, timeout).isSuccessful } catch (_: Exception) { false }
     }
+
+    // ---- v1.0.8: Recording management ----
+    suspend fun renameRecording(sRef: String, newName: String): Boolean = withContext(Dispatchers.IO) {
+        try { ApiClient.service.renameMovie(sRef, newName).isSuccessful } catch (_: Exception) { false }
+    }
+
+    suspend fun moveRecording(sRef: String, newDir: String): Boolean = withContext(Dispatchers.IO) {
+        try { ApiClient.service.moveMovie(sRef, newDir).isSuccessful } catch (_: Exception) { false }
+    }
+
+    /** Add and/or remove tags on a recording. Tags are space-separated. */
+    suspend fun updateRecordingTags(sRef: String, add: String? = null, del: String? = null): Boolean = withContext(Dispatchers.IO) {
+        try { ApiClient.service.movieTags(sRef, add, del).isSuccessful } catch (_: Exception) { false }
+    }
+
+    /** All tags known to the receiver. Empty list on failure. */
+    suspend fun getAllTags(): List<String> = withContext(Dispatchers.IO) {
+        try {
+            val resp = ApiClient.service.getTags()
+            if (resp.isSuccessful) resp.body()?.tags.orEmpty() else emptyList()
+        } catch (_: Exception) { emptyList() }
+    }
 }
 
 /** A single EPGImport source advertised by the plugin. */

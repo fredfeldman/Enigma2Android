@@ -19,6 +19,7 @@ class RecordingAdapter(
 ) : ListAdapter<Recording, RecordingAdapter.ViewHolder>(DIFF) {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val tvWatched: TextView = view.findViewById(R.id.tv_recording_watched)
         val tvTitle: TextView = view.findViewById(R.id.tv_recording_title)
         val tvChannel: TextView = view.findViewById(R.id.tv_recording_channel)
         val tvDatetime: TextView = view.findViewById(R.id.tv_recording_datetime)
@@ -45,6 +46,7 @@ class RecordingAdapter(
         val rec = getItem(position)
         holder.tvTitle.text = rec.title
         holder.tvChannel.text = rec.channelName
+        holder.tvWatched.visibility = if (rec.isWatched) View.VISIBLE else View.GONE
         val fmt = SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault())
         holder.tvDatetime.text = fmt.format(Date(rec.startTimestamp * 1000))
         holder.tvDuration.text = holder.itemView.context.getString(R.string.duration_minutes, rec.lengthMinutes)

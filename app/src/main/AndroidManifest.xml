@@ -99,5 +99,10 @@
             </intent-filter>
         </service>
 
+        <!-- v1.0.8: EPG reminder broadcast receiver -->
+        <receiver
+            android:name=".service.ReminderReceiver"
+            android:exported="false" />
+
     </application>
 </manifest>

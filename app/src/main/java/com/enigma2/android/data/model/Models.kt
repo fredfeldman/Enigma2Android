@@ -76,7 +76,9 @@ data class Recording(
     @SerializedName("servicename") val channelName: String = "",
     @SerializedName("recordingstart") val startTimestamp: Long = 0,
     @SerializedName("length") val length: String = "",
-    @SerializedName("filesize_readable") val fileSizeBytes: String = ""
+    @SerializedName("filesize_readable") val fileSizeBytes: String = "",
+    /** Space-separated list of tags as returned by OpenWebif. */
+    @SerializedName("tags") val tagsRaw: String = ""
 ) {
     /** Converts OpenWebif "H:MM" or "H:MM:SS" length string to total minutes. */
     val lengthMinutes: Long get() {
@@ -87,7 +89,21 @@ data class Recording(
             else -> length.toLongOrNull() ?: 0
         }
     }
+
+    /** Parsed tag list. */
+    val tags: List<String> get() = tagsRaw.split(' ', '\t', '\n').filter { it.isNotBlank() }
+
+    /** Mark used by the app to track watched state via OpenWebif tags. */
+    val isWatched: Boolean get() = tags.any { it.equals(WATCHED_TAG, ignoreCase = true) }
+
+    companion object {
+        const val WATCHED_TAG = "Watched"
+    }
 }
+
+data class TagsResponse(
+    @SerializedName("tags") val tags: List<String>? = null
+)
 
 data class TimerListResponse(
     @SerializedName("timers") val timers: List<Timer>? = null,

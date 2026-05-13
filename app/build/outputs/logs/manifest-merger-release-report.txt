@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:2:1-103:12
-INJECTED from D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:2:1-103:12
-INJECTED from D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:2:1-103:12
-INJECTED from D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:2:1-103:12
+ADDED from D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:2:1-108:12
+INJECTED from D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:2:1-108:12
+INJECTED from D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:2:1-108:12
+INJECTED from D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:2:1-108:12
 MERGED from [androidx.databinding:viewbinding:8.2.2] C:\Users\Player One\.gradle\caches\transforms-3\d64262d30dfd028fefb0db007e75e64f\transformed\viewbinding-8.2.2\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\Player One\.gradle\caches\transforms-3\56af212e940d1f2bde023f0cf7bfa9c5\transformed\material-1.11.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Player One\.gradle\caches\transforms-3\a1c5e08825da8b3508fd7a457a086ebc\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
@@ -118,8 +118,8 @@ ADDED from D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:10:5-
 	android:name
 		ADDED from D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:11:9-52
 application
-ADDED from D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:14:5-102:19
-INJECTED from D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:14:5-102:19
+ADDED from D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:14:5-107:19
+INJECTED from D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:14:5-107:19
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\Player One\.gradle\caches\transforms-3\56af212e940d1f2bde023f0cf7bfa9c5\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\Player One\.gradle\caches\transforms-3\56af212e940d1f2bde023f0cf7bfa9c5\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Player One\.gradle\caches\transforms-3\a1c5e08825da8b3508fd7a457a086ebc\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -278,6 +278,12 @@ action#android.service.quicksettings.action.QS_TILE
 ADDED from D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:98:17-87
 	android:name
 		ADDED from D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:98:25-84
+receiver#com.enigma2.android.service.ReminderReceiver
+ADDED from D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:103:9-105:40
+	android:exported
+		ADDED from D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:105:13-37
+	android:name
+		ADDED from D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml:104:13-53
 uses-sdk
 INJECTED from D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\source\repos\Enigma2Android\app\src\main\AndroidManifest.xml

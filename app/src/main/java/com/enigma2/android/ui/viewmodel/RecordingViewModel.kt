@@ -76,4 +76,33 @@ class RecordingViewModel : ViewModel() {
             onResult(ok)
         }
     }
+
+    /**
+     * Toggle the "Watched" tag on the receiver. Optimistic local update so the
+     * badge flips immediately; reverted via reload on failure.
+     */
+    fun toggleWatched(recording: Recording, onResult: (Boolean) -> Unit) {
+        viewModelScope.launch {
+            val isWatched = recording.isWatched
+            val ok = if (isWatched) {
+                repo.updateRecordingTags(recording.serviceRef, del = Recording.WATCHED_TAG)
+            } else {
+                repo.updateRecordingTags(recording.serviceRef, add = Recording.WATCHED_TAG)
+            }
+            if (ok) {
+                val newRaw = if (isWatched) {
+                    recording.tags.filter { !it.equals(Recording.WATCHED_TAG, ignoreCase = true) }
+                        .joinToString(" ")
+                } else {
+                    (recording.tags + Recording.WATCHED_TAG).joinToString(" ")
+                }
+                val updated = (_allRecordings.value ?: emptyList()).map {
+                    if (it.filename == recording.filename) it.copy(tagsRaw = newRaw) else it
+                }
+                _allRecordings.value = updated
+                applySortOrder()
+            }
+            onResult(ok)
+        }
+    }
 }

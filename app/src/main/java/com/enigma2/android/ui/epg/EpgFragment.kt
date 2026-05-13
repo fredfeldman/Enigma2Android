@@ -160,12 +160,70 @@ class EpgFragment : Fragment() {
     }
 
     private fun showRecordDialog(event: EpgEvent) {
+        val now = System.currentTimeMillis() / 1000
+        val canRemind = event.beginTimestamp > now
+        val items = if (canRemind)
+            arrayOf(getString(R.string.epg_action_record), getString(R.string.epg_action_remind))
+        else
+            arrayOf(getString(R.string.epg_action_record))
         AlertDialog.Builder(requireContext())
-            .setTitle(event.title)
-            .setMessage(getString(R.string.record_confirm, event.title))
-            .setPositiveButton(R.string.record) { _, _ -> scheduleRecording(event) }
+            .setTitle(getString(R.string.epg_event_menu_title, event.title))
+            .setItems(items) { _, which ->
+                when (which) {
+                    0 -> confirmAndScheduleRecording(event)
+                    1 -> setReminder(event)
+                }
+            }
             .setNegativeButton(android.R.string.cancel, null)
             .show()
+    }
+
+    private fun confirmAndScheduleRecording(event: EpgEvent) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            // Conflict probe — best-effort. If timer fetch fails, fall through to schedule directly.
+            val existing = withContext(Dispatchers.IO) {
+                runCatching { repo.getTimers() }.getOrDefault(emptyList())
+            }
+            val end = event.beginTimestamp + event.durationSeconds
+            val conflicts = com.enigma2.android.util.TimerConflictDetector
+                .findConflicts(event.beginTimestamp, end, existing)
+            if (conflicts.isEmpty()) {
+                scheduleRecording(event)
+                return@launch
+            }
+            val list = conflicts.joinToString("\n") { "• ${it.timer.name} (${it.timer.serviceName})" }
+            AlertDialog.Builder(requireContext())
+                .setTitle(R.string.timer_conflict_title)
+                .setMessage(getString(R.string.timer_conflict_msg, conflicts.size, list))
+                .setPositiveButton(R.string.timer_conflict_continue) { _, _ -> scheduleRecording(event) }
+                .setNegativeButton(android.R.string.cancel, null)
+                .show()
+        }
+    }
+
+    private fun setReminder(event: EpgEvent) {
+        val now = System.currentTimeMillis() / 1000
+        if (event.beginTimestamp <= now) {
+            Toast.makeText(requireContext(), R.string.reminder_already_passed, Toast.LENGTH_SHORT).show()
+            return
+        }
+        val store = com.enigma2.android.data.prefs.RemindersStore(requireContext())
+        val channelName = channelViewModel.filteredChannels.value
+            ?.firstOrNull { it.ref == event.sref }?.name ?: ""
+        val reminder = com.enigma2.android.data.prefs.EpgReminder(
+            id = store.newId(event.sref, event.beginTimestamp),
+            title = event.title,
+            channelName = channelName,
+            sref = event.sref,
+            startTimestampSec = event.beginTimestamp
+        )
+        try {
+            store.add(reminder)
+            com.enigma2.android.service.ReminderReceiver.schedule(requireContext(), reminder)
+            Toast.makeText(requireContext(), R.string.reminder_set, Toast.LENGTH_SHORT).show()
+        } catch (_: Exception) {
+            Toast.makeText(requireContext(), R.string.reminder_failed, Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun scheduleRecording(event: EpgEvent) {

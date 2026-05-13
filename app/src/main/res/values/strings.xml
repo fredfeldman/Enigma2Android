@@ -371,4 +371,43 @@
 
     <string name="pref_title_pip">Picture-in-Picture</string>
     <string name="pref_summary_pip">Auto-enter PiP when leaving the live-TV player</string>
+
+    <!-- v1.0.8: Recording rename / move / tags / watched / reminders -->
+    <string name="rec_action_rename">Rename</string>
+    <string name="rec_action_move">Move to folder</string>
+    <string name="rec_action_tags">Edit tags</string>
+    <string name="rec_action_mark_watched">Mark as watched</string>
+    <string name="rec_action_mark_unwatched">Mark as unwatched</string>
+    <string name="rec_rename_title">Rename recording</string>
+    <string name="rec_rename_hint">New name</string>
+    <string name="rec_renamed">Renamed</string>
+    <string name="rec_rename_failed">Rename failed</string>
+    <string name="rec_move_title">Move recording</string>
+    <string name="rec_move_no_locations">No recording locations available</string>
+    <string name="rec_moved">Moved</string>
+    <string name="rec_move_failed">Move failed</string>
+    <string name="rec_tags_title">Tags</string>
+    <string name="rec_tags_hint">Space-separated tags</string>
+    <string name="rec_tags_updated">Tags updated</string>
+    <string name="rec_tags_failed">Could not update tags</string>
+    <string name="rec_watched_badge">●</string>
+    <string name="rec_watched">Marked as watched</string>
+    <string name="rec_unwatched">Marked as unwatched</string>
+    <string name="rec_watched_failed">Could not update</string>
+    <string name="rec_filter_by_tag">Filter by tag</string>
+    <string name="rec_filter_clear">All recordings</string>
+
+    <string name="timer_conflict_title">Schedule conflict</string>
+    <string name="timer_conflict_msg">This timer overlaps with %1$d existing timer(s):\n\n%2$s\n\nSchedule anyway?</string>
+    <string name="timer_conflict_continue">Schedule anyway</string>
+
+    <string name="epg_action_record">Record</string>
+    <string name="epg_action_remind">Remind me</string>
+    <string name="epg_event_menu_title">%1$s</string>
+    <string name="reminder_set">Reminder set</string>
+    <string name="reminder_failed">Could not set reminder</string>
+    <string name="reminder_notification_title">Starting now: %1$s</string>
+    <string name="reminder_notification_text">on %1$s</string>
+    <string name="reminder_channel_name">Programme reminders</string>
+    <string name="reminder_already_passed">Programme has already started</string>
 </resources>

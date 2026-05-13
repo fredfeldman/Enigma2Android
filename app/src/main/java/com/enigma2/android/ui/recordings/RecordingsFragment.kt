@@ -133,9 +133,17 @@ class RecordingsFragment : Fragment() {
     }
 
     private fun showRecordingMenu(recording: Recording) {
+        val watchedLabel = if (recording.isWatched)
+            getString(R.string.rec_action_mark_unwatched)
+        else
+            getString(R.string.rec_action_mark_watched)
         val options = arrayOf(
             getString(R.string.play),
             getString(R.string.add_to_playlist),
+            getString(R.string.rec_action_rename),
+            getString(R.string.rec_action_move),
+            getString(R.string.rec_action_tags),
+            watchedLabel,
             getString(R.string.delete_recording)
         )
         AlertDialog.Builder(requireContext())
@@ -144,7 +152,31 @@ class RecordingsFragment : Fragment() {
                 when (which) {
                     0 -> playRecording(recording)
                     1 -> showAddToPlaylistDialog(recording)
-                    2 -> confirmDeleteRecording(recording)
+                    2 -> RenameRecordingDialog.show(requireContext(), viewLifecycleOwner, recording) { ok ->
+                        Toast.makeText(requireContext(),
+                            if (ok) R.string.rec_renamed else R.string.rec_rename_failed,
+                            Toast.LENGTH_SHORT).show()
+                        if (ok) viewModel.loadRecordings()
+                    }
+                    3 -> MoveRecordingDialog.show(requireContext(), viewLifecycleOwner, recording) { ok ->
+                        Toast.makeText(requireContext(),
+                            if (ok) R.string.rec_moved else R.string.rec_move_failed,
+                            Toast.LENGTH_SHORT).show()
+                        if (ok) viewModel.loadRecordings()
+                    }
+                    4 -> TagEditorDialog.show(requireContext(), viewLifecycleOwner, recording) { ok ->
+                        Toast.makeText(requireContext(),
+                            if (ok) R.string.rec_tags_updated else R.string.rec_tags_failed,
+                            Toast.LENGTH_SHORT).show()
+                        if (ok) viewModel.loadRecordings()
+                    }
+                    5 -> viewModel.toggleWatched(recording) { ok ->
+                        val msg = if (!ok) R.string.rec_watched_failed
+                            else if (recording.isWatched) R.string.rec_unwatched
+                            else R.string.rec_watched
+                        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+                    }
+                    6 -> confirmDeleteRecording(recording)
                 }
             }
             .show()

@@ -31,14 +31,18 @@ public final class ItemRecordingBinding implements ViewBinding {
   @NonNull
   public final TextView tvRecordingTitle;
 
+  @NonNull
+  public final TextView tvRecordingWatched;
+
   private ItemRecordingBinding(@NonNull LinearLayout rootView, @NonNull TextView tvRecordingChannel,
       @NonNull TextView tvRecordingDatetime, @NonNull TextView tvRecordingDuration,
-      @NonNull TextView tvRecordingTitle) {
+      @NonNull TextView tvRecordingTitle, @NonNull TextView tvRecordingWatched) {
     this.rootView = rootView;
     this.tvRecordingChannel = tvRecordingChannel;
     this.tvRecordingDatetime = tvRecordingDatetime;
     this.tvRecordingDuration = tvRecordingDuration;
     this.tvRecordingTitle = tvRecordingTitle;
+    this.tvRecordingWatched = tvRecordingWatched;
   }
 
   @Override
@@ -92,8 +96,14 @@ public final class ItemRecordingBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tv_recording_watched;
+      TextView tvRecordingWatched = ViewBindings.findChildViewById(rootView, id);
+      if (tvRecordingWatched == null) {
+        break missingId;
+      }
+
       return new ItemRecordingBinding((LinearLayout) rootView, tvRecordingChannel,
-          tvRecordingDatetime, tvRecordingDuration, tvRecordingTitle);
+          tvRecordingDatetime, tvRecordingDuration, tvRecordingTitle, tvRecordingWatched);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
