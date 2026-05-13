@@ -38,6 +38,13 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 true
             }
 
+        findPreference<Preference>("pref_receiver_settings")
+            ?.setOnPreferenceClickListener {
+                startActivity(Intent(requireContext(),
+                    com.enigma2.android.ui.receiversettings.ReceiverSettingsActivity::class.java))
+                true
+            }
+
         val epgImportPref = findPreference<Preference>("pref_epg_import")
         val pluginsCat = findPreference<PreferenceCategory>("pref_category_plugins")
         // Hide until we know it's available

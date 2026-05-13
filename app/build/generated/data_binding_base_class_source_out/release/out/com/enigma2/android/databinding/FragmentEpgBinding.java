@@ -35,6 +35,9 @@ public final class FragmentEpgBinding implements ViewBinding {
   public final EpgGridView epgGrid;
 
   @NonNull
+  public final LinearLayout epgGridContainer;
+
+  @NonNull
   public final HorizontalScrollView epgHScroll;
 
   @NonNull
@@ -54,13 +57,15 @@ public final class FragmentEpgBinding implements ViewBinding {
 
   private FragmentEpgBinding(@NonNull LinearLayout rootView, @NonNull ImageButton btnBack,
       @NonNull Button btnEpgSearch, @NonNull EpgGridView epgGrid,
-      @NonNull HorizontalScrollView epgHScroll, @NonNull EpgTimeRulerView epgTimeRuler,
-      @NonNull RecyclerView rvChannelNames, @NonNull TextView tvEpgEmpty,
-      @NonNull TextView tvEpgInfo, @NonNull TextView tvSelectedEvent) {
+      @NonNull LinearLayout epgGridContainer, @NonNull HorizontalScrollView epgHScroll,
+      @NonNull EpgTimeRulerView epgTimeRuler, @NonNull RecyclerView rvChannelNames,
+      @NonNull TextView tvEpgEmpty, @NonNull TextView tvEpgInfo,
+      @NonNull TextView tvSelectedEvent) {
     this.rootView = rootView;
     this.btnBack = btnBack;
     this.btnEpgSearch = btnEpgSearch;
     this.epgGrid = epgGrid;
+    this.epgGridContainer = epgGridContainer;
     this.epgHScroll = epgHScroll;
     this.epgTimeRuler = epgTimeRuler;
     this.rvChannelNames = rvChannelNames;
@@ -114,6 +119,12 @@ public final class FragmentEpgBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.epg_grid_container;
+      LinearLayout epgGridContainer = ViewBindings.findChildViewById(rootView, id);
+      if (epgGridContainer == null) {
+        break missingId;
+      }
+
       id = R.id.epg_h_scroll;
       HorizontalScrollView epgHScroll = ViewBindings.findChildViewById(rootView, id);
       if (epgHScroll == null) {
@@ -151,7 +162,8 @@ public final class FragmentEpgBinding implements ViewBinding {
       }
 
       return new FragmentEpgBinding((LinearLayout) rootView, btnBack, btnEpgSearch, epgGrid,
-          epgHScroll, epgTimeRuler, rvChannelNames, tvEpgEmpty, tvEpgInfo, tvSelectedEvent);
+          epgGridContainer, epgHScroll, epgTimeRuler, rvChannelNames, tvEpgEmpty, tvEpgInfo,
+          tvSelectedEvent);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

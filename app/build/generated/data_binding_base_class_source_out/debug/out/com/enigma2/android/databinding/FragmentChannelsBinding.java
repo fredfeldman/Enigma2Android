@@ -31,7 +31,13 @@ public final class FragmentChannelsBinding implements ViewBinding {
   public final Button btnEpg;
 
   @NonNull
+  public final Button btnMessage;
+
+  @NonNull
   public final Button btnRecordings;
+
+  @NonNull
+  public final Button btnRemote;
 
   @NonNull
   public final Button btnRetry;
@@ -73,16 +79,19 @@ public final class FragmentChannelsBinding implements ViewBinding {
   public final TextView tvError;
 
   private FragmentChannelsBinding(@NonNull LinearLayout rootView, @NonNull Button btnAutotimers,
-      @NonNull Button btnEpg, @NonNull Button btnRecordings, @NonNull Button btnRetry,
-      @NonNull Button btnScreenshot, @NonNull Button btnSettings, @NonNull Button btnSwitchDevice,
-      @NonNull Button btnTimers, @NonNull Button btnWol, @NonNull EditText etFilter,
-      @NonNull ProgressBar progressBar, @NonNull RecyclerView rvBouquets,
-      @NonNull RecyclerView rvChannels, @NonNull SwipeRefreshLayout swipeChannels,
-      @NonNull TextView tvEmpty, @NonNull TextView tvError) {
+      @NonNull Button btnEpg, @NonNull Button btnMessage, @NonNull Button btnRecordings,
+      @NonNull Button btnRemote, @NonNull Button btnRetry, @NonNull Button btnScreenshot,
+      @NonNull Button btnSettings, @NonNull Button btnSwitchDevice, @NonNull Button btnTimers,
+      @NonNull Button btnWol, @NonNull EditText etFilter, @NonNull ProgressBar progressBar,
+      @NonNull RecyclerView rvBouquets, @NonNull RecyclerView rvChannels,
+      @NonNull SwipeRefreshLayout swipeChannels, @NonNull TextView tvEmpty,
+      @NonNull TextView tvError) {
     this.rootView = rootView;
     this.btnAutotimers = btnAutotimers;
     this.btnEpg = btnEpg;
+    this.btnMessage = btnMessage;
     this.btnRecordings = btnRecordings;
+    this.btnRemote = btnRemote;
     this.btnRetry = btnRetry;
     this.btnScreenshot = btnScreenshot;
     this.btnSettings = btnSettings;
@@ -137,9 +146,21 @@ public final class FragmentChannelsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btn_message;
+      Button btnMessage = ViewBindings.findChildViewById(rootView, id);
+      if (btnMessage == null) {
+        break missingId;
+      }
+
       id = R.id.btn_recordings;
       Button btnRecordings = ViewBindings.findChildViewById(rootView, id);
       if (btnRecordings == null) {
+        break missingId;
+      }
+
+      id = R.id.btn_remote;
+      Button btnRemote = ViewBindings.findChildViewById(rootView, id);
+      if (btnRemote == null) {
         break missingId;
       }
 
@@ -221,9 +242,10 @@ public final class FragmentChannelsBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentChannelsBinding((LinearLayout) rootView, btnAutotimers, btnEpg,
-          btnRecordings, btnRetry, btnScreenshot, btnSettings, btnSwitchDevice, btnTimers, btnWol,
-          etFilter, progressBar, rvBouquets, rvChannels, swipeChannels, tvEmpty, tvError);
+      return new FragmentChannelsBinding((LinearLayout) rootView, btnAutotimers, btnEpg, btnMessage,
+          btnRecordings, btnRemote, btnRetry, btnScreenshot, btnSettings, btnSwitchDevice,
+          btnTimers, btnWol, etFilter, progressBar, rvBouquets, rvChannels, swipeChannels, tvEmpty,
+          tvError);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -225,4 +225,150 @@
     <string name="bouquet_local_conflict_discard">Discard local edits</string>
     <string name="bouquet_local_conflict_keep">Keep as a local layer</string>
     <string name="bouquet_local_conflict_apply">Apply them to receiver</string>
+
+    <!-- Receiver Settings -->
+    <string name="pref_title_receiver_settings">Receiver settings</string>
+    <string name="pref_summary_receiver_settings">Power, audio, recording, parental, WOL, advanced config…</string>
+    <string name="receiver_settings_title">Receiver Settings</string>
+    <string name="receiver_settings_cat_general">General</string>
+    <string name="receiver_settings_cat_protected">Plugins &amp; advanced</string>
+    <string name="receiver_settings_cat_webui">OpenWebif</string>
+    <string name="recv_status_loading">Loading…</string>
+    <string name="recv_op_ok">Saved.</string>
+    <string name="recv_op_failed">Receiver error: %1$s</string>
+    <string name="recv_not_available">Not available on this receiver.</string>
+
+    <string name="recv_power_title">Power</string>
+    <string name="recv_power_summary">Standby, reboot, sleep timer</string>
+    <string name="recv_power_cat_actions">Actions</string>
+    <string name="recv_power_cat_sleep">Sleep timer</string>
+    <string name="recv_power_action_toggle">Toggle standby</string>
+    <string name="recv_power_action_standby">Enter standby</string>
+    <string name="recv_power_action_wakeup">Wake up</string>
+    <string name="recv_power_action_reboot">Reboot receiver</string>
+    <string name="recv_power_action_restart_gui">Restart GUI (Enigma2)</string>
+    <string name="recv_power_state_on">Receiver is awake.</string>
+    <string name="recv_power_state_standby">Receiver is in standby.</string>
+    <string name="recv_power_now_on">Now awake.</string>
+    <string name="recv_power_now_standby">Now in standby.</string>
+    <string name="recv_sleep_enabled">Enable sleep timer</string>
+    <string name="recv_sleep_time">Time (minutes)</string>
+    <string name="recv_sleep_action">When time is up</string>
+
+    <string name="recv_audio_title">Audio &amp; Volume</string>
+    <string name="recv_audio_summary">Master volume and mute</string>
+    <string name="recv_audio_volume">Volume</string>
+    <string name="recv_audio_mute">Mute</string>
+
+    <string name="recv_recording_title">Recording</string>
+    <string name="recv_recording_summary">Default save location and known paths</string>
+    <string name="recv_rec_default_path">Default location</string>
+    <string name="recv_rec_locations">Known locations</string>
+    <string name="recv_rec_add">Add location…</string>
+    <string name="recv_rec_count">%1$d configured location(s)</string>
+    <string name="recv_rec_long_press_remove">Tap to remove</string>
+    <string name="recv_rec_remove_title">Remove location</string>
+    <string name="recv_rec_remove_msg">Remove \"%1$s\" from the receiver\'s known locations?</string>
+
+    <string name="recv_tuner_title">Tuner / Signal</string>
+    <string name="recv_tuner_summary">Live tuner status</string>
+    <string name="recv_tuner_idle">Tuner idle.</string>
+
+    <string name="recv_parental_title">Parental control</string>
+    <string name="recv_parental_summary">View parental settings and protected services</string>
+    <string name="recv_parental_active">Parental control: active</string>
+    <string name="recv_parental_inactive">Parental control: not configured</string>
+    <string name="recv_parental_type">Type: %1$s</string>
+    <string name="recv_parental_pin_set">Setup PIN: set</string>
+    <string name="recv_parental_pin_none">Setup PIN: not set</string>
+    <string name="recv_parental_count">Protected services: %1$d</string>
+
+    <string name="recv_wol_title">Wake-on-LAN setup</string>
+    <string name="recv_wol_summary">Receiver-side WOL configuration</string>
+    <string name="recv_wol_enabled">WOL enabled on receiver</string>
+    <string name="recv_wol_standby">Wake from standby (vs deep)</string>
+    <string name="recv_wol_location">Wake location / interface</string>
+    <string name="recv_wol_active">WOL is enabled.</string>
+    <string name="recv_wol_inactive">WOL is disabled.</string>
+
+    <string name="recv_transcoding_title">Transcoding</string>
+    <string name="recv_transcoding_summary">Streaming encoder settings (plugin)</string>
+    <string name="recv_transcoding_count">%1$d setting(s) loaded</string>
+    <string name="recv_transcoding_empty">No transcoding settings reported.</string>
+
+    <string name="recv_webui_title">OpenWebif Web UI</string>
+    <string name="recv_webui_summary">Picons, channel details, theme</string>
+    <string name="recv_webui_loaded">%1$d settings loaded from receiver.</string>
+    <string name="recv_webui_show_picons">Show picons</string>
+    <string name="recv_webui_show_channel_picon">Channel picon in lists</string>
+    <string name="recv_webui_show_channel_details">Show channel details</string>
+    <string name="recv_webui_responsive">Responsive design</string>
+    <string name="recv_webui_moviedb">MovieDB lookups</string>
+    <string name="recv_webui_show_all_packages">Show all packages</string>
+
+    <string name="recv_config_tree_title">All settings (advanced)</string>
+    <string name="recv_config_tree_summary">Browse the full config.* tree on the receiver</string>
+    <string name="recv_config_tree_summary_count">%1$d sections</string>
+    <string name="recv_config_section_empty">This section reports no editable items.</string>
+
+    <!-- v1.0.7: Remote control, messaging, tile, shortcuts, PiP -->
+    <string name="remote_title">Virtual remote</string>
+    <string name="remote_button">Remote</string>
+    <string name="send_message">Send message to TV</string>
+    <string name="send_message_hint">Message text…</string>
+    <string name="send_message_send">Send</string>
+    <string name="send_message_type">Type</string>
+    <string name="msg_type_info">Info</string>
+    <string name="msg_type_warning">Warning</string>
+    <string name="msg_type_question">Question</string>
+    <string name="msg_type_error">Error</string>
+    <string name="send_message_timeout">Timeout (s)</string>
+    <string name="send_message_sent">Message sent.</string>
+    <string name="send_message_failed">Failed to send message.</string>
+    <string name="remote_sent">Sent.</string>
+    <string name="remote_failed">Receiver did not respond.</string>
+    <string name="remote_grp_nav">Navigation</string>
+    <string name="remote_grp_volume">Volume &amp; channel</string>
+    <string name="remote_grp_color">Coloured keys</string>
+    <string name="remote_grp_numbers">Number pad</string>
+    <string name="remote_grp_special">Menus</string>
+    <string name="remote_up">▲</string>
+    <string name="remote_down">▼</string>
+    <string name="remote_left">◀</string>
+    <string name="remote_right">▶</string>
+    <string name="remote_ok">OK</string>
+    <string name="remote_back">Back</string>
+    <string name="remote_exit">Exit</string>
+    <string name="remote_menu">Menu</string>
+    <string name="remote_info">Info</string>
+    <string name="remote_epg">EPG</string>
+    <string name="remote_text">Text</string>
+    <string name="remote_help">Help</string>
+    <string name="remote_audio">Audio</string>
+    <string name="remote_subtitle">Sub</string>
+    <string name="remote_power">Power</string>
+    <string name="remote_mute">Mute</string>
+    <string name="remote_vol_up">Vol +</string>
+    <string name="remote_vol_down">Vol −</string>
+    <string name="remote_ch_up">Ch +</string>
+    <string name="remote_ch_down">Ch −</string>
+    <string name="remote_play">▶</string>
+    <string name="remote_pause">⏸</string>
+    <string name="remote_stop">■</string>
+    <string name="remote_record">●</string>
+    <string name="remote_red">Red</string>
+    <string name="remote_green">Green</string>
+    <string name="remote_yellow">Yellow</string>
+    <string name="remote_blue">Blue</string>
+
+    <string name="tile_power_label">Receiver standby</string>
+    <string name="shortcut_live_tv">Live TV</string>
+    <string name="shortcut_live_tv_long">Last channel</string>
+    <string name="shortcut_epg">EPG</string>
+    <string name="shortcut_epg_long">Programme guide</string>
+    <string name="shortcut_recordings">Recordings</string>
+    <string name="shortcut_recordings_long">Browse recordings</string>
+
+    <string name="pref_title_pip">Picture-in-Picture</string>
+    <string name="pref_summary_pip">Auto-enter PiP when leaving the live-TV player</string>
 </resources>

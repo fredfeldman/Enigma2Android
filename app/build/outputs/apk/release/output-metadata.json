@@ -11,9 +11,9 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 4,
-      "versionName": "1.0.3",
-      "outputFile": "Enigma2Android-release-1.0.3.apk"
+      "versionCode": 8,
+      "versionName": "1.0.7",
+      "outputFile": "Enigma2Android-release-1.0.7.apk"
     }
   ],
   "elementType": "File"

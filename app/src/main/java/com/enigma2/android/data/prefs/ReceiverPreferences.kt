@@ -211,6 +211,11 @@ class ReceiverPreferences(context: Context) {
         get() = prefs.getBoolean(KEY_ZAP_ON_PLAYER_NAV, true)
         set(value) { prefs.edit().putBoolean(KEY_ZAP_ON_PLAYER_NAV, value).apply() }
 
+    /** Whether the live-TV player auto-enters Picture-in-Picture on Home press. */
+    var pipOnHome: Boolean
+        get() = prefs.getBoolean("pip_on_home", true)
+        set(value) { prefs.edit().putBoolean("pip_on_home", value).apply() }
+
     companion object {
         const val VALUE_TAP_STREAM = "stream"
         const val VALUE_TAP_ZAP = "zap"

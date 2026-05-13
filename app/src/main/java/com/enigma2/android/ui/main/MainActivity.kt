@@ -30,9 +30,22 @@ class MainActivity : FragmentActivity() {
                 ApiClient.initialize(prefs)
                 showChannels()
                 scheduleTimerPolling()
+                handleShortcutIntent()
             } else {
                 showSetup()
             }
+        }
+    }
+
+    private fun handleShortcutIntent() {
+        when (intent?.getStringExtra("shortcut_action")) {
+            "epg" -> supportFragmentManager.beginTransaction()
+                .replace(R.id.main_container, com.enigma2.android.ui.epg.EpgFragment())
+                .addToBackStack(null).commit()
+            "recordings" -> supportFragmentManager.beginTransaction()
+                .replace(R.id.main_container, com.enigma2.android.ui.recordings.RecordingsFragment())
+                .addToBackStack(null).commit()
+            // "live_tv" — falls back to default ChannelsFragment already shown
         }
     }
 

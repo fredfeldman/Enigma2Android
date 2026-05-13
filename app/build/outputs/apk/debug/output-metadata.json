@@ -11,9 +11,9 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 5,
-      "versionName": "1.0.4",
-      "outputFile": "Enigma2Android-debug-1.0.4.apk"
+      "versionCode": 7,
+      "versionName": "1.0.6",
+      "outputFile": "Enigma2Android-debug-1.0.6.apk"
     }
   ],
   "elementType": "File"

@@ -54,47 +54,67 @@
 
     <!-- EPG grid area -->
     <LinearLayout
+        android:id="@+id/epg_grid_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <!-- Channel names column (fixed left) -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_channel_names"
-            android:layout_width="@dimen/epg_channel_col_width"
-            android:layout_height="match_parent"
-            android:background="@color/surface_dark"
-            android:nestedScrollingEnabled="false" />
-
-        <!-- Horizontal scroll: time ruler + grid -->
+        <!-- Top row: spacer above channel names + time ruler -->
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:orientation="horizontal">
 
-            <!-- Time ruler -->
-            <com.enigma2.android.ui.epg.EpgTimeRulerView
-                android:id="@+id/epg_time_ruler"
-                android:layout_width="match_parent"
-                android:layout_height="36dp"
+            <View
+                android:layout_width="@dimen/epg_channel_col_width"
+                android:layout_height="match_parent"
                 android:background="@color/surface_elevated" />
 
-            <!-- Scrollable EPG grid -->
-            <HorizontalScrollView
-                android:id="@+id/epg_h_scroll"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+            <com.enigma2.android.ui.epg.EpgTimeRulerView
+                android:id="@+id/epg_time_ruler"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:scrollbars="horizontal">
-
-                <com.enigma2.android.ui.epg.EpgGridView
-                    android:id="@+id/epg_grid"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </HorizontalScrollView>
+                android:background="@color/surface_elevated" />
         </LinearLayout>
+
+        <!-- Shared vertical scroll for channel names + grid so rows stay aligned -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Channel names column (fixed left) -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_channel_names"
+                    android:layout_width="@dimen/epg_channel_col_width"
+                    android:layout_height="wrap_content"
+                    android:background="@color/surface_dark"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never" />
+
+                <!-- Horizontal scroll for the grid -->
+                <HorizontalScrollView
+                    android:id="@+id/epg_h_scroll"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scrollbars="horizontal">
+
+                    <com.enigma2.android.ui.epg.EpgGridView
+                        android:id="@+id/epg_grid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </HorizontalScrollView>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
     <!-- Empty state -->

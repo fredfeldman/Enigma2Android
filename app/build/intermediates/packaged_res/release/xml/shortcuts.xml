@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <shortcut
+        android:shortcutId="live_tv"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_media_play"
+        android:shortcutShortLabel="@string/shortcut_live_tv"
+        android:shortcutLongLabel="@string/shortcut_live_tv_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.enigma2.android"
+            android:targetClass="com.enigma2.android.ui.main.MainActivity">
+            <extra android:name="shortcut_action" android:value="live_tv" />
+        </intent>
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="epg"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_my_calendar"
+        android:shortcutShortLabel="@string/shortcut_epg"
+        android:shortcutLongLabel="@string/shortcut_epg_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.enigma2.android"
+            android:targetClass="com.enigma2.android.ui.main.MainActivity">
+            <extra android:name="shortcut_action" android:value="epg" />
+        </intent>
+    </shortcut>
+
+    <shortcut
+        android:shortcutId="recordings"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_recent_history"
+        android:shortcutShortLabel="@string/shortcut_recordings"
+        android:shortcutLongLabel="@string/shortcut_recordings_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.enigma2.android"
+            android:targetClass="com.enigma2.android.ui.main.MainActivity">
+            <extra android:name="shortcut_action" android:value="recordings" />
+        </intent>
+    </shortcut>
+
+</shortcuts>

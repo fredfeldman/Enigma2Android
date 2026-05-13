@@ -12,8 +12,8 @@ android {
         applicationId = "com.enigma2.android"
         minSdk = 26
         targetSdk = 34
-        versionCode = 5
-        versionName = "1.0.4"
+        versionCode = 8
+        versionName = "1.0.7"
     }
 
     buildTypes {

@@ -1,10 +1,14 @@
 package com.enigma2.android.ui.player
 
 import android.app.AlertDialog
+import android.app.PictureInPictureParams
+import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
+import android.util.Rational
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
@@ -480,6 +484,26 @@ class PlayerActivity : AppCompatActivity() {
         progressHandler.removeCallbacksAndMessages(null)
         osdHandler.removeCallbacksAndMessages(null)
         sleepTimer?.cancel()
+    }
+
+    override fun onUserLeaveHint() {
+        super.onUserLeaveHint()
+        // Auto-enter PiP for live TV if the user enabled the option and the
+        // device supports PiP. We skip recordings playback to avoid losing
+        // resume position handling.
+        if (!isRecording && prefs.pipOnHome && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
+            && packageManager.hasSystemFeature(android.content.pm.PackageManager.FEATURE_PICTURE_IN_PICTURE)) {
+            try {
+                val ratio = Rational(16, 9)
+                val params = PictureInPictureParams.Builder().setAspectRatio(ratio).build()
+                enterPictureInPictureMode(params)
+            } catch (_: IllegalStateException) { /* not allowed in this state */ }
+        }
+    }
+
+    override fun onPictureInPictureModeChanged(isInPip: Boolean, newConfig: Configuration) {
+        super.onPictureInPictureModeChanged(isInPip, newConfig)
+        if (isInPip) hideOsd() else showOsd()
     }
 
     override fun onDestroy() {

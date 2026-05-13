@@ -508,6 +508,224 @@ class Enigma2Repository {
         fun bouquetMode(ref: String): Int =
             if (ref.contains(".radio") || ref.startsWith("1:7:2")) MODE_RADIO else MODE_TV
     }
+
+    // ---------------- Receiver Settings ----------------
+
+    private fun emptyStream() = java.io.ByteArrayInputStream(ByteArray(0))
+
+    /** One-shot capability probe; cheap calls only. */
+    suspend fun probeReceiverCapabilities(): com.enigma2.android.data.model.settings.ReceiverCapabilities =
+        withContext(Dispatchers.IO) {
+            suspend fun ok(call: suspend () -> retrofit2.Response<okhttp3.ResponseBody>): Boolean = try {
+                val r = call(); r.isSuccessful
+            } catch (_: Exception) { false }
+            com.enigma2.android.data.model.settings.ReceiverCapabilities(
+                hasParental = ok { ApiClient.service.getProtectionSettings() },
+                hasTranscoding = ok { ApiClient.service.getTranscodingConfig() },
+                hasConfigTree = ok { ApiClient.service.getConfigSections() },
+                hasWol = ok { ApiClient.service.getWolSetup() }
+            )
+        }
+
+    suspend fun getStatusInfo(): com.enigma2.android.data.model.settings.StatusInfo = withContext(Dispatchers.IO) {
+        try {
+            (ApiClient.service.getStatusInfo().body()?.byteStream() ?: emptyStream()).use {
+                com.enigma2.android.data.api.SettingsXml.parseStatusInfo(it)
+            }
+        } catch (_: Exception) { com.enigma2.android.data.model.settings.StatusInfo() }
+    }
+
+    // Power
+    suspend fun getPowerState(): com.enigma2.android.data.model.settings.PowerState = withContext(Dispatchers.IO) {
+        (ApiClient.service.getPowerState().body()?.byteStream() ?: emptyStream()).use {
+            com.enigma2.android.data.api.SettingsXml.parsePowerState(it)
+        }
+    }
+
+    suspend fun setPowerState(newState: Int): com.enigma2.android.data.model.settings.PowerState =
+        withContext(Dispatchers.IO) {
+            (ApiClient.service.setPowerState(newState).body()?.byteStream() ?: emptyStream()).use {
+                com.enigma2.android.data.api.SettingsXml.parsePowerState(it)
+            }
+        }
+
+    suspend fun getSleepTimer(): com.enigma2.android.data.model.settings.SleepTimer = withContext(Dispatchers.IO) {
+        (ApiClient.service.getSleepTimer().body()?.byteStream() ?: emptyStream()).use {
+            com.enigma2.android.data.api.SettingsXml.parseSleepTimer(it)
+        }
+    }
+
+    suspend fun setSleepTimer(minutes: Int, action: String, enabled: Boolean): com.enigma2.android.data.model.settings.SleepTimer =
+        withContext(Dispatchers.IO) {
+            (ApiClient.service.setSleepTimer(
+                time = minutes, action = action, enabled = if (enabled) "True" else "False"
+            ).body()?.byteStream() ?: emptyStream()).use {
+                com.enigma2.android.data.api.SettingsXml.parseSleepTimer(it)
+            }
+        }
+
+    // Volume
+    suspend fun getVolume(): com.enigma2.android.data.model.settings.VolumeInfo = withContext(Dispatchers.IO) {
+        (ApiClient.service.getVolume().body()?.byteStream() ?: emptyStream()).use {
+            com.enigma2.android.data.api.SettingsXml.parseVolume(it)
+        }
+    }
+
+    suspend fun setVolume(level: Int): com.enigma2.android.data.model.settings.VolumeInfo = withContext(Dispatchers.IO) {
+        (ApiClient.service.setVolume("set${level.coerceIn(0, 100)}").body()?.byteStream() ?: emptyStream()).use {
+            com.enigma2.android.data.api.SettingsXml.parseVolume(it)
+        }
+    }
+
+    suspend fun setMute(): com.enigma2.android.data.model.settings.VolumeInfo = withContext(Dispatchers.IO) {
+        (ApiClient.service.setVolume("mute").body()?.byteStream() ?: emptyStream()).use {
+            com.enigma2.android.data.api.SettingsXml.parseVolume(it)
+        }
+    }
+
+    // Generic config tree
+    suspend fun getAllSettings(): Map<String, String> = withContext(Dispatchers.IO) {
+        (ApiClient.service.getAllSettings().body()?.byteStream() ?: emptyStream()).use {
+            com.enigma2.android.data.api.SettingsXml.parseAllSettings(it)
+        }
+    }
+
+    suspend fun getConfigSections(): List<String> = withContext(Dispatchers.IO) {
+        (ApiClient.service.getConfigSections().body()?.byteStream() ?: emptyStream()).use {
+            com.enigma2.android.data.api.SettingsXml.parseConfigSections(it)
+        }
+    }
+
+    suspend fun getConfigSection(name: String): com.enigma2.android.data.model.settings.ConfigSection =
+        withContext(Dispatchers.IO) {
+            val base = com.enigma2.android.data.api.ApiClient.baseUrl
+                ?: return@withContext com.enigma2.android.data.model.settings.ConfigSection(name, emptyList())
+            val url = base.trimEnd('/') + "/api/config/" + name
+            (ApiClient.service.getConfigSection(url).body()?.byteStream() ?: emptyStream()).use {
+                com.enigma2.android.data.api.SettingsXml.parseConfigSection(name, it)
+            }
+        }
+
+    /** Saves a single config.* path. Returns (ok,message). */
+    suspend fun saveConfig(path: String, value: String): Pair<Boolean, String?> = withContext(Dispatchers.IO) {
+        (ApiClient.service.saveConfig(path, value).body()?.byteStream() ?: emptyStream()).use {
+            com.enigma2.android.data.api.SettingsXml.parseSaveAck(it)
+        }
+    }
+
+    suspend fun setWebUiConfig(params: Map<String, String>): Pair<Boolean, String?> = withContext(Dispatchers.IO) {
+        (ApiClient.service.setWebConfig(params).body()?.byteStream() ?: emptyStream()).use {
+            com.enigma2.android.data.api.SettingsXml.parseSaveAck(it)
+        }
+    }
+
+    // Parental
+    suspend fun getParentalSettings(): com.enigma2.android.data.model.settings.ParentalSettings =
+        withContext(Dispatchers.IO) {
+            val (configured, pinActive) = try {
+                (ApiClient.service.getProtectionSettings().body()?.byteStream() ?: emptyStream()).use {
+                    com.enigma2.android.data.api.SettingsXml.parseProtectionSettings(it)
+                }
+            } catch (_: Exception) { false to false }
+            val type = try { getAllSettings()["config.ParentalControl.type"] } catch (_: Exception) { null }
+            val list = try {
+                (ApiClient.service.getParentControlList().body()?.byteStream() ?: emptyStream()).use {
+                    com.enigma2.android.data.api.SettingsXml.parseProtectedServices(it)
+                }
+            } catch (_: Exception) { emptyList() }
+            com.enigma2.android.data.model.settings.ParentalSettings(
+                configured = configured, type = type, setupPinActive = pinActive,
+                protectedServices = list
+            )
+        }
+
+    // Recording
+    suspend fun getRecordingLocations(): com.enigma2.android.data.model.settings.RecordingLocations =
+        withContext(Dispatchers.IO) {
+            val cur = try {
+                (ApiClient.service.getCurrentLocation().body()?.byteStream() ?: emptyStream()).use {
+                    com.enigma2.android.data.api.SettingsXml.parseCurrentLocation(it)
+                }
+            } catch (_: Exception) { null }
+            val list = try {
+                (ApiClient.service.getLocations().body()?.byteStream() ?: emptyStream()).use {
+                    com.enigma2.android.data.api.SettingsXml.parseLocations(it)
+                }
+            } catch (_: Exception) { emptyList() }
+            com.enigma2.android.data.model.settings.RecordingLocations(cur, list)
+        }
+
+    suspend fun setCurrentLocation(path: String): Pair<Boolean, String?> = withContext(Dispatchers.IO) {
+        (ApiClient.service.setCurrentLocation(path).body()?.byteStream() ?: emptyStream()).use {
+            com.enigma2.android.data.api.SettingsXml.parseSaveAck(it)
+        }
+    }
+
+    suspend fun addRecordingLocation(path: String): Pair<Boolean, String?> = withContext(Dispatchers.IO) {
+        (ApiClient.service.addLocation(path).body()?.byteStream() ?: emptyStream()).use {
+            com.enigma2.android.data.api.SettingsXml.parseSaveAck(it)
+        }
+    }
+
+    suspend fun removeRecordingLocation(path: String): Pair<Boolean, String?> = withContext(Dispatchers.IO) {
+        (ApiClient.service.removeLocation(path).body()?.byteStream() ?: emptyStream()).use {
+            com.enigma2.android.data.api.SettingsXml.parseSaveAck(it)
+        }
+    }
+
+    // Tuner
+    suspend fun getTunerSignal(): com.enigma2.android.data.model.settings.TunerSignal = withContext(Dispatchers.IO) {
+        (ApiClient.service.getTunerSignal().body()?.byteStream() ?: emptyStream()).use {
+            com.enigma2.android.data.api.SettingsXml.parseTunerSignal(it)
+        }
+    }
+
+    // WOL
+    suspend fun getWolSetup(): com.enigma2.android.data.model.settings.WolSetup = withContext(Dispatchers.IO) {
+        (ApiClient.service.getWolSetup().body()?.byteStream() ?: emptyStream()).use {
+            com.enigma2.android.data.api.SettingsXml.parseWolSetup(it)
+        }
+    }
+
+    suspend fun setWolSetup(enabled: Boolean, location: String?, wolStandby: Boolean): Pair<Boolean, String?> =
+        withContext(Dispatchers.IO) {
+            val params = buildMap<String, String> {
+                put("wol", if (enabled) "true" else "false")
+                put("wolstandby", if (wolStandby) "true" else "false")
+                if (!location.isNullOrBlank()) put("location", location)
+            }
+            (ApiClient.service.setWolSetup(params).body()?.byteStream() ?: emptyStream()).use {
+                com.enigma2.android.data.api.SettingsXml.parseSaveAck(it)
+            }
+        }
+
+    // Transcoding
+    suspend fun getTranscodingConfig(): Map<String, String> = withContext(Dispatchers.IO) {
+        try {
+            (ApiClient.service.getTranscodingConfig().body()?.byteStream() ?: emptyStream()).use {
+                com.enigma2.android.data.api.SettingsXml.parseAllSettings(it).ifEmpty {
+                    // transcoding may return arbitrary XML — fall back to a flat parse already done
+                    emptyMap()
+                }
+            }
+        } catch (_: Exception) { emptyMap() }
+    }
+
+    suspend fun setTranscodingConfig(params: Map<String, String>): Pair<Boolean, String?> = withContext(Dispatchers.IO) {
+        (ApiClient.service.setTranscodingConfig(params).body()?.byteStream() ?: emptyStream()).use {
+            com.enigma2.android.data.api.SettingsXml.parseSaveAck(it)
+        }
+    }
+
+    // ---- v1.0.7: Remote control & messaging ----
+    suspend fun sendRemoteCommand(command: Int): Boolean = withContext(Dispatchers.IO) {
+        try { ApiClient.service.sendRemoteCommand(command).isSuccessful } catch (_: Exception) { false }
+    }
+
+    /** type: 1=Info, 2=Warning, 3=Question, 4=Error. timeout in seconds (-1 = until dismissed). */
+    suspend fun sendMessageToReceiver(text: String, type: Int = 1, timeout: Int = 10): Boolean = withContext(Dispatchers.IO) {
+        try { ApiClient.service.sendMessage(text, type, timeout).isSuccessful } catch (_: Exception) { false }
+    }
 }
 
 /** A single EPGImport source advertised by the plugin. */

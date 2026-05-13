@@ -57,6 +57,11 @@
             android:title="@string/pref_zap_on_player_nav_title"
             android:summary="@string/pref_zap_on_player_nav_summary"
             android:defaultValue="true" />
+        <CheckBoxPreference
+            android:key="pip_on_home"
+            android:title="@string/pref_title_pip"
+            android:summary="@string/pref_summary_pip"
+            android:defaultValue="true" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/pref_category_receiver">
@@ -64,6 +69,10 @@
             android:key="pref_box_info"
             android:title="@string/box_info"
             android:summary="@string/box_info_summary" />
+        <Preference
+            android:key="pref_receiver_settings"
+            android:title="@string/pref_title_receiver_settings"
+            android:summary="@string/pref_summary_receiver_settings" />
     </PreferenceCategory>
 
     <PreferenceCategory

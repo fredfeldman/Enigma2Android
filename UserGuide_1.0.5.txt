@@ -1,0 +1,368 @@
+# E2Android — User Guide
+
+**Version 1.0.5**
+Android 8.0+ (API 26) | Enigma2 receivers via OpenWebif
+
+---
+
+## Contents
+
+1. [Quick Start / First Launch](#1-quick-start--first-launch)
+2. [Adding & Switching Devices](#2-adding--switching-devices)
+3. [Channel Screen](#3-channel-screen)
+4. [Playing Live TV](#4-playing-live-tv)
+5. [EPG (Electronic Programme Guide)](#5-epg-electronic-programme-guide)
+6. [EPG Search](#6-epg-search)
+7. [Recordings](#7-recordings)
+8. [Player Controls (detail)](#8-player-controls-detail)
+9. [Timers](#9-timers)
+10. [AutoTimers](#10-autotimers)
+11. [Playlists](#11-playlists)
+12. [Settings](#12-settings)
+13. [Box Info](#13-box-info)
+14. [EPG Import plugin](#14-epg-import-plugin)
+15. [Bouquet Editor](#15-bouquet-editor) **(new in 1.0.5)**
+16. [Wake-on-LAN](#16-wake-on-lan)
+17. [Troubleshooting](#17-troubleshooting)
+18. [What's new in 1.0.5](#18-whats-new-in-105)
+
+---
+
+## 1. Quick Start / First Launch
+
+When you open E2Android for the first time the Setup screen appears.
+
+| Field | Description |
+| --- | --- |
+| Device Name | A label for this receiver (e.g. "Living Room") |
+| Host / IP | IP address or hostname of your receiver (e.g. `192.168.1.100` or `dreambox.local`) |
+| Port | OpenWebif HTTP port. Default is `80`. Some configurations use `8080`. |
+| Username | Leave blank if OpenWebif has no auth; otherwise enter the configured username. |
+| Password | Leave blank if OpenWebif has no auth. |
+| MAC Address | 12 hex digits (e.g. `AA:BB:CC:DD:EE:FF`). Only needed for Wake-on-LAN; can be left blank. |
+| Use HTTPS | Tick if your OpenWebif is on HTTPS. |
+
+Tap **CONNECT**. The app will fetch the bouquet list from your receiver and display the channel screen.
+
+---
+
+## 2. Adding & Switching Devices
+
+You can store any number of receiver profiles.
+
+- **Add a new device** — Channel screen → toolbar → *Switch Device* icon → *+ Add Device*. Fill in the same fields as first launch and tap **SAVE**.
+- **Switch the active device** — Channel screen → toolbar → *Switch Device* icon. Tap any entry to make it the active receiver. The channel list immediately refreshes.
+- **Edit / delete a device** — Long-press (or swipe) an entry in the device list to reveal Edit and Delete options.
+- **Back** — Tap the ← arrow (top-left) or use the Android back gesture to return without changing the device.
+
+---
+
+## 3. Channel Screen
+
+**Layout**
+
+- **Left panel** — Bouquet list (e.g. "Favourites", "Sky UK", "BBC HD")
+- **Right panel** — Channel list for the selected bouquet
+
+**Channels**
+
+- Each channel row shows: picon logo, channel name, current programme title, a progress bar for the current programme, and the *Next* programme.
+- **Tap** a channel — by default opens the full-screen player. The behaviour is configurable in Settings (see [§12](#12-settings) — *Action when tapping a channel*: stream / zap only / both).
+- **Long-press** a channel for a context menu: Show EPG, Set Timer, Add to Favourites.
+
+**Toolbar buttons** (top-right)
+
+| Icon | Action |
+| --- | --- |
+| 🔍 | Filter / search channel names (300 ms debounce) |
+| ★ | Toggle favourite for the selected channel |
+| 📷 | Receiver screenshot |
+| ⏰ | Timers |
+| ⏱ | AutoTimers |
+| 📺 | EPG grid |
+| ⋮ | Overflow — Switch Device, Recordings, Playlists, Settings |
+
+---
+
+## 4. Playing Live TV
+
+Tap a channel (or use *Zap and stream* — see Settings). The player opens full-screen.
+
+**OSD (On-Screen Display)** — Tap the video to show / hide; auto-hides after 5 s.
+
+The OSD shows: channel name + current programme title, Play/Pause, Previous channel ◀◀, Next channel ▶▶, audio track selector, subtitle / CC selector, aspect-ratio cycle, sleep timer, and × Stop (top-left, always visible).
+
+**Changing channel from the player** — Use ◀◀ / ▶▶ to step through channels in the current bouquet without returning to the channel screen. Whether this also tunes the receiver is controlled by the *Zap receiver when changing channel in player* setting (default on).
+
+---
+
+## 5. EPG (Electronic Programme Guide)
+
+Access: Channel screen toolbar → EPG icon.
+
+**Layout**
+
+- **Left column** — Pinned channel names (aligned with their EPG rows)
+- **Main area** — Horizontal scrolling programme grid (rows = channels, columns = time slots)
+- **Top ruler** — Time axis; scroll left / right to move through time
+
+**Navigation**
+
+- Swipe left / right — scroll through time
+- Swipe up / down — scroll through channels (channel names scroll in sync)
+- Tap a programme — selects it (shows title + description overlay)
+- Double-tap — play the channel immediately
+- Long-press — set a timer for that programme
+
+---
+
+## 6. EPG Search
+
+Access: EPG screen → search icon, or channel screen overflow → *EPG Search*.
+
+1. Type a programme title (or partial title). Search runs after 3+ characters with 400 ms debounce.
+2. Results show channel name (resolved from sref), date/time and title.
+3. Tap a result to highlight it in the EPG grid or open a detail view to start a timer.
+
+---
+
+## 7. Recordings
+
+Access: Channel screen overflow → *Recordings*. Pull down to refresh.
+
+- **Play** — Tap a recording then **PLAY**. A seek bar appears in the OSD; ⏪ 15s / ⏩ 15s buttons jump in 15-second steps.
+- **Resume** — If auto-resume is enabled in Settings the player offers to resume from the last watched position.
+- **Delete** — Long-press a recording → *Delete*. Confirms, then calls `api/movie/delete` and removes the entry.
+- **Add to Playlist** — Long-press → *Add to Playlist*.
+
+---
+
+## 8. Player Controls (detail)
+
+The same player is used for live TV and recordings.
+
+| Control | Action |
+| --- | --- |
+| Tap video | Show / hide OSD (auto-hides after 5 s) |
+| × button | Stop and exit (top-left, always visible) |
+| ▶ / ⏸ | Play / Pause |
+| ◀◀ / ▶▶ (live TV) | Previous / Next channel in current bouquet |
+| ⏪ 15s / ⏩ 15s (recordings) | Rewind / Fast-forward 15 s |
+| Seek bar (recordings) | Drag to any position |
+
+**Audio tracks** — Tap the audio-track icon to choose between e.g. English AC3, English stereo, German.
+
+**Subtitles / CC** — Tap the CC icon for available subtitle tracks; choose *Off* to disable.
+
+**Aspect ratio** — Cycles FIT → FILL → ZOOM → 16:9 → 4:3.
+
+**Sleep timer** — 15 / 30 / 60 min / Cancel. A countdown badge appears while active; the player stops when it expires.
+
+---
+
+## 9. Timers
+
+Access: Channel screen toolbar → Timers icon. Pull down to refresh.
+
+Each row shows programme title, channel name, start / end date/time, and state (waiting / recording / completed / failed).
+
+- **Delete** — Tap the trash icon. Confirms, then removes the timer from the receiver via `api/timerdelete`.
+- **Create** — From the EPG grid (long-press a programme) or the channel list (long-press a channel).
+
+---
+
+## 10. AutoTimers
+
+Manage Enigma2 AutoTimer rules from the app. Requires the AutoTimer plugin to be installed on the receiver.
+
+Access: Channel screen toolbar → AutoTimers icon (⏱).
+
+Each row shows the rule's name, match text, services, time window and enabled state.
+
+- **Toggle** — Use the row switch to enable / disable a rule in place.
+- **Edit** — Tap a rule to open the edit dialog: name, match text, time window, *zap only* flag.
+- **Delete** — Long-press → confirm.
+
+Backed by `autotimer`, `autotimer/edit` and `autotimer/remove` endpoints. AutoTimer XML is parsed with `XmlPullParser` so no extra setup is needed on the receiver.
+
+---
+
+## 11. Playlists
+
+Access: Channel screen overflow → *Playlists*. Playlists are stored locally on the tablet.
+
+- **Create** — + (FAB) → name → **CREATE**.
+- **Add recordings** — Open the playlist → *Add Recording* → pick from the receiver's recordings.
+- **Play** — Open the playlist → tap the first item or **PLAY ALL**. Items play sequentially.
+- **Reorder** — Long-press an entry and drag.
+- **Rename / Delete** — Long-press the playlist name in the manager.
+- **HDD / NAS browser** — Playlists → *Browse Files*. Browse and play files directly from receiver storage.
+
+---
+
+## 12. Settings
+
+Access: Channel screen overflow → *Settings*.
+
+### Connection
+Host, port, HTTPS, username, password — applies to the active device profile.
+
+### Display
+- **Hide Bouquets** — Tick bouquets to omit from the channel list.
+- **Edit bouquets** *(new in 1.0.5)* — opens the Bouquet Editor. See [§15](#15-bouquet-editor).
+- **Night mode** — Dark (default) or light theme.
+
+### Playback
+- **Auto-resume** — Offer to resume recordings from the last watched position.
+- **Action when tapping a channel** — choose:
+  - *Stream in player* — default, original behaviour.
+  - *Zap receiver only* — sends `api/zap` and shows a toast; doesn't open the player.
+  - *Zap receiver and stream* — does both.
+- **Zap receiver when changing channel in player** — when on (default), prev/next in the player also tunes the receiver.
+
+### Receiver
+- **Box Info** — see [§13](#13-box-info).
+
+### Receiver Plugins
+- **EPG Import** — appears only when the EPGImport plugin is detected on the receiver. See [§14](#14-epg-import-plugin).
+
+### Background timer notifications
+The app polls the timer list every 15 minutes. When a timer transitions to *recording* you get a notification: "Recording started: <title>". On Android 13+ grant the *Notifications* permission when prompted.
+
+---
+
+## 13. Box Info
+
+Settings → Receiver → **Box Info**.
+
+Displays the receiver's hardware, image, tuner, network and storage details as an ordered key/value list. Calls `api/about` and falls back to `api/deviceinfo` if not available. An empty-state message appears when neither endpoint is supported.
+
+---
+
+## 14. EPG Import plugin
+
+Settings → Receiver Plugins → **EPG Import** (only visible if the plugin is installed on the receiver).
+
+The app probes several known base paths used by different OpenWebif builds (`epgimport`, `api/epgimport`, `epgimport/plugin`, `plugin/epgimport`) and validates the response body content, so detection works across forks. The first working base is cached for the session.
+
+Inside the screen:
+
+- **Status** — current EPGImport status as reported by the plugin.
+- **Source list** — every configured EPG source with a checkbox. Tick / untick to enable or disable individual sources.
+- **Save enabled sources** — writes the current selection back to the receiver.
+- **Run Import Now** — triggers an EPG import.
+- **Refresh** — reloads the source list and status.
+
+---
+
+## 15. Bouquet Editor *(new in 1.0.5)*
+
+Manage your receiver's bouquets directly from the phone — create, rename, delete bouquets and add, remove or reorder channels.
+
+Access: Settings → **Edit bouquets**.
+
+### Two operating modes
+
+A banner at the top tells you which mode is active:
+
+- **Server mode (green)** — the Enigma2 *BouquetEditor* plugin is installed on the receiver. Every change is pushed to the box and visible to all clients.
+- **Local-only mode (amber)** — the plugin isn't installed. Reorder/remove still work, but only on this phone (stored as a local override).
+
+### Main screen
+
+- Lists every user and provider bouquet with its channel count.
+- **+ New** *(server mode only)* — create a bouquet. A dialog asks for the name and TV / Radio.
+- **Refresh** — reload from the receiver.
+
+For each bouquet:
+
+- **Edit** — open the channel editor (see below). Available in both modes.
+- **Rename** *(server mode, user bouquets only)* — rename the bouquet on the receiver.
+- **Delete** *(server mode, user bouquets only)* — confirm, then remove from the receiver. Any local override stored for that bouquet is also cleared.
+
+### Channel editor
+
+Open a bouquet to manage its channels:
+
+- **Long-press a row** to drag-reorder.
+- **▲ / ▼** buttons step a channel up or down by one position.
+- **✕** removes a channel from the bouquet.
+- **+ Add channel** opens a filterable picker that lists every channel from every bouquet, skipping ones already in the target bouquet.
+
+In **server mode** every change is sent to the receiver immediately.
+In **local mode** changes are saved as an override on this phone and applied client-side whenever this bouquet is loaded.
+
+### Conflict dialog
+
+If you have local edits stored for a bouquet and the BouquetEditor plugin later becomes available, opening the bouquet shows a dialog with three choices:
+
+- **Discard local edits** — drop the override and use what's on the receiver.
+- **Keep as a local layer** — leave the override in place; the receiver bouquet is untouched.
+- **Apply to receiver** — push the local order/removals up to the receiver, then clear the override.
+
+### Endpoints used (server mode)
+
+- `/bouqueteditor/api/getservices`
+- `/bouqueteditor/web/addbouquet`, `renameservice`, `removebouquet`
+- `/bouqueteditor/web/addservicetobouquet`, `removeservice`, `moveservice`
+
+---
+
+## 16. Wake-on-LAN
+
+Sends a magic packet over UDP to wake a receiver in deep standby.
+
+Requirements:
+- WoL enabled in the receiver's network settings.
+- MAC address entered in the device profile.
+- Tablet and receiver on the same LAN subnet (WoL does not pass through routers by default).
+
+How to use: Channel screen → *Switch Device* → tap the WoL (power) icon next to the device. Wait 30–60 seconds, then tap the device name to connect.
+
+---
+
+## 17. Troubleshooting
+
+**"Connection failed" / empty channel list**
+- Verify IP and port in Settings.
+- Tablet and receiver on the same Wi-Fi.
+- Test `http://<receiver-ip>/api/info` in a browser.
+- If OpenWebif requires auth, enter the username/password in Settings.
+
+**Unauthorised / 401**
+- Wrong username / password in the device profile, or OpenWebif auth misconfigured on the receiver.
+
+**Video won't play / black screen**
+- Confirm the receiver is actually tuned to that channel.
+- Encrypted channels need the correct CAM on the receiver.
+- Port 8001 (stream) must not be firewalled.
+
+**Bouquet Editor stuck in local-only (amber) mode**
+- Install the BouquetEditor plugin on the receiver (`enigma2-plugin-extensions-bouqueteditor`) and restart Enigma2.
+- The app re-probes every time you open the editor, so just go back and reopen.
+
+**Bouquet Editor "Receiver error"**
+- Some OpenWebif builds reject a rename/move on a provider bouquet. Use a user-created bouquet instead.
+- A 404 on `/bouqueteditor/...` means the plugin isn't fully installed.
+
+**EPG Import not appearing in Settings**
+- Confirm the plugin is installed and the OpenWebif plugin endpoints respond. The app probes multiple base paths but a custom proxy or rewrite rule on the receiver can still hide it.
+
+**Box Info empty**
+- The receiver's OpenWebif build doesn't expose either `api/about` or `api/deviceinfo`. Update OpenWebif if possible.
+
+**Picons missing** — Picons must be installed on the receiver (typically `/usr/share/enigma2/picon/`).
+
+**No timer notifications on Android 13+** — Grant the *Notifications* permission and disable battery optimisation for the app.
+
+**App shows old data** — Pull down on any list to refresh.
+
+---
+
+## 18. What's new in 1.0.5
+
+- **Bouquet Editor** — create/rename/delete bouquets, add/remove/reorder channels. Server-side via the BouquetEditor plugin when available, with a local-override fallback when it isn't. Conflict dialog handles the transition from local to server. ([§15](#15-bouquet-editor))
+
+---
+
+*End of User Guide — v1.0.5*

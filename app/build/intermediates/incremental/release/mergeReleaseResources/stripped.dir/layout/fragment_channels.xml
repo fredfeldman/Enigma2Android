@@ -82,6 +82,16 @@
                     android:layout_marginEnd="4dp" />
 
                 <Button
+                    android:id="@+id/btn_autotimers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/autotimers"
+                    android:background="@drawable/bg_button"
+                    android:textColor="@color/text_primary"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
                     android:id="@+id/btn_wol"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
@@ -96,6 +106,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:text="@string/screenshot"
+                    android:background="@drawable/bg_button"
+                    android:textColor="@color/text_primary"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btn_remote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/remote_button"
+                    android:background="@drawable/bg_button"
+                    android:textColor="@color/text_primary"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btn_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/send_message"
                     android:background="@drawable/bg_button"
                     android:textColor="@color/text_primary"
                     android:textSize="12sp"

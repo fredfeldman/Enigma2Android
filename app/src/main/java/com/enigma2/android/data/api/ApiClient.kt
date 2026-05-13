@@ -42,4 +42,8 @@ object ApiClient {
     val service: OpenWebifService
         get() = retrofit?.create(OpenWebifService::class.java)
             ?: error("ApiClient not initialized. Call initialize() first.")
+
+    /** Currently configured base URL (e.g. `http://192.168.1.10:80/`), or null if not initialized. */
+    val baseUrl: String?
+        get() = currentBaseUrl.takeIf { it.isNotBlank() }
 }

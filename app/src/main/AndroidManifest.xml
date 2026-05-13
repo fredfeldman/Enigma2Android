@@ -30,13 +30,17 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
         </activity>
 
         <!-- Full-screen video player activity -->
         <activity
             android:name=".ui.player.PlayerActivity"
             android:exported="false"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize"
+            android:supportsPictureInPicture="true"
             android:theme="@style/Theme.Enigma2Android.Player"
             android:launchMode="singleTop" />
 
@@ -69,6 +73,31 @@
             android:name=".ui.bouqueteditor.BouquetEditorActivity"
             android:exported="false"
             android:theme="@style/Theme.Enigma2Android.Settings" />
+
+        <!-- Receiver Settings (launched from Settings) -->
+        <activity
+            android:name=".ui.receiversettings.ReceiverSettingsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Enigma2Android.Settings" />
+
+        <!-- v1.0.7: Virtual Remote Control -->
+        <activity
+            android:name=".ui.remote.RemoteControlActivity"
+            android:exported="false"
+            android:label="@string/remote_title"
+            android:theme="@style/Theme.Enigma2Android.Settings" />
+
+        <!-- v1.0.7: Quick Settings tile (toggle standby) -->
+        <service
+            android:name=".service.PowerToggleTileService"
+            android:label="@string/tile_power_label"
+            android:icon="@android:drawable/ic_lock_power_off"
+            android:exported="true"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
 
     </application>
 </manifest>

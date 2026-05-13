@@ -145,6 +145,13 @@ class ChannelsFragment : Fragment() {
         view.findViewById<View>(R.id.btn_screenshot)?.setOnClickListener {
             takeScreenshot()
         }
+        view.findViewById<View>(R.id.btn_remote)?.setOnClickListener {
+            startActivity(Intent(requireContext(),
+                com.enigma2.android.ui.remote.RemoteControlActivity::class.java))
+        }
+        view.findViewById<View>(R.id.btn_message)?.setOnClickListener {
+            com.enigma2.android.ui.messages.SendMessageDialog.show(requireContext(), viewLifecycleOwner)
+        }
     }
 
     private fun observeViewModel() {

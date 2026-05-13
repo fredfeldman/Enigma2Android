@@ -158,4 +158,110 @@ interface OpenWebifService {
         @Query("sRef") sRef: String,
         @Query("position") position: Int
     ): Response<okhttp3.ResponseBody>
+
+    // ---- Receiver Settings ----
+
+    /** Live status — used as a header on most receiver-settings screens. */
+    @GET("api/statusinfo")
+    suspend fun getStatusInfo(): Response<okhttp3.ResponseBody>
+
+    // Power
+    @GET("api/powerstate")
+    suspend fun getPowerState(): Response<okhttp3.ResponseBody>
+
+    @GET("api/powerstate")
+    suspend fun setPowerState(@Query("newstate") newState: Int): Response<okhttp3.ResponseBody>
+
+    @GET("web/sleeptimer")
+    suspend fun getSleepTimer(@Query("cmd") cmd: String = "get"): Response<okhttp3.ResponseBody>
+
+    @GET("web/sleeptimer")
+    suspend fun setSleepTimer(
+        @Query("cmd") cmd: String = "set",
+        @Query("time") time: Int,
+        @Query("action") action: String,
+        @Query("enabled") enabled: String
+    ): Response<okhttp3.ResponseBody>
+
+    // Volume
+    @GET("web/vol")
+    suspend fun getVolume(): Response<okhttp3.ResponseBody>
+
+    @GET("web/vol")
+    suspend fun setVolume(@Query("set") set: String): Response<okhttp3.ResponseBody>
+
+    // Generic config tree
+    @GET("web/settings")
+    suspend fun getAllSettings(): Response<okhttp3.ResponseBody>
+
+    @GET("api/config")
+    suspend fun getConfigSections(): Response<okhttp3.ResponseBody>
+
+    @GET
+    suspend fun getConfigSection(@retrofit2.http.Url url: String): Response<okhttp3.ResponseBody>
+
+    @GET("web/saveconfig")
+    suspend fun saveConfig(
+        @Query("key") key: String,
+        @Query("value") value: String
+    ): Response<okhttp3.ResponseBody>
+
+    // Web UI config
+    @GET("web/setwebconfig")
+    suspend fun setWebConfig(@retrofit2.http.QueryMap params: Map<String, String>): Response<okhttp3.ResponseBody>
+
+    // Parental control
+    @GET("web/parentcontrollist")
+    suspend fun getParentControlList(): Response<okhttp3.ResponseBody>
+
+    @GET("BQE/getprotectionsettings")
+    suspend fun getProtectionSettings(): Response<okhttp3.ResponseBody>
+
+    // Recording locations
+    @GET("api/getlocations")
+    suspend fun getLocations(): Response<okhttp3.ResponseBody>
+
+    @GET("api/getcurrlocation")
+    suspend fun getCurrentLocation(): Response<okhttp3.ResponseBody>
+
+    @GET("api/setcurrlocation")
+    suspend fun setCurrentLocation(@Query("location") location: String): Response<okhttp3.ResponseBody>
+
+    @GET("api/addlocation")
+    suspend fun addLocation(
+        @Query("dirname") dirname: String,
+        @Query("createFolder") createFolder: Int = 1
+    ): Response<okhttp3.ResponseBody>
+
+    @GET("api/removelocation")
+    suspend fun removeLocation(@Query("dirname") dirname: String): Response<okhttp3.ResponseBody>
+
+    // Tuner / signal
+    @GET("web/tunersignal")
+    suspend fun getTunerSignal(): Response<okhttp3.ResponseBody>
+
+    // Wake-on-LAN setup
+    @GET("wol/setup")
+    suspend fun getWolSetup(): Response<okhttp3.ResponseBody>
+
+    @GET("wol/setup")
+    suspend fun setWolSetup(@retrofit2.http.QueryMap params: Map<String, String>): Response<okhttp3.ResponseBody>
+
+    // Transcoding
+    @GET("transcoding")
+    suspend fun getTranscodingConfig(): Response<okhttp3.ResponseBody>
+
+    @GET("transcoding")
+    suspend fun setTranscodingConfig(@retrofit2.http.QueryMap params: Map<String, String>): Response<okhttp3.ResponseBody>
+
+    // ---- v1.0.7: Remote control & messaging ----
+    @GET("api/remotecontrol")
+    suspend fun sendRemoteCommand(@Query("command") commandCode: Int): Response<okhttp3.ResponseBody>
+
+    @GET("api/message")
+    suspend fun sendMessage(
+        @Query("text") text: String,
+        @Query("type") type: Int = 1,
+        @Query("timeout") timeout: Int = 10
+    ): Response<okhttp3.ResponseBody>
 }
