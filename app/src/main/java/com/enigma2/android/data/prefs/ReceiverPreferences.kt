@@ -216,6 +216,17 @@ class ReceiverPreferences(context: Context) {
         get() = prefs.getBoolean("pip_on_home", true)
         set(value) { prefs.edit().putBoolean("pip_on_home", value).apply() }
 
+    // ── External player (v1.2.0) ──────────────────────────────────────
+    /** "internal" (default), "external" or "ask". Drives ExternalPlayerLauncher. */
+    var playerMode: String
+        get() = prefs.getString("player_mode", "internal") ?: "internal"
+        set(value) { prefs.edit().putString("player_mode", value).apply() }
+
+    /** Optional package name to pin external playback to (e.g. "org.videolan.vlc"). */
+    var preferredExternalPackage: String
+        get() = prefs.getString("preferred_external_package", "") ?: ""
+        set(value) { prefs.edit().putString("preferred_external_package", value).apply() }
+
     companion object {
         const val VALUE_TAP_STREAM = "stream"
         const val VALUE_TAP_ZAP = "zap"

@@ -122,6 +122,11 @@ class RecordingsFragment : Fragment() {
 
     private fun playRecording(recording: Recording) {
         val streamUrl = prefs.recordingStreamUrl(recording.filename)
+        // v1.2.0: try external player when preferred
+        if (com.enigma2.android.ui.player.ExternalPlayerLauncher
+                .launchExternalIfPreferred(requireContext(), streamUrl, recording.title, prefs)) {
+            return
+        }
         startActivity(
             Intent(requireContext(), PlayerActivity::class.java).apply {
                 putExtra(PlayerActivity.EXTRA_STREAM_URL, streamUrl)

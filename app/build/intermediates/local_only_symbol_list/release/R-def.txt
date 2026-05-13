@@ -2,6 +2,8 @@ R_DEF: Internal format may change without notice
 local
 array channel_tap_action_entries
 array channel_tap_action_values
+array player_mode_entries
+array player_mode_values
 color accent
 color accent_dark
 color accent_translucent
@@ -438,6 +440,10 @@ string now_next_message
 string password
 string play
 string play_recording
+string player_mode_ask
+string player_mode_external
+string player_mode_internal
+string player_mode_no_handler
 string playlists
 string port
 string pref_auto_resume_title
@@ -453,7 +459,14 @@ string pref_host_title
 string pref_https_title
 string pref_night_mode_title
 string pref_password_title
+string pref_player_mode_summary
+string pref_player_mode_title
 string pref_port_title
+string pref_preferred_external_clear
+string pref_preferred_external_none
+string pref_preferred_external_pick
+string pref_preferred_external_summary
+string pref_preferred_external_title
 string pref_summary_edit_bouquets
 string pref_summary_pip
 string pref_summary_receiver_settings

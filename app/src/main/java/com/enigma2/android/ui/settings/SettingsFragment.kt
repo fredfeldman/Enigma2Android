@@ -45,6 +45,43 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 true
             }
 
+        // v1.2.0: External player picker
+        val extPref = findPreference<Preference>("preferred_external_player")
+        val prefs = com.enigma2.android.data.prefs.ReceiverPreferences(requireContext())
+        fun refreshExtSummary() {
+            val pkg = prefs.preferredExternalPackage
+            extPref?.summary = if (pkg.isBlank())
+                getString(R.string.pref_preferred_external_summary)
+            else com.enigma2.android.ui.player.ExternalPlayerLauncher
+                .resolveAppName(requireContext(), pkg) ?: pkg
+        }
+        refreshExtSummary()
+        extPref?.setOnPreferenceClickListener {
+            val installed = com.enigma2.android.ui.player.ExternalPlayerLauncher
+                .installedKnownPlayers(requireContext())
+            if (installed.isEmpty()) {
+                android.widget.Toast.makeText(requireContext(),
+                    R.string.player_mode_no_handler,
+                    android.widget.Toast.LENGTH_SHORT).show()
+                return@setOnPreferenceClickListener true
+            }
+            val labels = (listOf(getString(R.string.pref_preferred_external_none)) +
+                installed.map { it.second } +
+                listOf(getString(R.string.pref_preferred_external_clear))).toTypedArray()
+            androidx.appcompat.app.AlertDialog.Builder(requireContext())
+                .setTitle(R.string.pref_preferred_external_pick)
+                .setItems(labels) { _, which ->
+                    when {
+                        which == 0 -> { prefs.preferredExternalPackage = "" }
+                        which == labels.lastIndex -> { prefs.preferredExternalPackage = "" }
+                        else -> { prefs.preferredExternalPackage = installed[which - 1].first }
+                    }
+                    refreshExtSummary()
+                }
+                .show()
+            true
+        }
+
         val epgImportPref = findPreference<Preference>("pref_epg_import")
         val pluginsCat = findPreference<PreferenceCategory>("pref_category_plugins")
         // Hide until we know it's available

@@ -476,4 +476,17 @@
     <string name="epg_export_done">Saved to %1$s</string>
     <string name="epg_export_empty">No EPG events for this channel</string>
     <string name="epg_export_failed">Could not write EPG export</string>
+
+    <!-- v1.2.0: External player -->
+    <string name="player_mode_internal">Built-in player</string>
+    <string name="player_mode_external">External player</string>
+    <string name="player_mode_ask">Ask every time</string>
+    <string name="pref_player_mode_title">Player</string>
+    <string name="pref_player_mode_summary">Choose where to play streams</string>
+    <string name="pref_preferred_external_title">Preferred external player</string>
+    <string name="pref_preferred_external_summary">Pick a default external app (when in External mode)</string>
+    <string name="pref_preferred_external_none">Show chooser each time</string>
+    <string name="pref_preferred_external_pick">Pick external player</string>
+    <string name="pref_preferred_external_clear">Clear preferred player</string>
+    <string name="player_mode_no_handler">No external player installed</string>
 </resources>

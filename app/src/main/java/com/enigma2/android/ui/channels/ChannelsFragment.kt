@@ -248,6 +248,13 @@ class ChannelsFragment : Fragment() {
         val streamUrl = "$scheme://${prefs.host}:8001/${service.ref}"
         prefs.lastChannelRef = service.ref
         prefs.lastChannelName = service.name
+
+        // v1.2.0: try external player when the user has selected one
+        if (com.enigma2.android.ui.player.ExternalPlayerLauncher
+                .launchExternalIfPreferred(requireContext(), streamUrl, service.name, prefs)) {
+            return
+        }
+
         val intent = Intent(requireContext(), PlayerActivity::class.java).apply {
             putExtra(PlayerActivity.EXTRA_STREAM_URL, streamUrl)
             putExtra(PlayerActivity.EXTRA_CHANNEL_NAME, service.name)

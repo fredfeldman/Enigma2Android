@@ -10,6 +10,16 @@
         <item>zap</item>
         <item>both</item>
     </string-array>
+    <string-array name="player_mode_entries">
+        <item>@string/player_mode_internal</item>
+        <item>@string/player_mode_external</item>
+        <item>@string/player_mode_ask</item>
+    </string-array>
+    <string-array name="player_mode_values">
+        <item>internal</item>
+        <item>external</item>
+        <item>ask</item>
+    </string-array>
     <color name="accent">#FFFFA500</color>
     <color name="accent_dark">#FFCC8400</color>
     <color name="accent_translucent">#66FFA500</color>
@@ -167,6 +177,10 @@
     <string name="password">Password</string>
     <string name="play">Play</string>
     <string name="play_recording">Play</string>
+    <string name="player_mode_ask">Ask every time</string>
+    <string name="player_mode_external">External player</string>
+    <string name="player_mode_internal">Built-in player</string>
+    <string name="player_mode_no_handler">No external player installed</string>
     <string name="playlists">Playlists</string>
     <string name="port">Port</string>
     <string name="pref_auto_resume_title">Auto-resume last channel</string>
@@ -182,7 +196,14 @@
     <string name="pref_https_title">Use HTTPS</string>
     <string name="pref_night_mode_title">Dark Mode</string>
     <string name="pref_password_title">Password</string>
+    <string name="pref_player_mode_summary">Choose where to play streams</string>
+    <string name="pref_player_mode_title">Player</string>
     <string name="pref_port_title">Port</string>
+    <string name="pref_preferred_external_clear">Clear preferred player</string>
+    <string name="pref_preferred_external_none">Show chooser each time</string>
+    <string name="pref_preferred_external_pick">Pick external player</string>
+    <string name="pref_preferred_external_summary">Pick a default external app (when in External mode)</string>
+    <string name="pref_preferred_external_title">Preferred external player</string>
     <string name="pref_summary_edit_bouquets">Reorder, rename, add/remove channels…</string>
     <string name="pref_summary_pip">Auto-enter PiP when leaving the live-TV player</string>
     <string name="pref_summary_receiver_settings">Power, audio, recording, parental, WOL, advanced config…</string>

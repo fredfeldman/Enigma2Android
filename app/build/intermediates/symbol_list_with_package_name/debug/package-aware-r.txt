@@ -80,6 +80,8 @@ animator mtrl_fab_transformation_sheet_expand_spec
 array channel_tap_action_entries
 array channel_tap_action_values
 array exo_controls_playback_speeds
+array player_mode_entries
+array player_mode_values
 attr SharedValue
 attr SharedValueId
 attr actionBarDivider
@@ -4791,6 +4793,10 @@ string path_password_eye_mask_visible
 string path_password_strike_through
 string play
 string play_recording
+string player_mode_ask
+string player_mode_external
+string player_mode_internal
+string player_mode_no_handler
 string playlists
 string port
 string pref_auto_resume_title
@@ -4806,7 +4812,14 @@ string pref_host_title
 string pref_https_title
 string pref_night_mode_title
 string pref_password_title
+string pref_player_mode_summary
+string pref_player_mode_title
 string pref_port_title
+string pref_preferred_external_clear
+string pref_preferred_external_none
+string pref_preferred_external_pick
+string pref_preferred_external_summary
+string pref_preferred_external_title
 string pref_summary_edit_bouquets
 string pref_summary_pip
 string pref_summary_receiver_settings

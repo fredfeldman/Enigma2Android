@@ -62,6 +62,19 @@
             android:title="@string/pref_title_pip"
             android:summary="@string/pref_summary_pip"
             android:defaultValue="true" />
+
+        <!-- v1.2.0: External player -->
+        <ListPreference
+            android:key="player_mode"
+            android:title="@string/pref_player_mode_title"
+            android:summary="@string/pref_player_mode_summary"
+            android:entries="@array/player_mode_entries"
+            android:entryValues="@array/player_mode_values"
+            android:defaultValue="internal" />
+        <Preference
+            android:key="preferred_external_player"
+            android:title="@string/pref_preferred_external_title"
+            android:summary="@string/pref_preferred_external_summary" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/pref_category_receiver">

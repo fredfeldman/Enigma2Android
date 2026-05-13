@@ -1,6 +1,6 @@
 # E2Android — User Guide
 
-**Version 1.1.1**
+**Version 1.2.0**
 Android 8.0+ (API 26) | Enigma2 receivers via OpenWebif
 
 ---
@@ -528,4 +528,35 @@ Every successful EPG fetch is snapshotted locally. If a later fetch fails (recei
 
 - The cache lives in `epg_cache` SharedPreferences (one snapshot per bouquet) � no extra database. Clearing app data wipes it.
 - MHW2 EPGImport-source toggling was on the original plan but is bundled with the future EPGImport-source picker; the underlying API plumbing landed here.
+
+
+---
+
+## 24. What's new in 1.2.0 - External players
+
+You can now hand any channel or recording off to a separate video app instead of the built-in player. This is the recommended way to get Enigma2 streams onto a TV, since most installed players (Kodi, VLC, MX) speak MPEG-TS natively and have their own Chromecast / DLNA / AirPlay paths.
+
+### Settings -> Playback -> Player
+
+- Built-in player (default) - existing behaviour, PiP and EPG OSD intact.
+- External player - every channel tap and recording tap launches your video app.
+- Ask every time - Android shows the open-with chooser on every launch.
+
+### Settings -> Playback -> Preferred external player
+
+When in External mode, pin a default app so you skip the chooser. The list auto-detects VLC, MX Player, MX Pro, and Kodi (18-20). Pick 'Show chooser each time' to keep the picker active. Pick 'Clear preferred player' to undo.
+
+### How streams are routed
+
+The app sends a standard ACTION_VIEW intent with the OpenWebif stream URL and a sensible MIME type (video/mp2t for live, application/vnd.apple.mpegurl for HLS, video/mp4 etc. for known extensions). VLC/Kodi also receive a 'title' / 'forcename' extra so the on-screen title is correct.
+
+### Why no Chromecast button this release
+
+Chromecast's default media receiver does not play MPEG-TS, so without a custom receiver app the Cast button would fail for nearly every user. Routing through Kodi (which has its own Cast support) is the working alternative today. A real Cast SDK integration may follow once a transcoding-aware receiver is available.
+
+### Notes
+
+- If no external player is installed and External mode is selected, the app silently falls back to the built-in player.
+- Schedule playback, favourites, and recording playback all honour the preference.
+- The internal player still handles the EPG OSD, zap-on-nav, PiP, and 'auto-resume', so leave it on Built-in if you rely on those features.
 
