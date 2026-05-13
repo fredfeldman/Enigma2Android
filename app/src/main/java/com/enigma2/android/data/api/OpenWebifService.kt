@@ -325,4 +325,11 @@ interface OpenWebifService {
 
     @GET("api/networkinfo")
     suspend fun getNetworkInfo(): Response<okhttp3.ResponseBody>
+
+    // ---- v1.1.1: EPG refresh ----
+    @GET("api/serviceupdateepg")
+    suspend fun refreshEpgForService(@Query("sRef") sRef: String): Response<okhttp3.ResponseBody>
+
+    @GET("web/epgrefresh")
+    suspend fun triggerEpgRefresh(): Response<okhttp3.ResponseBody>
 }

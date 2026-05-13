@@ -271,7 +271,8 @@ class ChannelsFragment : Fragment() {
         val options = arrayOf(
             getString(R.string.play),
             favLabel,
-            getString(R.string.epg_info)
+            getString(R.string.epg_info),
+            getString(R.string.epg_export_title)
         )
         AlertDialog.Builder(requireContext())
             .setTitle(service.name)
@@ -280,9 +281,40 @@ class ChannelsFragment : Fragment() {
                     0 -> openPlayer(service)
                     1 -> viewModel.toggleFavorite(service.ref)
                     2 -> showEpgInfo(service)
+                    3 -> exportEpgForChannel(service)
                 }
             }
             .show()
+    }
+
+    private fun exportEpgForChannel(service: Service) {
+        val ctx = requireContext()
+        Toast.makeText(ctx, R.string.epg_export_running, Toast.LENGTH_SHORT).show()
+        viewLifecycleOwner.lifecycleScope.launch {
+            val repo = com.enigma2.android.data.repository.Enigma2Repository()
+            val events = try { repo.getEpgForService(service.ref) } catch (_: Exception) { emptyList() }
+            if (events.isEmpty()) {
+                Toast.makeText(ctx, R.string.epg_export_empty, Toast.LENGTH_SHORT).show()
+                return@launch
+            }
+            val safeName = service.name.replace(Regex("[^A-Za-z0-9._-]"), "_").take(40)
+            val ts = java.text.SimpleDateFormat("yyyyMMdd_HHmmss", java.util.Locale.US)
+                .format(java.util.Date())
+            val baseName = "epg_${safeName}_$ts"
+
+            val xmlPath = com.enigma2.android.util.DownloadsWriter.writeText(
+                ctx, "$baseName.xml", "application/xml",
+                com.enigma2.android.util.XmltvWriter.write(service.ref, service.name, events)
+            )
+            val jsonPath = com.enigma2.android.util.DownloadsWriter.writeText(
+                ctx, "$baseName.json", "application/json",
+                com.google.gson.Gson().toJson(events)
+            )
+            val msg = if (xmlPath != null || jsonPath != null) {
+                getString(R.string.epg_export_done, xmlPath ?: jsonPath ?: "")
+            } else getString(R.string.epg_export_failed)
+            Toast.makeText(ctx, msg, Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun showEpgInfo(service: Service) {

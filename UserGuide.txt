@@ -1,6 +1,6 @@
 # E2Android â€” User Guide
 
-**Version 1.1.0**
+**Version 1.1.1**
 Android 8.0+ (API 26) | Enigma2 receivers via OpenWebif
 
 ---
@@ -468,16 +468,16 @@ How to use: Channel screen â†’ *Switch Device* â†’ tap the WoL (power) icon next
 
 ---
 
-## 22. What's new in 1.1.0 — Receiver admin
+## 22. What's new in 1.1.0 ï¿½ Receiver admin
 
 The in-app **Receiver settings** area gains a new **System** category and the parental control screen becomes editable.
 
 ### Parental control (now editable)
 
-- **Set / change setup PIN** — open Receiver settings ? Parental control ? `Set / change setup PIN`. Enter the current PIN (leave blank if none was set) plus the new PIN twice.
-- **Protect a service** — tap `Protect a service` and paste the service reference (the `1:0:1:...` string). Long-press a row in the Channels screen if you need to copy one.
-- **Unprotect** — tap a row in the protected services list to confirm and remove parental protection.
-- **App-side PIN gate** — at the bottom of the Parental screen, tap `Set app PIN` to require a numeric PIN every time the screen is opened on this device. The PIN is hashed (SHA-256) and stored only locally — it does not affect the receiver. Use `Clear app PIN` to disable the gate.
+- **Set / change setup PIN** ï¿½ open Receiver settings ? Parental control ? `Set / change setup PIN`. Enter the current PIN (leave blank if none was set) plus the new PIN twice.
+- **Protect a service** ï¿½ tap `Protect a service` and paste the service reference (the `1:0:1:...` string). Long-press a row in the Channels screen if you need to copy one.
+- **Unprotect** ï¿½ tap a row in the protected services list to confirm and remove parental protection.
+- **App-side PIN gate** ï¿½ at the bottom of the Parental screen, tap `Set app PIN` to require a numeric PIN every time the screen is opened on this device. The PIN is hashed (SHA-256) and stored only locally ï¿½ it does not affect the receiver. Use `Clear app PIN` to disable the gate.
 
 ### System ? Storage & mounts
 
@@ -485,7 +485,7 @@ Read-only listing of the receiver's mountpoints with total / used / free space w
 
 ### System ? System log
 
-Fetches the receiver's recent log via OpenWebif. Type in the filter field at the top to narrow lines by substring (case-insensitive). Tap **Share log** to send the visible text to any sharing target — email, messaging app, file save, etc.
+Fetches the receiver's recent log via OpenWebif. Type in the filter field at the top to narrow lines by substring (case-insensitive). Tap **Share log** to send the visible text to any sharing target ï¿½ email, messaging app, file save, etc.
 
 ### System ? Plugin manager
 
@@ -497,6 +497,35 @@ Shows the receiver's network interfaces with IP, netmask, gateway and MAC where 
 
 ### Notes
 
-- Mount/unmount, disk format and a dedicated channel-scan launcher are deferred — endpoint behaviour varies too much across receiver images to ship safely yet.
-- All new endpoints fail gracefully — if your receiver image does not expose one, you will see an empty placeholder or a brief error toast and the rest of the app keeps working.
+- Mount/unmount, disk format and a dedicated channel-scan launcher are deferred ï¿½ endpoint behaviour varies too much across receiver images to ship safely yet.
+- All new endpoints fail gracefully ï¿½ if your receiver image does not expose one, you will see an empty placeholder or a brief error toast and the rest of the app keeps working.
+
+
+---
+
+## 23. What's new in 1.1.1 ï¿½ EPG quality
+
+Three additions to the EPG screens, plus an offline survival aid.
+
+### Refresh EPG
+
+The EPG screen toolbar now has a **Refresh** button next to Search. Tap it to ask the receiver to refresh its EPG (uses the EPGImport plugin endpoint when available, falls back to per-channel refresh otherwise). A toast confirms whether the refresh request was accepted, and the grid reloads automatically.
+
+### Per-channel EPG export
+
+Long-press a channel in the Channels screen ? **Export EPG**. The channel's full EPG window is written to your Downloads folder as both XMLTV and JSON:
+
+- `epg_<channel>_<timestamp>.xml` ï¿½ XMLTV format, parses with standard `tv_grab_*` tools
+- `epg_<channel>_<timestamp>.json` ï¿½ raw event list
+
+No storage permissions are required (Android 10+ uses `MediaStore`).
+
+### Offline EPG cache
+
+Every successful EPG fetch is snapshotted locally. If a later fetch fails (receiver unreachable, network down, OpenWebif busy), the EPG screen falls back to the last good snapshot and shows a yellow banner `Showing cached EPG (N min old)`. The banner disappears as soon as a fresh fetch succeeds.
+
+### Notes
+
+- The cache lives in `epg_cache` SharedPreferences (one snapshot per bouquet) ï¿½ no extra database. Clearing app data wipes it.
+- MHW2 EPGImport-source toggling was on the original plan but is bundled with the future EPGImport-source picker; the underlying API plumbing landed here.
 

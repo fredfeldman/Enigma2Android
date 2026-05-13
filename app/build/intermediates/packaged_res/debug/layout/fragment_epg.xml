@@ -33,6 +33,16 @@
             android:textStyle="bold" />
 
         <Button
+            android:id="@+id/btn_epg_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/epg_refresh"
+            android:background="@drawable/bg_button"
+            android:textColor="@color/text_primary"
+            android:textSize="12sp"
+            android:layout_marginEnd="6dp" />
+
+        <Button
             android:id="@+id/btn_epg_search"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
@@ -41,6 +51,19 @@
             android:textColor="@color/text_primary"
             android:textSize="12sp" />
     </LinearLayout>
+
+    <!-- Offline / cached banner (v1.1.1) -->
+    <TextView
+        android:id="@+id/tv_epg_offline_banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:padding="6dp"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:background="#FFD27A"
+        android:text="@string/epg_offline_banner" />
 
     <!-- Selected event info -->
     <TextView

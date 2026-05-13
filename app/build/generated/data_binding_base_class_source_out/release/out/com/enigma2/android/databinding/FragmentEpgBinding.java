@@ -29,6 +29,9 @@ public final class FragmentEpgBinding implements ViewBinding {
   public final ImageButton btnBack;
 
   @NonNull
+  public final Button btnEpgRefresh;
+
+  @NonNull
   public final Button btnEpgSearch;
 
   @NonNull
@@ -53,16 +56,20 @@ public final class FragmentEpgBinding implements ViewBinding {
   public final TextView tvEpgInfo;
 
   @NonNull
+  public final TextView tvEpgOfflineBanner;
+
+  @NonNull
   public final TextView tvSelectedEvent;
 
   private FragmentEpgBinding(@NonNull LinearLayout rootView, @NonNull ImageButton btnBack,
-      @NonNull Button btnEpgSearch, @NonNull EpgGridView epgGrid,
+      @NonNull Button btnEpgRefresh, @NonNull Button btnEpgSearch, @NonNull EpgGridView epgGrid,
       @NonNull LinearLayout epgGridContainer, @NonNull HorizontalScrollView epgHScroll,
       @NonNull EpgTimeRulerView epgTimeRuler, @NonNull RecyclerView rvChannelNames,
       @NonNull TextView tvEpgEmpty, @NonNull TextView tvEpgInfo,
-      @NonNull TextView tvSelectedEvent) {
+      @NonNull TextView tvEpgOfflineBanner, @NonNull TextView tvSelectedEvent) {
     this.rootView = rootView;
     this.btnBack = btnBack;
+    this.btnEpgRefresh = btnEpgRefresh;
     this.btnEpgSearch = btnEpgSearch;
     this.epgGrid = epgGrid;
     this.epgGridContainer = epgGridContainer;
@@ -71,6 +78,7 @@ public final class FragmentEpgBinding implements ViewBinding {
     this.rvChannelNames = rvChannelNames;
     this.tvEpgEmpty = tvEpgEmpty;
     this.tvEpgInfo = tvEpgInfo;
+    this.tvEpgOfflineBanner = tvEpgOfflineBanner;
     this.tvSelectedEvent = tvSelectedEvent;
   }
 
@@ -104,6 +112,12 @@ public final class FragmentEpgBinding implements ViewBinding {
       id = R.id.btn_back;
       ImageButton btnBack = ViewBindings.findChildViewById(rootView, id);
       if (btnBack == null) {
+        break missingId;
+      }
+
+      id = R.id.btn_epg_refresh;
+      Button btnEpgRefresh = ViewBindings.findChildViewById(rootView, id);
+      if (btnEpgRefresh == null) {
         break missingId;
       }
 
@@ -155,15 +169,21 @@ public final class FragmentEpgBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tv_epg_offline_banner;
+      TextView tvEpgOfflineBanner = ViewBindings.findChildViewById(rootView, id);
+      if (tvEpgOfflineBanner == null) {
+        break missingId;
+      }
+
       id = R.id.tv_selected_event;
       TextView tvSelectedEvent = ViewBindings.findChildViewById(rootView, id);
       if (tvSelectedEvent == null) {
         break missingId;
       }
 
-      return new FragmentEpgBinding((LinearLayout) rootView, btnBack, btnEpgSearch, epgGrid,
-          epgGridContainer, epgHScroll, epgTimeRuler, rvChannelNames, tvEpgEmpty, tvEpgInfo,
-          tvSelectedEvent);
+      return new FragmentEpgBinding((LinearLayout) rootView, btnBack, btnEpgRefresh, btnEpgSearch,
+          epgGrid, epgGridContainer, epgHScroll, epgTimeRuler, rvChannelNames, tvEpgEmpty,
+          tvEpgInfo, tvEpgOfflineBanner, tvSelectedEvent);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

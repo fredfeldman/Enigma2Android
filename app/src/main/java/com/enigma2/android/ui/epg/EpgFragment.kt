@@ -75,6 +75,36 @@ class EpgFragment : Fragment() {
                 .commit()
         }
 
+        view.findViewById<View>(R.id.btn_epg_refresh)?.setOnClickListener {
+            val bouquet = channelViewModel.selectedBouquet.value
+            val refs = channelViewModel.filteredChannels.value?.map { it.ref } ?: emptyList()
+            if (bouquet != null) {
+                Toast.makeText(context, R.string.epg_refresh_started, Toast.LENGTH_SHORT).show()
+                epgViewModel.refreshAndReload(bouquet.ref, refs)
+            }
+        }
+
+        epgViewModel.offline.observe(viewLifecycleOwner) { isOffline ->
+            val banner = view.findViewById<TextView>(R.id.tv_epg_offline_banner)
+            banner?.visibility = if (isOffline == true) View.VISIBLE else View.GONE
+            if (isOffline == true) {
+                val ts = epgViewModel.cacheTimestamp.value ?: 0L
+                val ago = if (ts > 0) {
+                    val mins = (System.currentTimeMillis() - ts) / 60_000L
+                    getString(R.string.epg_offline_banner_with_age, mins)
+                } else getString(R.string.epg_offline_banner)
+                banner?.text = ago
+            }
+        }
+
+        epgViewModel.refreshStatus.observe(viewLifecycleOwner) { status ->
+            if (status == null) return@observe
+            Toast.makeText(context,
+                if (status == "ok") R.string.epg_refresh_ok else R.string.epg_refresh_failed,
+                Toast.LENGTH_SHORT).show()
+            epgViewModel.consumeRefreshStatus()
+        }
+
         epgGrid.onEventSelected = { event ->
             showEventInfo(event)
         }

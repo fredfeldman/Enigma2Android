@@ -83,6 +83,7 @@ id btn_entry_down
 id btn_entry_remove
 id btn_entry_up
 id btn_epg
+id btn_epg_refresh
 id btn_epg_search
 id btn_epgimport_refresh
 id btn_epgimport_run
@@ -235,6 +236,7 @@ id tv_entry_channel
 id tv_entry_title
 id tv_epg_empty
 id tv_epg_info
+id tv_epg_offline_banner
 id tv_epgimport_empty
 id tv_epgimport_status
 id tv_error
@@ -381,6 +383,11 @@ string epg
 string epg_action_record
 string epg_action_remind
 string epg_event_menu_title
+string epg_export_done
+string epg_export_empty
+string epg_export_failed
+string epg_export_running
+string epg_export_title
 string epg_import
 string epg_import_failed
 string epg_import_sources
@@ -390,6 +397,12 @@ string epg_import_status
 string epg_import_status_unknown
 string epg_import_summary
 string epg_info
+string epg_offline_banner
+string epg_offline_banner_with_age
+string epg_refresh
+string epg_refresh_failed
+string epg_refresh_ok
+string epg_refresh_started
 string epg_search
 string error_host_required
 string event_not_airing

@@ -463,4 +463,17 @@
     <string name="recv_parental_app_lock_clear">Clear app PIN</string>
     <string name="recv_parental_app_lock_prompt">Enter app PIN</string>
     <string name="recv_parental_app_lock_wrong">Wrong PIN</string>
+
+    <!-- v1.1.1: EPG quality -->
+    <string name="epg_refresh">Refresh</string>
+    <string name="epg_refresh_started">Refreshing EPG\u2026</string>
+    <string name="epg_refresh_ok">EPG refresh requested</string>
+    <string name="epg_refresh_failed">Could not refresh EPG</string>
+    <string name="epg_offline_banner">Showing cached EPG (offline)</string>
+    <string name="epg_offline_banner_with_age">Showing cached EPG (%1$d min old)</string>
+    <string name="epg_export_title">Export EPG</string>
+    <string name="epg_export_running">Exporting EPG\u2026</string>
+    <string name="epg_export_done">Saved to %1$s</string>
+    <string name="epg_export_empty">No EPG events for this channel</string>
+    <string name="epg_export_failed">Could not write EPG export</string>
 </resources>

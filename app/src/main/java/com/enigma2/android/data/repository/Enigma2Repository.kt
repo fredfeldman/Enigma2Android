@@ -784,6 +784,15 @@ class Enigma2Repository {
     suspend fun removePlugin(pkg: String): Boolean = withContext(Dispatchers.IO) {
         try { ApiClient.service.removePlugin(pkg).isSuccessful } catch (_: Exception) { false }
     }
+
+    // ---- v1.1.1: EPG quality ----
+    suspend fun refreshEpgForService(sRef: String): Boolean = withContext(Dispatchers.IO) {
+        try { ApiClient.service.refreshEpgForService(sRef).isSuccessful } catch (_: Exception) { false }
+    }
+
+    suspend fun triggerEpgRefresh(): Boolean = withContext(Dispatchers.IO) {
+        try { ApiClient.service.triggerEpgRefresh().isSuccessful } catch (_: Exception) { false }
+    }
 }
 
 /** A single EPGImport source advertised by the plugin. */
