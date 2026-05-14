@@ -367,14 +367,27 @@ class ChannelsFragment : Fragment() {
     }
 
     private fun sendWakeOnLan() {
-        val mac = prefs.getActiveProfile()?.macAddress ?: ""
-        if (mac.isBlank()) {
+        // v1.3.1: when multiple profiles have MACs, let user pick which to wake.
+        val withMac = prefs.deviceProfiles.filter { it.macAddress.isNotBlank() }
+        if (withMac.isEmpty()) {
             Toast.makeText(requireContext(), R.string.no_mac_address, Toast.LENGTH_SHORT).show()
             return
         }
+        if (withMac.size == 1) {
+            wakeProfile(withMac[0])
+            return
+        }
+        val labels = withMac.map { it.name.ifBlank { it.host } }.toTypedArray()
+        AlertDialog.Builder(requireContext())
+            .setTitle(R.string.wol_pick_target)
+            .setItems(labels) { _, idx -> wakeProfile(withMac[idx]) }
+            .show()
+    }
+
+    private fun wakeProfile(profile: com.enigma2.android.data.model.DeviceProfile) {
         Toast.makeText(requireContext(), R.string.wol_sending, Toast.LENGTH_SHORT).show()
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
-            WakeOnLan.send(mac)
+            WakeOnLan.send(profile.macAddress)
             withContext(Dispatchers.Main) {
                 Toast.makeText(requireContext(), R.string.wol_sent, Toast.LENGTH_SHORT).show()
             }

@@ -3567,6 +3567,8 @@ id cb_at_enabled
 id cb_at_justplay
 id cb_hide_bouquet
 id cb_https
+id cb_import_hdhr
+id cb_skip_drm
 id center
 id centerCrop
 id centerInside
@@ -3652,6 +3654,7 @@ id et_at_match
 id et_at_name
 id et_device_name
 id et_filter
+id et_hdhr_host
 id et_host
 id et_log_filter
 id et_mac_address
@@ -3778,6 +3781,7 @@ id line3
 id linear
 id listMode
 id list_item
+id ll_hdhr_options
 id locale
 id ltr
 id m3_side_sheet
@@ -4520,11 +4524,19 @@ string bouquet_editor_rename
 string bouquet_editor_subtitle_provider
 string bouquet_editor_subtitle_user
 string bouquet_editor_title
+string bouquet_hdhr_done
+string bouquet_hdhr_no_channels
+string bouquet_hdhr_not_found
+string bouquet_hdhr_starting
+string bouquet_hdhr_unreachable
 string bouquet_local_conflict_apply
 string bouquet_local_conflict_discard
 string bouquet_local_conflict_keep
 string bouquet_local_conflict_message
 string bouquet_local_conflict_title
+string bouquet_new_hdhr_checkbox
+string bouquet_new_hdhr_host_hint
+string bouquet_new_hdhr_skip_drm
 string bouquet_new_name
 string bouquet_new_title
 string bouquet_picker_search_hint
@@ -4990,6 +5002,8 @@ string recv_wol_standby
 string recv_wol_summary
 string recv_wol_title
 string refresh
+string reminder_action_snooze
+string reminder_action_watch
 string reminder_already_passed
 string reminder_channel_name
 string reminder_failed
@@ -5060,6 +5074,7 @@ string send_message_failed
 string send_message_hint
 string send_message_send
 string send_message_sent
+string send_message_target
 string send_message_timeout
 string send_message_type
 string settings
@@ -5102,6 +5117,7 @@ string username
 string v7_preference_off
 string v7_preference_on
 string wol
+string wol_pick_target
 string wol_sending
 string wol_sent
 string zap_failed

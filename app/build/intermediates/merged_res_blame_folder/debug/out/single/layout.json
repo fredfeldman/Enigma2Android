@@ -4,16 +4,12 @@
         "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-57:\\layout\\fragment_playlist_manager.xml"
     },
     {
-        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-54:\\layout\\item_playlist_entry.xml",
-        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-57:\\layout\\item_playlist_entry.xml"
-    },
-    {
         "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-54:\\layout\\fragment_device_picker.xml",
         "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-57:\\layout\\fragment_device_picker.xml"
     },
     {
-        "merged": "com.enigma2.android.app-mergeDebugResources-54:/layout/fragment_epg.xml",
-        "source": "com.enigma2.android.app-main-57:/layout/fragment_epg.xml"
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-54:\\layout\\item_playlist_entry.xml",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-57:\\layout\\item_playlist_entry.xml"
     },
     {
         "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-54:\\layout\\activity_receiver_settings.xml",
@@ -110,6 +106,10 @@
     {
         "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-54:\\layout\\fragment_autotimers.xml",
         "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-57:\\layout\\fragment_autotimers.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-mergeDebugResources-54:/layout/dialog_new_bouquet.xml",
+        "source": "com.enigma2.android.app-main-57:/layout/dialog_new_bouquet.xml"
     },
     {
         "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-mergeDebugResources-54:\\layout\\item_timer.xml",

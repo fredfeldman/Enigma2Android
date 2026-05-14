@@ -1,6 +1,6 @@
 # E2Android — User Guide
 
-**Version 1.3.0**
+**Version 1.4.0**
 Android 8.0+ (API 26) | Enigma2 receivers via OpenWebif
 
 ---
@@ -583,4 +583,76 @@ The JSON format is human-readable so you can hand-edit before re-importing (bulk
 
 - The new RemoteReceiverApi plumbing also supports OSD messages and could host a 'record on...' action; both are queued for a follow-up release.
 - Picon manager, theme picker, and receiver-config backup were on the v1.3.0 longlist but are deferred (file upload to receiver, theme regression surface, image-variant config paths).
+
+
+---
+
+## 26. What's new in 1.3.1 - Multi-room polish
+
+Finishes wiring the v1.3.0 multi-room plumbing into the two screens that still had single-receiver versions of the feature.
+
+### Wake-on-LAN picker
+
+The Wake button on the channel toolbar now pops a picker when more than one configured receiver has a MAC address. Pick the box you want to wake and the magic packet is sent. With a single MAC-equipped profile the old one-tap behaviour is preserved.
+
+### Send message picker
+
+The Send message dialog now shows a 'Send to' spinner at the top when you have more than one device profile. Picking a non-active receiver routes the message via the v1.3.0 RemoteReceiverApi so your active receiver/playback is undisturbed. Single-profile setups see no change.
+
+### Notes
+
+- WOL only lists profiles with a non-blank MAC. Set the MAC in the device profile editor to enable wake for that box.
+- Picon manager, theme picker, and receiver-config backup remain deferred.
+
+
+---
+
+## 27. What's new in 1.3.2 - Reminder actions
+
+EPG reminder notifications now carry two action buttons.
+
+### Watch now
+
+Tap 'Watch now' on the reminder notification and the built-in player launches directly on the channel - no need to open the app and find the bouquet. Uses the active receiver's host/port/HTTPS settings.
+
+### Snooze 5 min
+
+Tap 'Snooze 5 min' to dismiss the current notification and re-fire it five minutes later. The snoozed reminder is re-persisted so it survives reboots, and uses the same inexact alarm path as v1.0.8 (no SCHEDULE_EXACT_ALARM permission required).
+
+### Notes
+
+- Plain notification body tap still auto-cancels as before.
+- If you ignore both actions and the notification times out, the reminder is removed from the persistent store (existing behaviour).
+
+
+---
+
+## 28. What's new in 1.4.0 - HDHomeRun import
+
+The Create-bouquet dialog (Settings -> Edit bouquets -> New bouquet) now has an opt-in 'Import channels from HDHomeRun tuner' checkbox. When ticked, the app contacts a SiliconDust HDHomeRun device on your network and bulk-creates an Enigma2 bouquet containing every channel from its lineup, each pointing at the HDHomeRun's HTTP MPEG-TS stream URL.
+
+### How to use
+
+1. Open Settings -> Edit bouquets and tap New bouquet.
+2. Type the bouquet name.
+3. Tick 'Import channels from HDHomeRun tuner'.
+4. Enter the tuner IP or hostname (default hdhomerun.local).
+5. Leave 'Skip encrypted (DRM) channels' ticked unless you specifically want DRM channels in the list (they cannot be streamed regardless).
+6. Tap OK. A toast reports how many channels were added.
+
+### How it works
+
+The app GETs http://<tuner>/discover.json to verify the device, then http://<tuner>/lineup.json to read every channel. It calls the BouquetEditor plugin's addbouquet endpoint, then addservicetobouquet for each channel. Each channel is registered as an Enigma2 IPTV service ref of the form 4097:0:1:0:0:0:0:0:0:0:<encoded-stream-url>: so the Enigma2 receiver streams the HDHomeRun MPEG-TS via its built-in GStreamer player.
+
+### Requirements
+
+- The receiver must have the BouquetEditor OpenWebif plugin installed (already required for any bouquet editing).
+- The HDHomeRun tuner and the receiver must be on the same reachable network.
+- DRM/encrypted channels are skipped by default; HDHomeRun's HTTP API cannot decrypt them.
+
+### Notes
+
+- TV-only. Ticking the import checkbox forces TV mode and disables the Radio radio button.
+- The new bouquet is matched server-side by case-insensitive name. If the receiver renames it during creation you may see a 'could not be located' toast - refresh and re-run.
+- One-shot import; re-running creates a second bouquet. No periodic re-sync.
 

@@ -43,4 +43,46 @@
             android:text="Radio"
             android:textColor="@android:color/white" />
     </RadioGroup>
+
+    <!-- v1.4.0: optional HDHomeRun import -->
+    <CheckBox
+        android:id="@+id/cb_import_hdhr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/bouquet_new_hdhr_checkbox"
+        android:textColor="@android:color/white" />
+
+    <LinearLayout
+        android:id="@+id/ll_hdhr_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/bouquet_new_hdhr_host_hint"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/et_hdhr_host"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="hdhomerun.local"
+            android:inputType="textUri"
+            android:maxLines="1"
+            android:textColor="@android:color/white" />
+
+        <CheckBox
+            android:id="@+id/cb_skip_drm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/bouquet_new_hdhr_skip_drm"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
 </LinearLayout>

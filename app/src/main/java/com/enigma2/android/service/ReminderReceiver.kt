@@ -23,20 +23,74 @@ class ReminderReceiver : BroadcastReceiver() {
         val id = intent.getIntExtra(EXTRA_ID, 0)
         val title = intent.getStringExtra(EXTRA_TITLE).orEmpty()
         val channel = intent.getStringExtra(EXTRA_CHANNEL).orEmpty()
+        val sref = intent.getStringExtra(EXTRA_SREF).orEmpty()
+        val notifId = NOTIF_BASE + (id and 0x7FFFFFFF) % 1000
+
+        // v1.3.2: handle action callbacks (Snooze / Watch / Dismiss)
+        when (intent.action) {
+            ACTION_SNOOZE -> {
+                val newStart = (System.currentTimeMillis() / 1000) + SNOOZE_SECONDS
+                val resched = EpgReminder(id, title, channel, sref, newStart)
+                schedule(context, resched)
+                runCatching { RemindersStore(context).add(resched) }
+                (context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager)
+                    .cancel(notifId)
+                return
+            }
+            ACTION_WATCH -> {
+                (context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager)
+                    .cancel(notifId)
+                launchPlayer(context, channel, sref)
+                runCatching { RemindersStore(context).remove(id) }
+                return
+            }
+        }
 
         ensureChannel(context)
+
+        val watchIntent = Intent(context, ReminderReceiver::class.java).apply {
+            action = ACTION_WATCH
+            putExtra(EXTRA_ID, id); putExtra(EXTRA_TITLE, title)
+            putExtra(EXTRA_CHANNEL, channel); putExtra(EXTRA_SREF, sref)
+        }
+        val snoozeIntent = Intent(context, ReminderReceiver::class.java).apply {
+            action = ACTION_SNOOZE
+            putExtra(EXTRA_ID, id); putExtra(EXTRA_TITLE, title)
+            putExtra(EXTRA_CHANNEL, channel); putExtra(EXTRA_SREF, sref)
+        }
+        val piFlags = PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        val watchPi = PendingIntent.getBroadcast(context, id * 10 + 1, watchIntent, piFlags)
+        val snoozePi = PendingIntent.getBroadcast(context, id * 10 + 2, snoozeIntent, piFlags)
+
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_channel_placeholder)
             .setContentTitle(context.getString(R.string.reminder_notification_title, title))
             .setContentText(context.getString(R.string.reminder_notification_text, channel))
             .setAutoCancel(true)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .addAction(0, context.getString(R.string.reminder_action_watch), watchPi)
+            .addAction(0, context.getString(R.string.reminder_action_snooze), snoozePi)
             .build()
 
         val nm = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        nm.notify(NOTIF_BASE + (id and 0x7FFFFFFF) % 1000, notification)
+        nm.notify(notifId, notification)
 
         runCatching { RemindersStore(context).remove(id) }
+    }
+
+    private fun launchPlayer(context: Context, channelName: String, sref: String) {
+        if (sref.isBlank()) return
+        val prefs = com.enigma2.android.data.prefs.ReceiverPreferences(context)
+        val scheme = if (prefs.useHttps) "https" else "http"
+        val streamUrl = "$scheme://${prefs.host}:8001/$sref"
+        val intent = Intent(context,
+            com.enigma2.android.ui.player.PlayerActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            putExtra(com.enigma2.android.ui.player.PlayerActivity.EXTRA_STREAM_URL, streamUrl)
+            putExtra(com.enigma2.android.ui.player.PlayerActivity.EXTRA_CHANNEL_NAME, channelName)
+            putExtra(com.enigma2.android.ui.player.PlayerActivity.EXTRA_SERVICE_REF, sref)
+        }
+        try { context.startActivity(intent) } catch (_: Exception) {}
     }
 
     private fun ensureChannel(context: Context) {
@@ -61,6 +115,11 @@ class ReminderReceiver : BroadcastReceiver() {
         const val EXTRA_TITLE = "title"
         const val EXTRA_CHANNEL = "channel"
         const val EXTRA_SREF = "sref"
+
+        // v1.3.2: notification action intents
+        const val ACTION_SNOOZE = "com.enigma2.android.ACTION_REMINDER_SNOOZE"
+        const val ACTION_WATCH = "com.enigma2.android.ACTION_REMINDER_WATCH"
+        private const val SNOOZE_SECONDS = 5 * 60L
 
         /**
          * Schedules an alarm to fire at the reminder's start time. Uses inexact

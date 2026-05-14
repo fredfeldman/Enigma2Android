@@ -4,6 +4,7 @@ package com.enigma2.android.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -22,7 +23,19 @@ public final class DialogNewBouquetBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
+  public final CheckBox cbImportHdhr;
+
+  @NonNull
+  public final CheckBox cbSkipDrm;
+
+  @NonNull
+  public final EditText etHdhrHost;
+
+  @NonNull
   public final EditText etNewBouquetName;
+
+  @NonNull
+  public final LinearLayout llHdhrOptions;
 
   @NonNull
   public final RadioButton rbModeRadio;
@@ -33,11 +46,16 @@ public final class DialogNewBouquetBinding implements ViewBinding {
   @NonNull
   public final RadioGroup rgNewBouquetMode;
 
-  private DialogNewBouquetBinding(@NonNull LinearLayout rootView,
-      @NonNull EditText etNewBouquetName, @NonNull RadioButton rbModeRadio,
+  private DialogNewBouquetBinding(@NonNull LinearLayout rootView, @NonNull CheckBox cbImportHdhr,
+      @NonNull CheckBox cbSkipDrm, @NonNull EditText etHdhrHost, @NonNull EditText etNewBouquetName,
+      @NonNull LinearLayout llHdhrOptions, @NonNull RadioButton rbModeRadio,
       @NonNull RadioButton rbModeTv, @NonNull RadioGroup rgNewBouquetMode) {
     this.rootView = rootView;
+    this.cbImportHdhr = cbImportHdhr;
+    this.cbSkipDrm = cbSkipDrm;
+    this.etHdhrHost = etHdhrHost;
     this.etNewBouquetName = etNewBouquetName;
+    this.llHdhrOptions = llHdhrOptions;
     this.rbModeRadio = rbModeRadio;
     this.rbModeTv = rbModeTv;
     this.rgNewBouquetMode = rgNewBouquetMode;
@@ -70,9 +88,33 @@ public final class DialogNewBouquetBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.cb_import_hdhr;
+      CheckBox cbImportHdhr = ViewBindings.findChildViewById(rootView, id);
+      if (cbImportHdhr == null) {
+        break missingId;
+      }
+
+      id = R.id.cb_skip_drm;
+      CheckBox cbSkipDrm = ViewBindings.findChildViewById(rootView, id);
+      if (cbSkipDrm == null) {
+        break missingId;
+      }
+
+      id = R.id.et_hdhr_host;
+      EditText etHdhrHost = ViewBindings.findChildViewById(rootView, id);
+      if (etHdhrHost == null) {
+        break missingId;
+      }
+
       id = R.id.et_new_bouquet_name;
       EditText etNewBouquetName = ViewBindings.findChildViewById(rootView, id);
       if (etNewBouquetName == null) {
+        break missingId;
+      }
+
+      id = R.id.ll_hdhr_options;
+      LinearLayout llHdhrOptions = ViewBindings.findChildViewById(rootView, id);
+      if (llHdhrOptions == null) {
         break missingId;
       }
 
@@ -94,8 +136,8 @@ public final class DialogNewBouquetBinding implements ViewBinding {
         break missingId;
       }
 
-      return new DialogNewBouquetBinding((LinearLayout) rootView, etNewBouquetName, rbModeRadio,
-          rbModeTv, rgNewBouquetMode);
+      return new DialogNewBouquetBinding((LinearLayout) rootView, cbImportHdhr, cbSkipDrm,
+          etHdhrHost, etNewBouquetName, llHdhrOptions, rbModeRadio, rbModeTv, rgNewBouquetMode);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

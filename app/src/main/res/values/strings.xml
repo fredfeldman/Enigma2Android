@@ -507,4 +507,22 @@
     <string name="import_failed">Could not read profiles file</string>
     <string name="import_confirm_title">Import profiles?</string>
     <string name="import_confirm_message">Profiles already on this phone with the same id will be overwritten. Continue?</string>
+
+    <!-- v1.3.1: multi-room messaging + WOL -->
+    <string name="send_message_target">Send to</string>
+    <string name="wol_pick_target">Wake which receiver?</string>
+
+    <!-- v1.3.2: reminder notification actions -->
+    <string name="reminder_action_watch">Watch now</string>
+    <string name="reminder_action_snooze">Snooze 5 min</string>
+
+    <!-- v1.4.0: HDHomeRun import -->
+    <string name="bouquet_new_hdhr_checkbox">Import channels from HDHomeRun tuner</string>
+    <string name="bouquet_new_hdhr_host_hint">Tuner IP or hostname (default: hdhomerun.local)</string>
+    <string name="bouquet_new_hdhr_skip_drm">Skip encrypted (DRM) channels</string>
+    <string name="bouquet_hdhr_starting">Contacting HDHomeRun tuner…</string>
+    <string name="bouquet_hdhr_unreachable">Could not reach HDHomeRun at %1$s</string>
+    <string name="bouquet_hdhr_no_channels">No playable channels in lineup</string>
+    <string name="bouquet_hdhr_not_found">Bouquet was created but could not be located on the receiver</string>
+    <string name="bouquet_hdhr_done">HDHomeRun import: %1$d added, %2$d failed</string>
 </resources>

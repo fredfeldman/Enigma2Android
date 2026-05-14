@@ -177,6 +177,18 @@ class BouquetEditorFragment : Fragment() {
         val view = layoutInflater.inflate(R.layout.dialog_new_bouquet, null)
         val etName = view.findViewById<EditText>(R.id.et_new_bouquet_name)
         val rg = view.findViewById<RadioGroup>(R.id.rg_new_bouquet_mode)
+        val cbHdhr = view.findViewById<android.widget.CheckBox>(R.id.cb_import_hdhr)
+        val llHdhr = view.findViewById<View>(R.id.ll_hdhr_options)
+        val etHost = view.findViewById<EditText>(R.id.et_hdhr_host)
+        val cbSkipDrm = view.findViewById<android.widget.CheckBox>(R.id.cb_skip_drm)
+        cbHdhr.setOnCheckedChangeListener { _, checked ->
+            llHdhr.visibility = if (checked) View.VISIBLE else View.GONE
+            // HDHomeRun is TV-only; force TV mode and disable Radio choice
+            if (checked) {
+                view.findViewById<android.widget.RadioButton>(R.id.rb_mode_tv).isChecked = true
+            }
+            view.findViewById<android.widget.RadioButton>(R.id.rb_mode_radio).isEnabled = !checked
+        }
         AlertDialog.Builder(requireContext())
             .setTitle(R.string.bouquet_new_title)
             .setView(view)
@@ -185,10 +197,99 @@ class BouquetEditorFragment : Fragment() {
                 if (name.isEmpty()) return@setPositiveButton
                 val mode = if (rg.checkedRadioButtonId == R.id.rb_mode_radio)
                     Enigma2Repository.MODE_RADIO else Enigma2Repository.MODE_TV
-                runOp { repo.addBouquet(name, mode) }
+                if (cbHdhr.isChecked) {
+                    val host = etHost.text.toString().trim()
+                        .ifBlank { "hdhomerun.local" }
+                    importFromHdHomeRun(name, host, cbSkipDrm.isChecked)
+                } else {
+                    runOp { repo.addBouquet(name, mode) }
+                }
             }
             .setNegativeButton(android.R.string.cancel, null)
             .show()
+    }
+
+    /**
+     * v1.4.0 — Create a new TV bouquet then populate it with every channel
+     * exposed by the HDHomeRun device at [host]. Each channel becomes an
+     * IPTV service ref (type 4097) pointing at the device's MPEG-TS URL.
+     */
+    private fun importFromHdHomeRun(name: String, host: String, skipDrm: Boolean) {
+        val ctx = requireContext()
+        Toast.makeText(ctx, R.string.bouquet_hdhr_starting, Toast.LENGTH_SHORT).show()
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                // 1) Probe device + lineup off the main thread.
+                val (info, lineup) = kotlinx.coroutines.withContext(
+                    kotlinx.coroutines.Dispatchers.IO
+                ) {
+                    val info = com.enigma2.android.data.hdhomerun.HdHomeRunClient.discover(host)
+                    val lineup = com.enigma2.android.data.hdhomerun.HdHomeRunClient.fetchLineup(host)
+                    info to lineup
+                }
+                if (info == null && lineup.isEmpty()) {
+                    Toast.makeText(ctx,
+                        getString(R.string.bouquet_hdhr_unreachable, host),
+                        Toast.LENGTH_LONG).show()
+                    return@launch
+                }
+                val playable = lineup.filter { !skipDrm || !it.isProtected }
+                if (playable.isEmpty()) {
+                    Toast.makeText(ctx,
+                        R.string.bouquet_hdhr_no_channels,
+                        Toast.LENGTH_LONG).show()
+                    return@launch
+                }
+
+                // 2) Create the bouquet (TV mode).
+                val createRes = repo.addBouquet(name, Enigma2Repository.MODE_TV)
+                if (!createRes.ok) {
+                    Toast.makeText(ctx,
+                        getString(R.string.bouquet_editor_op_failed, createRes.message ?: ""),
+                        Toast.LENGTH_LONG).show()
+                    return@launch
+                }
+
+                // 3) Find the freshly-created user bouquet by name. Server may
+                //    have rewritten the name (spaces -> underscores etc.); match
+                //    by best-effort case-insensitive contains.
+                val newBouquet = repo.getUserBouquets()
+                    .firstOrNull { it.name.equals(name, ignoreCase = true) }
+                    ?: repo.getUserBouquets()
+                        .firstOrNull { it.name.contains(name, ignoreCase = true) }
+                if (newBouquet == null) {
+                    Toast.makeText(ctx,
+                        R.string.bouquet_hdhr_not_found,
+                        Toast.LENGTH_LONG).show()
+                    BouquetEditorEvents.markDirty()
+                    load()
+                    return@launch
+                }
+
+                // 4) Push every channel into the bouquet sequentially.
+                var added = 0
+                var failed = 0
+                for (ch in playable) {
+                    val ref = com.enigma2.android.data.hdhomerun.HdHomeRunClient.toEnigma2Ref(ch)
+                    val display = ch.guideName.ifBlank { ch.guideNumber }
+                    val service = com.enigma2.android.data.model.Service(ref = ref, name = display)
+                    try {
+                        val r = repo.addServiceToBouquet(newBouquet.ref, service)
+                        if (r.ok) added++ else failed++
+                    } catch (_: Exception) { failed++ }
+                }
+
+                Toast.makeText(ctx,
+                    getString(R.string.bouquet_hdhr_done, added, failed),
+                    Toast.LENGTH_LONG).show()
+                BouquetEditorEvents.markDirty()
+                load()
+            } catch (e: Exception) {
+                Toast.makeText(ctx,
+                    getString(R.string.bouquet_editor_op_failed, e.message ?: ""),
+                    Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     private fun promptRename(bouquet: Bouquet) {

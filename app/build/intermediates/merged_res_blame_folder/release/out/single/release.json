@@ -24,16 +24,16 @@
         "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\item_epgimport_source.xml"
     },
     {
-        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-merged_res-55:\\xml_shortcuts.xml.flat",
-        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\xml\\shortcuts.xml"
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-merged_res-55:\\layout_fragment_recordings.xml.flat",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\fragment_recordings.xml"
     },
     {
         "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-merged_res-55:\\layout_item_picker_service.xml.flat",
         "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\item_picker_service.xml"
     },
     {
-        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-merged_res-55:\\layout_fragment_recordings.xml.flat",
-        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\layout\\fragment_recordings.xml"
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-merged_res-55:\\xml_shortcuts.xml.flat",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\xml\\shortcuts.xml"
     },
     {
         "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-merged_res-55:\\layout_fragment_bouquet_editor.xml.flat",
@@ -82,10 +82,6 @@
     {
         "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-merged_res-55:\\drawable_selector_channel_item.xml.flat",
         "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\drawable\\selector_channel_item.xml"
-    },
-    {
-        "merged": "com.enigma2.android.app-merged_res-55:/xml_preferences.xml.flat",
-        "source": "com.enigma2.android.app-main-56:/xml/preferences.xml"
     },
     {
         "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-merged_res-55:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
@@ -178,6 +174,10 @@
     {
         "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-merged_res-55:\\drawable_ic_channel_placeholder.xml.flat",
         "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-56:\\drawable\\ic_channel_placeholder.xml"
+    },
+    {
+        "merged": "com.enigma2.android.app-merged_res-55:/layout_dialog_new_bouquet.xml.flat",
+        "source": "com.enigma2.android.app-main-56:/layout/dialog_new_bouquet.xml"
     },
     {
         "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-merged_res-55:\\layout_item_autotimer.xml.flat",
