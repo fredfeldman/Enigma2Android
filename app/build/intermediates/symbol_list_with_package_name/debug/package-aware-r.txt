@@ -4649,6 +4649,9 @@ string exo_track_surround_5_point_1
 string exo_track_surround_7_point_1
 string exo_track_unknown
 string expand_button_title
+string export_done
+string export_failed
+string export_include_passwords
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
@@ -4658,6 +4661,10 @@ string hide_bouquets_subtitle
 string hide_bouquets_title
 string host_address
 string icon_content_description
+string import_confirm_message
+string import_confirm_title
+string import_done
+string import_failed
 string item_view_role_description
 string justplay_zap_only
 string loading_ellipsis
@@ -4800,6 +4807,7 @@ string player_mode_no_handler
 string playlists
 string port
 string pref_auto_resume_title
+string pref_category_backup
 string pref_category_connection
 string pref_category_display
 string pref_category_playback
@@ -4807,9 +4815,13 @@ string pref_category_plugins
 string pref_category_receiver
 string pref_channel_tap_action_summary
 string pref_channel_tap_action_title
+string pref_export_profiles_summary
+string pref_export_profiles_title
 string pref_hide_bouquets_title
 string pref_host_title
 string pref_https_title
+string pref_import_profiles_summary
+string pref_import_profiles_title
 string pref_night_mode_title
 string pref_password_title
 string pref_player_mode_summary
@@ -5093,6 +5105,10 @@ string wol
 string wol_sending
 string wol_sent
 string zap_failed
+string zap_on_failed
+string zap_on_ok
+string zap_on_other
+string zap_on_starting
 string zapped_to
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light

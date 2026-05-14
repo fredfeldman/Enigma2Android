@@ -24,16 +24,16 @@
         "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-57:\\layout\\item_epgimport_source.xml"
     },
     {
-        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-merged_res-55:\\layout_item_picker_service.xml.flat",
-        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-57:\\layout\\item_picker_service.xml"
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-merged_res-55:\\xml_shortcuts.xml.flat",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-57:\\xml\\shortcuts.xml"
     },
     {
         "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-merged_res-55:\\layout_fragment_recordings.xml.flat",
         "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-57:\\layout\\fragment_recordings.xml"
     },
     {
-        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-merged_res-55:\\xml_shortcuts.xml.flat",
-        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-57:\\xml\\shortcuts.xml"
+        "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-merged_res-55:\\layout_item_picker_service.xml.flat",
+        "source": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-main-57:\\layout\\item_picker_service.xml"
     },
     {
         "merged": "C:\\Users\\Player One\\.gradle\\daemon\\8.2\\com.enigma2.android.app-merged_res-55:\\layout_fragment_bouquet_editor.xml.flat",

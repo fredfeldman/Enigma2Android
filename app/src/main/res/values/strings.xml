@@ -489,4 +489,22 @@
     <string name="pref_preferred_external_pick">Pick external player</string>
     <string name="pref_preferred_external_clear">Clear preferred player</string>
     <string name="player_mode_no_handler">No external player installed</string>
+
+    <!-- v1.3.0: Multi-room + backup -->
+    <string name="zap_on_other">Zap on…</string>
+    <string name="zap_on_starting">Zapping on %1$s…</string>
+    <string name="zap_on_ok">Zapped on %1$s</string>
+    <string name="zap_on_failed">Could not zap on %1$s</string>
+    <string name="pref_category_backup">Backup</string>
+    <string name="pref_export_profiles_title">Export device profiles</string>
+    <string name="pref_export_profiles_summary">Save all configured receivers to a JSON file in Downloads</string>
+    <string name="pref_import_profiles_title">Import device profiles</string>
+    <string name="pref_import_profiles_summary">Read a previously-exported profiles file</string>
+    <string name="export_include_passwords">Include passwords (less secure)</string>
+    <string name="export_done">Exported to %1$s</string>
+    <string name="export_failed">Could not export profiles</string>
+    <string name="import_done">Imported: %1$d added, %2$d updated</string>
+    <string name="import_failed">Could not read profiles file</string>
+    <string name="import_confirm_title">Import profiles?</string>
+    <string name="import_confirm_message">Profiles already on this phone with the same id will be overwritten. Continue?</string>
 </resources>

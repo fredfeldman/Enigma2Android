@@ -1,6 +1,6 @@
 # E2Android — User Guide
 
-**Version 1.2.0**
+**Version 1.3.0**
 Android 8.0+ (API 26) | Enigma2 receivers via OpenWebif
 
 ---
@@ -559,4 +559,28 @@ Chromecast's default media receiver does not play MPEG-TS, so without a custom r
 - If no external player is installed and External mode is selected, the app silently falls back to the built-in player.
 - Schedule playback, favourites, and recording playback all honour the preference.
 - The internal player still handles the EPG OSD, zap-on-nav, PiP, and 'auto-resume', so leave it on Built-in if you rely on those features.
+
+
+---
+
+## 25. What's new in 1.3.0 - Multi-room and backup
+
+Two features for users who run multiple Enigma2 boxes or set the app up across multiple devices.
+
+### Zap on another receiver
+
+Long-press any channel -> 'Zap on...'. The menu lists every other configured device profile (the entry only appears when you have more than one). Picking a receiver tunes that box without touching the active one. Useful for tuning the bedroom box from the couch, multi-room sports, or staging channels in another room before walking over.
+
+### Profile export / import
+
+Settings -> Backup -> Export device profiles writes every configured receiver to Downloads/enigma2android_profiles_<timestamp>.json. Passwords are stripped by default - tick 'Include passwords (less secure)' to make a fully self-contained backup.
+
+Settings -> Backup -> Import device profiles opens the system file picker. Profiles with the same id are updated in-place; passwords kept by the import file are merged in, but a missing password NEVER silently wipes your existing one.
+
+The JSON format is human-readable so you can hand-edit before re-importing (bulk rename, IP adjustments, etc.).
+
+### Notes
+
+- The new RemoteReceiverApi plumbing also supports OSD messages and could host a 'record on...' action; both are queued for a follow-up release.
+- Picon manager, theme picker, and receiver-config backup were on the v1.3.0 longlist but are deferred (file upload to receiver, theme regression surface, image-variant config paths).
 

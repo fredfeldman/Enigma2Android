@@ -97,4 +97,16 @@
             android:summary="@string/epg_import_summary" />
     </PreferenceCategory>
 
+    <!-- v1.3.0: Backup -->
+    <PreferenceCategory android:title="@string/pref_category_backup">
+        <Preference
+            android:key="pref_export_profiles"
+            android:title="@string/pref_export_profiles_title"
+            android:summary="@string/pref_export_profiles_summary" />
+        <Preference
+            android:key="pref_import_profiles"
+            android:title="@string/pref_import_profiles_title"
+            android:summary="@string/pref_import_profiles_summary" />
+    </PreferenceCategory>
+
 </PreferenceScreen>

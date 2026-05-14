@@ -16,6 +16,33 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     private val repo = Enigma2Repository()
 
+    // v1.3.0: SAF picker for importing profile JSON
+    private val importPicker = registerForActivityResult(
+        androidx.activity.result.contract.ActivityResultContracts.OpenDocument()
+    ) { uri ->
+        if (uri == null) return@registerForActivityResult
+        val ctx = context ?: return@registerForActivityResult
+        androidx.appcompat.app.AlertDialog.Builder(ctx)
+            .setTitle(R.string.import_confirm_title)
+            .setMessage(R.string.import_confirm_message)
+            .setPositiveButton(android.R.string.ok) { _, _ ->
+                val prefs = com.enigma2.android.data.prefs.ReceiverPreferences(ctx)
+                val res = com.enigma2.android.data.backup.ProfileBackup
+                    .importFromUri(ctx, uri, prefs)
+                if (res.ok) {
+                    android.widget.Toast.makeText(ctx,
+                        getString(R.string.import_done, res.added, res.updated),
+                        android.widget.Toast.LENGTH_LONG).show()
+                } else {
+                    android.widget.Toast.makeText(ctx,
+                        R.string.import_failed,
+                        android.widget.Toast.LENGTH_LONG).show()
+                }
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .show()
+    }
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences, rootKey)
 
@@ -90,6 +117,46 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         epgImportPref?.setOnPreferenceClickListener {
             startActivity(Intent(requireContext(), EpgImportActivity::class.java))
+            true
+        }
+
+        // v1.3.0: profile export
+        findPreference<Preference>("pref_export_profiles")?.setOnPreferenceClickListener {
+            val ctx = requireContext()
+            val view = android.widget.CheckBox(ctx).apply {
+                text = getString(R.string.export_include_passwords)
+                setPadding(48, 24, 48, 24)
+            }
+            androidx.appcompat.app.AlertDialog.Builder(ctx)
+                .setTitle(R.string.pref_export_profiles_title)
+                .setView(view)
+                .setPositiveButton(android.R.string.ok) { _, _ ->
+                    val prefs = com.enigma2.android.data.prefs.ReceiverPreferences(ctx)
+                    val json = com.enigma2.android.data.backup.ProfileBackup
+                        .encode(prefs, includePasswords = view.isChecked)
+                    val ts = java.text.SimpleDateFormat("yyyyMMdd_HHmmss",
+                        java.util.Locale.US).format(java.util.Date())
+                    val path = com.enigma2.android.util.DownloadsWriter.writeText(
+                        ctx, "enigma2android_profiles_$ts.json",
+                        "application/json", json)
+                    if (path != null) {
+                        android.widget.Toast.makeText(ctx,
+                            getString(R.string.export_done, path),
+                            android.widget.Toast.LENGTH_LONG).show()
+                    } else {
+                        android.widget.Toast.makeText(ctx,
+                            R.string.export_failed,
+                            android.widget.Toast.LENGTH_LONG).show()
+                    }
+                }
+                .setNegativeButton(android.R.string.cancel, null)
+                .show()
+            true
+        }
+
+        // v1.3.0: profile import (SAF)
+        findPreference<Preference>("pref_import_profiles")?.setOnPreferenceClickListener {
+            importPicker.launch(arrayOf("application/json", "*/*"))
             true
         }
 

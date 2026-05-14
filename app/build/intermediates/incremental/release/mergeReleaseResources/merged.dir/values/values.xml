@@ -2433,6 +2433,9 @@
     <string name="exo_track_surround_7_point_1">7.1 surround sound</string>
     <string name="exo_track_unknown">Unknown</string>
     <string name="expand_button_title">Advanced</string>
+    <string name="export_done">Exported to %1$s</string>
+    <string name="export_failed">Could not export profiles</string>
+    <string name="export_include_passwords">Include passwords (less secure)</string>
     <string name="exposed_dropdown_menu_content_description">Show dropdown menu</string>
     <string name="fab_transformation_scrim_behavior" translatable="false">com.google.android.material.transformation.FabTransformationScrimBehavior</string>
     <string name="fab_transformation_sheet_behavior" translatable="false">com.google.android.material.transformation.FabTransformationSheetBehavior</string>
@@ -2442,6 +2445,10 @@
     <string name="hide_bouquets_title">Hide Bouquets</string>
     <string name="host_address">Host / IP Address</string>
     <string description="Content description for an icon that appears in the title area of a dialog" name="icon_content_description">Dialog Icon</string>
+    <string name="import_confirm_message">Profiles already on this phone with the same id will be overwritten. Continue?</string>
+    <string name="import_confirm_title">Import profiles?</string>
+    <string name="import_done">Imported: %1$d added, %2$d updated</string>
+    <string name="import_failed">Could not read profiles file</string>
     <string name="item_view_role_description">Tab</string>
     <string name="justplay_zap_only">Zap only (don\'t record)</string>
     <string name="loading_ellipsis">Loading…</string>
@@ -2590,6 +2597,7 @@
     <string name="playlists">Playlists</string>
     <string name="port">Port</string>
     <string name="pref_auto_resume_title">Auto-resume last channel</string>
+    <string name="pref_category_backup">Backup</string>
     <string name="pref_category_connection">Connection</string>
     <string name="pref_category_display">Display</string>
     <string name="pref_category_playback">Playback</string>
@@ -2597,9 +2605,13 @@
     <string name="pref_category_receiver">Receiver</string>
     <string name="pref_channel_tap_action_summary">Choose what happens when you tap a channel in the list</string>
     <string name="pref_channel_tap_action_title">Action when tapping a channel</string>
+    <string name="pref_export_profiles_summary">Save all configured receivers to a JSON file in Downloads</string>
+    <string name="pref_export_profiles_title">Export device profiles</string>
     <string name="pref_hide_bouquets_title">Hidden Bouquets</string>
     <string name="pref_host_title">Receiver Host</string>
     <string name="pref_https_title">Use HTTPS</string>
+    <string name="pref_import_profiles_summary">Read a previously-exported profiles file</string>
+    <string name="pref_import_profiles_title">Import device profiles</string>
     <string name="pref_night_mode_title">Dark Mode</string>
     <string name="pref_password_title">Password</string>
     <string name="pref_player_mode_summary">Choose where to play streams</string>
@@ -2887,6 +2899,10 @@
     <string name="wol_sending">Sending Wake-on-LAN…</string>
     <string name="wol_sent">Wake-on-LAN packet sent</string>
     <string name="zap_failed">Failed to zap receiver</string>
+    <string name="zap_on_failed">Could not zap on %1$s</string>
+    <string name="zap_on_ok">Zapped on %1$s</string>
+    <string name="zap_on_other">Zap on…</string>
+    <string name="zap_on_starting">Zapping on %1$s…</string>
     <string name="zapped_to">Zapped to %1$s</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>

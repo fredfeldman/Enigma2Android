@@ -275,12 +275,15 @@ class ChannelsFragment : Fragment() {
     private fun showChannelMenu(service: Service) {
         val isFav = service.ref in (viewModel.favorites.value ?: emptyList())
         val favLabel = if (isFav) getString(R.string.remove_favorite) else getString(R.string.add_favorite)
-        val options = arrayOf(
+        val otherProfiles = prefs.deviceProfiles.filter { it.id != prefs.activeDeviceId }
+        val baseOptions = mutableListOf(
             getString(R.string.play),
             favLabel,
             getString(R.string.epg_info),
             getString(R.string.epg_export_title)
         )
+        if (otherProfiles.isNotEmpty()) baseOptions += getString(R.string.zap_on_other)
+        val options = baseOptions.toTypedArray()
         AlertDialog.Builder(requireContext())
             .setTitle(service.name)
             .setItems(options) { _, which ->
@@ -289,6 +292,34 @@ class ChannelsFragment : Fragment() {
                     1 -> viewModel.toggleFavorite(service.ref)
                     2 -> showEpgInfo(service)
                     3 -> exportEpgForChannel(service)
+                    4 -> showZapElsewhereDialog(service, otherProfiles)
+                }
+            }
+            .show()
+    }
+
+    private fun showZapElsewhereDialog(
+        service: Service,
+        profiles: List<com.enigma2.android.data.model.DeviceProfile>
+    ) {
+        if (profiles.isEmpty()) return
+        val labels = profiles.map { it.name.ifBlank { it.host } }.toTypedArray()
+        AlertDialog.Builder(requireContext())
+            .setTitle(R.string.zap_on_other)
+            .setItems(labels) { _, idx ->
+                val target = profiles[idx]
+                val ctx = requireContext()
+                Toast.makeText(ctx, getString(R.string.zap_on_starting, labels[idx]),
+                    Toast.LENGTH_SHORT).show()
+                viewLifecycleOwner.lifecycleScope.launch {
+                    val ok = withContext(kotlinx.coroutines.Dispatchers.IO) {
+                        com.enigma2.android.data.repository.RemoteReceiverApi
+                            .zap(target, service.ref)
+                    }
+                    Toast.makeText(ctx,
+                        if (ok) getString(R.string.zap_on_ok, labels[idx])
+                        else getString(R.string.zap_on_failed, labels[idx]),
+                        Toast.LENGTH_SHORT).show()
                 }
             }
             .show()
